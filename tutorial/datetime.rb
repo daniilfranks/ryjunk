@@ -12,3 +12,7 @@ puts DateTime.parse('2001-02-03T04:05:06+07:00')
 
 puts tid.month
 puts tid.year
+
+if tid < DateTime.now
+   puts "Correct"
+end
