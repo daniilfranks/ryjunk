@@ -5,7 +5,13 @@ Given(/^we have behave installed$/) do
   #pending # Write code here that turns the phrase above into concrete actions
   puts 'We have cucumber installed!'
   assert @kalle == 0
+  #puts @HelpMe::NUDA
+  #puts "name of :   #{self.class.name}  #{self.methods} "
 
+  puts"variables #{self.instance_variables}"
+
+
+  #assert false
   @kalle = 1
 end
 
