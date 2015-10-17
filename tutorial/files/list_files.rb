@@ -1,10 +1,15 @@
 
-
-ll = Dir.glob(['*.rb', '*.gz'])
-
-puts ll
-
+require 'thread'
 require 'singleton'
+
+def list
+
+  ll = Dir.glob(['*.rb', '*.gz'])
+
+  puts ll
+end
+
+
 class Nisse
 
 	include Singleton
@@ -39,13 +44,11 @@ class Janne
 
 end
 
-require 'thread'
-
-nn = [Janne.new, Janne.new]
 
 
-all  = nn.each do | x | Thread.new { x } end
+if __FILE__ == $0
 
-
-sleep 1
-
+  nn = [Janne.new, Janne.new]
+  all  = nn.each do | x | Thread.new { x } end
+  sleep 1
+end

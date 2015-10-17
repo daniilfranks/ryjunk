@@ -38,7 +38,12 @@ end
 
 
 if __FILE__ == $0
+
+
   mg = MegaGreeter.new
+
+  puts  mg.public_methods(false)
+
   mg.say_hi
   mg.say_bye
 
