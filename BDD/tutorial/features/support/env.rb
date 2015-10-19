@@ -3,15 +3,21 @@
 
 require_relative '../domain/domain'
 
+module HelpMe
+
+  @orvar = 12345
+
+end
 
 Before do
    puts 'Before!!!'
    @kalle = 0
    @nisse = Nisse.new
+
    
 end
 
-
+World(HelpMe)
 
 After do |s| 
   puts 'After!!!'
