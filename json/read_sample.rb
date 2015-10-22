@@ -20,4 +20,8 @@ puts data.fathers
 
 # This database should be read before every session
 
-# Backup database if not hit for id:s? 
+# Backup database if not hit for id:s?
+
+# Create leagues with help of FIFA and EUFA (nokogiri?)
+
+# Use new numbers (on high series) for random names? (inlcuded files?)
