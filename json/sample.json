@@ -1,0 +1,104 @@
+{ 
+  "fathers" : [ 
+    { 
+      "id" : 0,
+      "married" : false,
+      "name" : "Thomas Robinson",
+      "sons" : null,
+      "daughters" : [ 
+        { 
+          "age" : 20,
+          "name" : "Deborah"
+          }
+        ]
+      },
+    { 
+      "id" : 1,
+      "married" : false,
+      "name" : "James Hall",
+      "sons" : null,
+      "daughters" : [ 
+        { 
+          "age" : 21,
+          "name" : "Brenda"
+          },
+        { 
+          "age" : 18,
+          "name" : "Ruth"
+          },
+        { 
+          "age" : 11,
+          "name" : "Patricia"
+          }
+        ]
+      },
+    { 
+      "id" : 2,
+      "married" : true,
+      "name" : "Edward White",
+      "sons" : null,
+      "daughters" : [
+        ]
+      },
+    { 
+      "id" : 3,
+      "married" : false,
+      "name" : "Eric Clark",
+      "sons" : null,
+      "daughters" : [ 
+        { 
+          "age" : 23,
+          "name" : "Cynthia"
+          }
+        ]
+      },
+    { 
+      "id" : 4,
+      "married" : false,
+      "name" : "David Davis",
+      "sons" : null,
+      "daughters" : [ 
+        { 
+          "age" : 23,
+          "name" : "Lisa"
+          }
+        ]
+      },
+    { 
+      "id" : 5,
+      "married" : true,
+      "name" : "Jeffrey Williams",
+      "sons" : null,
+      "daughters" : [ 
+        { 
+          "age" : 9,
+          "name" : "Margaret"
+          },
+        { 
+          "age" : 11,
+          "name" : "Sandra"
+          },
+        { 
+          "age" : 4,
+          "name" : "Deborah"
+          }
+        ]
+      },
+    { 
+      "id" : 6,
+      "married" : false,
+      "name" : "Michael Robinson",
+      "sons" : null,
+      "daughters" : [ 
+        { 
+          "age" : 20,
+          "name" : "Sarah"
+          },
+        { 
+          "age" : 6,
+          "name" : "Sharon"
+          }
+        ]
+      }
+    ]
+  }
