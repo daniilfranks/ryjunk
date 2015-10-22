@@ -6,9 +6,37 @@ require 'ostruct'
 
 fh = File.read("./sample.json") 
 
-data = JSON.load(fh, proc=ostruct)
+#data = JSON.load(fh, proc=ostruct)
+data = JSON.parse(fh, object_class: OpenStruct)
 #data = JSON.load(fh)
-puts data.fathers
+fathers = data.fathers
+
+pp fathers[0].name
+
+
+data = File.readlines("./load_employees.dump.txt")
+
+data.each_with_index do | x, idx |
+
+  break if idx == 10
+
+  # (10002,'1964-06-02','Bezalel','Simmel','F','1985-11-21'),
+  fields = x.split(',')
+
+  puts "#{fields[2]} #{fields[3]}"
+
+end 
+
+require 'nokogiri'
+require 'open-uri'
+
+# http://www.uefa.com/memberassociations/leaguesandcups/index.html
+
+# Fetch and parse HTML document
+doc = Nokogiri::HTML(open('http://www.uefa.com/memberassociations/leaguesandcups/index.html'))
+
+pp doc.search(".fr")
+
 
 # Traverse and check that we have uniqe data
 
