@@ -14,7 +14,10 @@ fathers = data.fathers
 pp fathers[0].name
 
 
-data = File.readlines("./load_employees.dump.txt")
+#data = File.readlines("./load_employees.dump.txt")
+data = File.readlines("./names.txt")
+
+names =Hash.new
 
 data.each_with_index do | x, idx |
 
@@ -23,9 +26,19 @@ data.each_with_index do | x, idx |
   # (10002,'1964-06-02','Bezalel','Simmel','F','1985-11-21'),
   fields = x.split(',')
 
-  puts "#{fields[2]} #{fields[3]}"
+  names.merge!( idx => { :first_name => fields[2], :last_name => fields[3]})
+
+ 
+
 
 end 
+
+  data = []
+  data.push(names)
+
+  jayson = JSON.generate(data) #data.to_json
+  
+  pp jayson
 
 require 'nokogiri'
 require 'open-uri'
@@ -33,9 +46,9 @@ require 'open-uri'
 # http://www.uefa.com/memberassociations/leaguesandcups/index.html
 
 # Fetch and parse HTML document
-doc = Nokogiri::HTML(open('http://www.uefa.com/memberassociations/leaguesandcups/index.html'))
+#doc = Nokogiri::HTML(open('http://www.uefa.com/memberassociations/leaguesandcups/index.html'))
 
-pp doc.search(".fr")
+#pp doc.search(".fr")
 
 
 # Traverse and check that we have uniqe data
