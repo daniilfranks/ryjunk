@@ -11,7 +11,7 @@ data = JSON.parse(fh, object_class: OpenStruct)
 #data = JSON.load(fh)
 fathers = data.fathers
 
-pp fathers[0].name
+#pp fathers[0].name
 
 
 #data = File.readlines("./load_employees.dump.txt")
@@ -19,26 +19,42 @@ data = File.readlines("./names.txt")
 
 names =Hash.new
 
-data.each_with_index do | x, idx |
+data.each_with_index do | x, i |
 
-  break if idx == 10
+  break if i == 10
 
   # (10002,'1964-06-02','Bezalel','Simmel','F','1985-11-21'),
   fields = x.split(',')
 
-  names.merge!( idx => { :first_name => fields[2], :last_name => fields[3]})
+  first = fields[2].gsub("'","")
+  last = fields[3].gsub("'","")
+  name = first + ' ' + last
+  idx = 9000000 + i
+  names.merge!( idx => { :Id => idx, 
+  	                     :members =>  {
+  	                     	:name => name, 
+  	                     	:first_name => first,
+  	                     	:last_name => last
+  	                     }
+  	                    }
+  	           )
 
  
 
 
 end 
 
-  data = []
-  data.push(names)
+  #data = []
+  player = {:Team => 'nisse', :Player => names}
+  #team   = {:Team => 'nisse'}
+  reqs = {:requirements => player}
 
-  jayson = JSON.generate(data) #data.to_json
+  jayson = JSON.generate(reqs) #data.to_json
   
-  pp jayson
+
+fh = File.open('fake_requirements.json', 'w')
+
+fh.write(JSON.generate(reqs))
 
 require 'nokogiri'
 require 'open-uri'
