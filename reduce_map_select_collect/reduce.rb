@@ -28,6 +28,22 @@ r = [1,2,3,4].reduce do | total, item | total + item end
 
 puts r
 
+class Try
+  attr_reader :number
+  def initialize
+  	@number = rand(1..10)
+  end
+end
+
+test = [Try.new, Try.new, Try.new]
+
+the_max = test.max_by do | item |  item.number end
+
+puts the_max.number
+
+#zip !!!
+
+
 # none?
 
 # any? |
