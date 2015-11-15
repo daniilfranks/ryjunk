@@ -1,4 +1,6 @@
 
+class MyException<StandardError; end
+
 class ClassBuilder
 
   # TODO: Better ways to write a ruby file??
@@ -7,9 +9,20 @@ class ClassBuilder
     @fh.write("class #{class_name}\n")
   end
 
-  def create_method(name,header='')
+  def create_init_method
+    _create_method(name="initialize") { "    @system = System.new\n"}
+  end
+
+  def create_method (name,header='')
+    _create_method(name, header) {"    fail NotImplementedError\n"}
+  end
+
+  # TODO: use yield to and block within method!
+  def _create_method(name,header='')
     @fh.write("  def #{header}#{name}\n")
-    @fh.write("    fail NotImplementedError\n")   
+
+    @fh.write yield if block_given?
+
     @fh.write("  end\n\n")
   end
 
@@ -36,10 +49,10 @@ class FileBuilder
   end
 
   def driver
+    @klasse.create_init_method
     @model.mbt_states.keys.each do |var|  @klasse.create_method(var,header='test_') end
     system 
   end
-
 end
 
 class ParseModelFile
@@ -63,7 +76,11 @@ class ParseModelFile
       # TODO: check how to be sure that we have 3 colons?
       # Check for blanks in names
       # check for 3 colons!
+      fail MyException, "ERROR:Invalid number of actions states" unless row.split(',').size ==3
+
       state1, action, state2 = row.split(',')
+
+      fail MyException, "ERROR:Whitespace in actions/states" if row.split(',').any? do |v| v.include?(' ')  end
 
       @mbt_states[state1.chomp]=1
       @mbt_states[state2.chomp]=1
@@ -71,7 +88,6 @@ class ParseModelFile
     end
 
   end
-
 end
 
 class VerifyRubyFile
@@ -84,30 +100,35 @@ class VerifyRubyFile
     # TODO: call a method to see if there is a raise !
     # TODO: run ruby-lint and rubocop on these files
   end
-
 end
  
 if __FILE__ == $PROGRAM_NAME
 
-  # TODO: include arguments to this program. Should it reside in overall file?
+  begin
+    # TODO: include arguments to this program. Should it reside in overall file?
 
-  args = {:model => "test1.csv", :system_file => "system_stub.rb",
+    # TODO: Include require of system in sut-driver and initialize of system too..
+
+    args = {:model => "test1.csv", :system_file => "system_stub.rb",
          :driver_file => "sut_driver_stub.rb"}
 
-  model = ParseModelFile.new(args[:model])
+    model = ParseModelFile.new(args[:model])
 
-  "Create SUT"
-  systeme = FileBuilder.new(args[:system_file],:System, model)
-  systeme.system 
+    "Create SUT"
+    systeme = FileBuilder.new(args[:system_file],:System, model)
+    systeme.system 
   
-  "Create SUT-driver"
-  driver = FileBuilder.new(args[:driver_file], :SystemDriver, model)
-  driver.driver 
+    "Create SUT-driver"
+    driver = FileBuilder.new(args[:driver_file], :SystemDriver, model)
+    driver.driver 
 
-  "Verify the result"
-  VerifyRubyFile.new(systeme)
-  VerifyRubyFile.new(driver)
+    "Verify the result"
+    VerifyRubyFile.new(systeme)
+    VerifyRubyFile.new(driver)
 
+  rescue MyException => e
+    puts e
+  end
 end
 
 

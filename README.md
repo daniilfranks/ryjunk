@@ -1,7 +1,14 @@
+## neo4js
+
 # To Learn
 
+# Software testing and machine Learning ...
 
-## Class builder, class Modifier?
+## ftp example and file watcher ...
+
+## Class builder
+
+Should be okay!
 
 ## Jenkins check job! from muy laptop, later on raspberryPi...
 
@@ -13,11 +20,13 @@
 
 ##MBT
 
+login example ...
+
 ## random test/test oracles
 
 weak/medium and strong oracles ...
 
-## Obsverver pattern:
+## Obsverver pattern
 
 ## Arbitrary pattern in notification?
 
