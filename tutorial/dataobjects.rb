@@ -63,22 +63,3 @@ puts
 
 #my[1].tut
 
-hash = {
-
-  "12345"=> {
-    "members" => {
-     "name"=> "23456"
-    }
-  }
-}
-
-json = hash.to_json
-object = JSON.parse(json, object_class: OpenStruct)
-
-
-object.to_h.each_with_index do |d, i|
-  puts "#{i} #{d[1]}"
-  d[1].to_h.each do |k|
-    puts k['name']
-  end
-end
