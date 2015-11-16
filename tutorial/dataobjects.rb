@@ -1,6 +1,7 @@
 require 'json'
 require 'ostruct'
 
+# http://andreapavoni.com/blog/2013/4/create-recursive-openstruct-from-a-ruby-hash/#.Vio38CDtlBd
 
 class A
 

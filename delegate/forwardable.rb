@@ -1,4 +1,4 @@
-
+# http://radar.oreilly.com/2014/02/delegation-patterns-in-ruby.html
 require 'forwardable'
 
 class RecordCollection
