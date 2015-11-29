@@ -4,6 +4,7 @@ require 'optparse'
 require 'optparse/time'
 require 'ostruct'
 require 'pp'
+require 'stringio'
 
 class Base
 
@@ -149,25 +150,52 @@ class OptparseExample
 end  # class OptparseExample
 
 
+class NullLogger < Logger
+ 
+  def initialize(*args)
+  end
+
+  def add (*args, &block)
+  end
+
+  def level=(*args, &block)
+  end
+
+end
+
+class LogPicker
+  attr_reader :logger
+
+  def initialize(name, output=STDOUT)
+    @logger = (name == 'none')? NullLogger.new : Logger.new(output)
+  end
+
+end
 
 if __FILE__ == $0
 
   # To be able to map logger levels
   level = { "error" => Logger::ERROR, "warn" => Logger::WARN, "debug" => Logger::DEBUG }	
-  level.default = Logger::ERROR
+  level.default = Logger::INFO
 
   # Parse arguments
   options = OptparseExample.parse(ARGV)
-  pp options.loglevel
+  #pp options.loglevel
   #pp ARGV
  
   # Dedide if stdout or to file (timestamped)
-  logger = Logger.new(STDOUT)
+  my_out = StringIO.new
+  picker = LogPicker.new(options.loglevel, STDOUT)
+  picker = LogPicker.new(options.loglevel, my_out)
+  #logger = (options.loglevel == 'none')? NullLogger.new : Logger.new(STDOUT)
+  logger = picker.logger
+
   logger.level =  level[options.loglevel]
 
   my_array = [A.new(logger), B.new(logger)]
   my_array.each do | x | x.run end
 
- 
+  my_out.rewind
+  puts "Hej hopp:", my_out.string
 
 end
