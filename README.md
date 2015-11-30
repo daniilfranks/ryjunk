@@ -1,8 +1,13 @@
+
+## cgi på raspberry for att kunna använda google calender?
+
+## 
+
 ## neo4js
 
 # To Learn
 
-<<<<<<< HEAD
+
 ## neo4j !
 
 Möjligt för playbook?
