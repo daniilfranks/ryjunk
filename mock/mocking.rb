@@ -22,15 +22,13 @@ end
 
 require 'test/unit'
 
-class TestSpider < MiniTest::Unit::TestCase
+class TestSpider < Test::Unit::TestCase
  
   def test_get_body
- 
     spider = Spider.new
     spider.address = 'programming.oreilly.com'
     spider.path = '/2014/02/why-ruby-blocks-exist.html'
     assert_includes spider.get_body,'Moved', "#{spider.get_body}"
- 
   end
  
 end
@@ -40,21 +38,21 @@ class FakeResponse
 end
 
 
-class TestSpiderMock < MiniTest::Unit::TestCase
+class TestSpiderMock < Test::Unit::TestCase
  
-  def test_get_
+  def test_get_body
  
     spider = Spider.new
     spider.address = 'programming.oreilly.com'
     spider.path = '/2014/02/why-ruby-blocks-exist.html'
 
-  def spider.get_
-    response = FakeResponse.new
-    response.body = 'Moved'
-    response
-  end
+    def spider.get_response
+      response = FakeResponse.new
+      response.body = 'Moved'
+      response
+    end
+
     assert_includes spider.get_body,'Moved', "#{spider.get_body}"
- 
   end
  
 end
