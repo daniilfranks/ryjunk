@@ -1,5 +1,10 @@
+#!/usr/bin/env ruby
+
+
 #http://radar.oreilly.com/2014/04/ruby-the-unit-test-friendly-language.html
+
 require 'net/http'
+
 
 class Spider
  
