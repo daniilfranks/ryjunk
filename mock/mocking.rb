@@ -1,14 +1,16 @@
 #http://radar.oreilly.com/2014/04/ruby-the-unit-test-friendly-language.html
 require 'net/http'
-
+require 'pp'
 class Spider
  
   attr_accessor :address, :path
- 
+
+  private 
   def get_response
     response = Net::HTTP.get_response(@address, @path)
   end
  
+  public
   def get_body
     get_response.body
   end
@@ -25,7 +27,7 @@ class TestSpider < MiniTest::Unit::TestCase
     spider.address = 'programming.oreilly.com'
     spider.path = '/2014/02/why-ruby-blocks-exist.html'
     assert_includes spider.get_body,'Moved', "#{spider.get_body}"
- 
+    pp spider.get_body
   end
  
 end

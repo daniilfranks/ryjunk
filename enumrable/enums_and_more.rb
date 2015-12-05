@@ -7,9 +7,15 @@ class MultiArray
   	@arrays = arrays
   end
 
+  def kkeach
+    instance_methods.each do | x | yield x end
+  end
+
   def each
-  	@arrays.each do | a | 
-  	  a.each do | x | 
+  	@arrays.each do | a |
+          #puts "a:#{a}" 
+  	  a.each do | x |
+            #puts "x:#{x}"  
   	    yield x
   	  end 
   	end
@@ -24,8 +30,9 @@ if __FILE__ == $PROGRAM_NAME
   n = ma.collect
   puts n
 
-  n = ma.detect { | x |  x < 3 }
+  n = ma.detect { | x |  true }
   
+  n = ma.map  { | x |  x ** 2 }
   puts n
 
  n = ma.each_with_index do | x,i | puts "Element #{i} is #{x}"  end
