@@ -1,5 +1,5 @@
-require 'test/unit'
-extend Test::Unit::Assertions
+require 'test/unit/assertions'
+#extend Test::Unit::Assertions
 
 # http://danwin.com/2013/03/ruby-minitest-cheat-sheet/
 

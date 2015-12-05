@@ -33,4 +33,8 @@
       assert_neq_re(@c1, @c2)
     end 
 
+    def test_eq
+      assert_equal 10, 10
+    end
+
   end

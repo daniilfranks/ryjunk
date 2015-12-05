@@ -5,11 +5,12 @@ require 'aspector'
 class ExampleClass
   def test(input)
     input.upcase
-    puts "hej hopp!!"
+    puts "test anropats!!"
   end
 
   def checkRep
-    puts "checkRep!"
+    puts "checkRep anropats!!!!!"
+    return
   end
 end
 
@@ -18,11 +19,23 @@ class LoggingAspect < Aspector::Base
   ALL_METHODS = /.*/
 
   around ALL_METHODS, except: :class, method_arg: true do |method, proxy, *args, &block|
-    class_method = "#{self.class}.#{method}"
-    puts "Entering #{class_method}: #{args.join(',')}"
-    result = proxy.call(*args, &block)
-    puts "Exiting  #{class_method}: #{result}"
-    result
+
+    #puts"kommer fran #{method}"
+
+    if method == "checkRep"
+       puts 'nuda'
+       #self.checkRep 
+       return
+    end 
+ 
+    self.checkRep 
+     #class_method = "#{self.class}.#{method}"
+    #puts "Entering #{class_method}: #{args.join(',')}"
+    #result = proxy.call(*args, &block)
+    proxy.call(*args, &block) unless method == 'checkRep'
+    #puts "Exiting  #{class_method}: #{result}"
+    #self.checkRep 
+    #result
   end
 end
 

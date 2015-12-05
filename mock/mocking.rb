@@ -21,7 +21,10 @@ class Spider
   def get_body
     get_response.body
   end
- 
+
+  def get_code
+    return get_response.code
+  end 
 end
 
 require 'test/unit'
@@ -33,13 +36,13 @@ class TestSpider < Test::Unit::TestCase
     spider.address = 'programming.oreilly.com'
     spider.path = '/2014/02/why-ruby-blocks-exist.html'
     assert_includes spider.get_body,'Moved', "#{spider.get_body}"
-    pp spider.get_body
+    assert_equal 200, spider.get_code
   end
  
 end
 
 class FakeResponse
-  attr_accessor :body
+  attr_accessor :body, :code
 end
 
 
@@ -51,13 +54,16 @@ class TestSpiderMock < Test::Unit::TestCase
     spider.address = 'programming.oreilly.com'
     spider.path = '/2014/02/why-ruby-blocks-exist.html'
 
-    def spider.get_response
-      response = FakeResponse.new
-      response.body = 'Moved'
-      response
-    end
-
+  def spider.get_response
+    response = FakeResponse.new
+    response.body = 'Moved'
+    response.code = 401
+    response
+  end
     assert_includes spider.get_body,'Moved', "#{spider.get_body}"
+    puts spider.get_code
+    assert_equal  401, spider.get_code, msg=spider.get_code
+
   end
  
 end
