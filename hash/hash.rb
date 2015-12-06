@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 testar = Hash.new
 
@@ -28,9 +29,20 @@ pelle.each do | _, val | val.delete_if do | key, val | val.nil? end end
 
 puts pelle
 
-nisse = {:olle=> 2, :fille => nil}
+nisse = {:olle=> '2', :fille => ''}
 
 
-nisse.delete_if do | key, val | val.nil? end
+nisse.delete_if do | key, val | val.strip.empty? end
 
 puts nisse
+
+testar = Hash.new
+
+testar[:mijje]  = {:olle=> "2", :fille => ''}
+testar[:kalle]  = {:olle=> '  ', :fille => 'josse'}
+
+
+ll =testar.each do | _, val | val.delete_if do | key, val | val.strip.empty? end end
+
+puts 'last stuff'
+puts ll
