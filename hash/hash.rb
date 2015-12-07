@@ -46,3 +46,5 @@ ll =testar.each do | _, val | val.delete_if do | key, val | val.strip.empty? end
 
 puts 'last stuff'
 puts ll
+
+puts 'hej', testar[:kalle][:fille]
