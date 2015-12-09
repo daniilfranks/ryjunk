@@ -47,3 +47,15 @@ Then(/^behave will test it for us!$/) do
 
   @nisse.shot
 end
+
+Given(/^there are (\d+) cucumbers$/) do |arg1|
+  puts "Got1: #{arg1}"
+end
+
+When(/^I eat (\d+) cucumbers$/) do |arg1|
+  puts "Got2: #{arg1}"
+end
+
+Then(/^I should have (\d+) cucumbers$/) do |arg1|
+  puts "Got3: #{arg1}"
+end

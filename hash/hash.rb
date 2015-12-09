@@ -48,3 +48,11 @@ puts 'last stuff'
 puts ll
 
 puts 'hej', testar[:kalle][:fille]
+
+first = {:olle=>2}
+second = {:olle=>1}
+result = Hash.new
+
+first.each do |k, v | result[k] = second[k] if second[k] != v end
+
+puts result
