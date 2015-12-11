@@ -23,7 +23,7 @@ Should be okay!
 ## Jenkins check job! from muy laptop, later on raspberryPi...
 >>>>>>> fea8819c4820b735f2a674d98055ff18e21461b0
 
-## BDD
+## BDD Do all syntax stuff! permutations? asserts?
 
 ## More on cucumber
 
@@ -38,6 +38,8 @@ login example ...
 weak/medium and strong oracles ...
 
 ## Obsverver pattern
+
+## MVC
 
 ## Arbitrary pattern in notification?
 
@@ -55,7 +57,7 @@ weak/medium and strong oracles ...
 
 ## scapy or corresponding
 
-## set
+## set  OK, do with classes/objects !!
 
 ## threads
 
