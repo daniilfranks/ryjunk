@@ -1,3 +1,21 @@
+151215
+------
+
+profiling?
+
+gems/factory?
+
+gherkin ta med allt
+
+expect ta med allt
+
+ruby-lint, rubocop (finns på jenkins?)
+
+
+
+
+
+
 
 ## cgi på raspberry for att kunna använda google calender?
 
@@ -21,7 +39,6 @@ Möjligt för playbook?
 Should be okay!
 
 ## Jenkins check job! from muy laptop, later on raspberryPi...
->>>>>>> fea8819c4820b735f2a674d98055ff18e21461b0
 
 ## BDD Do all syntax stuff! permutations? asserts?
 
