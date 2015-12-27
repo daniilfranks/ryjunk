@@ -1,12 +1,16 @@
 require 'rest-client'
 require 'stringio'
+require 'solid_assert'
+
+SolidAssert.enable_assertions 
 
 class LogFile
 
   LOG_DIR = 'irc_logs'
 
   def initialize(name)
-    @name = "#{LOG_DIR}/name"
+    @name = "#{LOG_DIR}/#{name}"
+    puts "fetch: #{LOG_DIR}/#{name}"
   end
 
   def exist?
@@ -14,6 +18,7 @@ class LogFile
   end
 
   def log_contents
+    puts 'reading lines ...'
     File.readlines(@name).join
   end
 
@@ -31,7 +36,10 @@ class URLFetcher
   end
 
   def download_page
-    RestClient.get(@url).body    
+    response = RestClient.get(@url).body    
+    assert response != nil
+    #puts response
+    return response
   end
 end
 
@@ -45,15 +53,10 @@ class LogParser
     @logfile = logfile
   end
 
-  def download_page
-    return @logfile.log_contents if @logfile.exist?
-    @fetcher.download_page
-  end
-
-
   def get_messages
-    page = download_page
-    @logfile.save_page(page) unless @logfile.exist?
+    return @logfile.log_contents if @logfile.exist?
+    page = @fetcher.download_page
+    @logfile.save_page(page)
     page
   end
 
@@ -80,6 +83,9 @@ if __FILE__ == $PROGRAM_NAME
 
   end
 
+
+  # TODO :1) Try to mock class!
+  #      :2) Try to mock a method!
   class TC_LogParser<Test::Unit::TestCase
 
     def setup
@@ -93,7 +99,7 @@ if __FILE__ == $PROGRAM_NAME
     end
  
     def test_get_message
-      assert_not_nil @logparser.get_messages
+      assert_not_equal  @logparser.get_messages.length,  0
     end
 
 

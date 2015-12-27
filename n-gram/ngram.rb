@@ -14,12 +14,19 @@ end
 CHAT_MESSAGE   = /(\d+-\d+-\d+) (\d+:\d+) (<\w+>) ([\w ]+)/
 
 def get_trigrams_for_date(date)
-  irc = LogParser.new(date)
+
+  puts 'lets go ...'
+  fetcher = URLFetcher.new("http://irclog.whitequark.org/ruby/#{date}.txt")
+  logfile = LogFile.new("irc-log-#{date}.txt")
+
+  irc = LogParser.new(date, fetcher, logfile)
 
   #msg = irc.get_messages.split("\n").select { |m| m.match(CHAT_MESSAGE) }.join
 
   tmp = irc.get_messages.split("\n")
 
+  assert tmp.length == 0 , "tmp is empty"
+  puts "number of lines: #{tmp.length}"
   msg = tmp.select { |m| m.match(CHAT_MESSAGE) }.join
 
   assert msg.class != NilClass , "NilClass"
@@ -36,15 +43,11 @@ end
 
 if __FILE__ == $PROGRAM_NAME
 
-  #log = LogParser.new("2015-04-15")
-  #msg = log.get_messages
-
-
   MIN_REPETIONS = 20
   total = {}
 
   # Get the logs for the first 15 days of the month and return the bigams
-  (1..15).each do  | n |
+  (15..15).each do  | n |
     day = '%02d' % [n]
 
     total.merge!(get_trigrams_for_date "2015-04-#{day}") { | k, old, new | old + new }
