@@ -1,0 +1,2824 @@
+2015-04-04 00:01 Rollabunna has quit [Ping timeout: 250 seconds]
+2015-04-04 00:01 adamjleonard has quit [Quit: Leaving...]
+2015-04-04 00:02 teddyp1cker has joined #ruby
+2015-04-04 00:03 JDiPierro has quit [Remote host closed the connection]
+2015-04-04 00:03 sevvie has joined #ruby
+2015-04-04 00:03 JDiPierro has joined #ruby
+2015-04-04 00:03 <tearan> GaryOak_ I solved my problem
+2015-04-04 00:04 <tearan> Turns out of you 'include RSPEC::Matchers' it fucks shit up up
+2015-04-04 00:04 Dude007 has quit [Remote host closed the connection]
+2015-04-04 00:05 towski__ has joined #ruby
+2015-04-04 00:06 towski_ has quit [Ping timeout: 256 seconds]
+2015-04-04 00:06 zarubin_ has quit [Remote host closed the connection]
+2015-04-04 00:07 teddyp1cker has quit [Ping timeout: 252 seconds]
+2015-04-04 00:07 _cake has joined #ruby
+2015-04-04 00:07 Pharaoh2 has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 00:08 dfinninger has joined #ruby
+2015-04-04 00:09 Sawbones has joined #ruby
+2015-04-04 00:09 gusrub has quit [Ping timeout: 272 seconds]
+2015-04-04 00:11 Ellis has joined #ruby
+2015-04-04 00:11 <Ellis> i want to build a site using ruby but not rails, anyone know how to connect ruby to mysql?
+2015-04-04 00:12 tus has quit [Ping timeout: 248 seconds]
+2015-04-04 00:12 FernandoBasso has quit [Quit: leaving]
+2015-04-04 00:12 exadeci has quit [Quit: Connection closed for inactivity]
+2015-04-04 00:12 Deele has quit [Ping timeout: 256 seconds]
+2015-04-04 00:12 willharrison has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 00:13 marr has quit [Ping timeout: 248 seconds]
+2015-04-04 00:13 <Ellis> i’m trying to install the mysql gem but i get this error emssage:   Error installing mysql:
+2015-04-04 00:13 <Ellis> 	ERROR: Failed to build gem native extension.
+2015-04-04 00:13 JDiPierro has quit [Remote host closed the connection]
+2015-04-04 00:13 Sawbones has quit [Remote host closed the connection]
+2015-04-04 00:13 michaeldeol has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 00:13 makepkgnotwar has joined #ruby
+2015-04-04 00:14 <riceandbeans> Ellis: rails is just a framework
+2015-04-04 00:14 <riceandbeans> it defaults to using activerecord to abstract the db from you
+2015-04-04 00:14 <Ellis> riceandbeans: yeah i know that
+2015-04-04 00:14 Pupeno has joined #ruby
+2015-04-04 00:14 <riceandbeans> to install a gem you're going to likely need the libraries necessary to build the gem unless it's in pure ruby
+2015-04-04 00:15 <Ellis> ok how do i figure out what libraries i need?
+2015-04-04 00:15 <apeiros> Ellis: read the error. if you don't see it, gist the full error.
+2015-04-04 00:15 <riceandbeans> look at the errors when trying to build your gem
+2015-04-04 00:15 <jhass> Ellis: mysql is basically deprecated, use the mysql2 gem
+2015-04-04 00:15 makepkgnotwar has quit [Max SendQ exceeded]
+2015-04-04 00:15 <jhass> and then read the error, yeah
+2015-04-04 00:15 <riceandbeans> and then be a man and use postgres
+2015-04-04 00:15 <riceandbeans> :P
+2015-04-04 00:16 charliesome has joined #ruby
+2015-04-04 00:16 <apeiros> riceandbeans: didn't know male genitalia were a prerequisite for postgres
+2015-04-04 00:16 sevvie has quit [Ping timeout: 272 seconds]
+2015-04-04 00:16 makepkgnotwar has joined #ruby
+2015-04-04 00:16 Megtasti_ has quit []
+2015-04-04 00:16 <Ellis> smh riceandbeans smh
+2015-04-04 00:16 <Ellis> thanks everyone for the info
+2015-04-04 00:17 Ellis has left #ruby [#ruby]
+2015-04-04 00:17 tus has joined #ruby
+2015-04-04 00:17 makepkgnotwar has quit [Client Quit]
+2015-04-04 00:17 sevvie has joined #ruby
+2015-04-04 00:18 <yh> woah
+2015-04-04 00:18 Stalkr^ has quit [Quit: Leaving...]
+2015-04-04 00:18 <yh> didn't expect to come onto #ruby and see apeiros talking about genitalia
+2015-04-04 00:18 delianides has joined #ruby
+2015-04-04 00:19 <jhass> that you're still not used to it...
+2015-04-04 00:19 <apeiros> yh: I was trying to tell riceandbeans that "be a man and X" is not a good idea
+2015-04-04 00:19 <apeiros> +saying
+2015-04-04 00:20 <jhass> don't you know why it's huMAN
+2015-04-04 00:21 JDiPierro has joined #ruby
+2015-04-04 00:22 djbkd has quit [Remote host closed the connection]
+2015-04-04 00:22 zarubin_ has joined #ruby
+2015-04-04 00:25 bricker has quit [Ping timeout: 264 seconds]
+2015-04-04 00:26 duncannz has joined #ruby
+2015-04-04 00:26 <shevy> this channel is on drugs again
+2015-04-04 00:26 <apeiros> jhass: no, I don't
+2015-04-04 00:26 CorpusCallosum has quit [Ping timeout: 255 seconds]
+2015-04-04 00:28 jamto11 has quit [Remote host closed the connection]
+2015-04-04 00:28 Pupeno has quit [Remote host closed the connection]
+2015-04-04 00:29 Sawbones has joined #ruby
+2015-04-04 00:30 imran_raja has joined #ruby
+2015-04-04 00:30 sarmiena_ has joined #ruby
+2015-04-04 00:31 <sarmiena_> is Set insert O(1)?
+2015-04-04 00:31 bonhoeffer has joined #ruby
+2015-04-04 00:32 Hobogrammer has joined #ruby
+2015-04-04 00:32 towski__ has quit [Remote host closed the connection]
+2015-04-04 00:32 wallerdev has quit [Quit: wallerdev]
+2015-04-04 00:32 <jhass> mh, worst case os O(n) I guess
+2015-04-04 00:32 <jhass> average case should be close to O(1) though
+2015-04-04 00:32 robustus has quit [Ping timeout: 264 seconds]
+2015-04-04 00:32 <apeiros> amortized O(1)
+2015-04-04 00:33 <sarmiena_> looks like it’s backed by a hash.
+2015-04-04 00:33 <jhass> yup
+2015-04-04 00:33 <sarmiena_> so O(1)
+2015-04-04 00:33 <apeiros> insertion time is only O(n) if you have catastrophic hash functions
+2015-04-04 00:33 <jhass> ^
+2015-04-04 00:33 <sarmiena_> math proves O(1), common sense says O(1) possible
+2015-04-04 00:33 <jhass> so unlikely but possible
+2015-04-04 00:33 <sarmiena_> er.. O(n)
+2015-04-04 00:34 <sarmiena_> curious… def add(o)
+2015-04-04 00:34 <sarmiena_>   @hash[o] = true
+2015-04-04 00:34 <sarmiena_>   self
+2015-04-04 00:34 <sarmiena_> end
+2015-04-04 00:34 tearan has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 00:34 <sarmiena_> @hash[o] = true… ??!? what the heck
+2015-04-04 00:34 <jhass> yeah
+2015-04-04 00:34 <sarmiena_> doesn’t allow for collisions
+2015-04-04 00:34 <jhass> the set is the hashes keyset
+2015-04-04 00:34 <riceandbeans> fine
+2015-04-04 00:34 <riceandbeans> be a professional and use postgres
+2015-04-04 00:34 <riceandbeans> because mysql is amateur
+2015-04-04 00:34 <apeiros> riceandbeans: *thumbs up* :)
+2015-04-04 00:35 robustus has joined #ruby
+2015-04-04 00:35 imran_raja has quit [Ping timeout: 255 seconds]
+2015-04-04 00:35 <sarmiena_> nvm got it
+2015-04-04 00:35 <sarmiena_> thanks guys
+2015-04-04 00:35 <apeiros> even amateurs use postgres. it's just better™
+2015-04-04 00:35 wallerdev has joined #ruby
+2015-04-04 00:37 baroquebobcat has quit [Quit: baroquebobcat]
+2015-04-04 00:37 Pupeno has joined #ruby
+2015-04-04 00:37 Pupeno has joined #ruby
+2015-04-04 00:39 iliketur_ has quit [Remote host closed the connection]
+2015-04-04 00:39 jerematic has joined #ruby
+2015-04-04 00:40 jack_rabbit has joined #ruby
+2015-04-04 00:40 Pupeno has quit [Remote host closed the connection]
+2015-04-04 00:40 Pupeno has joined #ruby
+2015-04-04 00:42 jconnolly has quit [Ping timeout: 256 seconds]
+2015-04-04 00:42 Cache_Money has quit [Quit: Cache_Money]
+2015-04-04 00:44 jefus__ is now known as jefus
+2015-04-04 00:44 <shevy> :)
+2015-04-04 00:44 <havenwood> postgres just seems further along than pregres and currentgres
+2015-04-04 00:44 <shevy> lol
+2015-04-04 00:46 wallerdev has quit [Ping timeout: 245 seconds]
+2015-04-04 00:46 <apeiros> havenwood: you missed ingres
+2015-04-04 00:46 <havenwood> i digres
+2015-04-04 00:47 <shevy> you guys are having way too much fun with that
+2015-04-04 00:47 maletor has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 00:47 <shevy> if that continues
+2015-04-04 00:47 <shevy> I'm going to call the ogres
+2015-04-04 00:47 Zai00 has quit [Quit: Zai00]
+2015-04-04 00:47 Megtastique has joined #ruby
+2015-04-04 00:47 patrick99e99 has quit [Ping timeout: 264 seconds]
+2015-04-04 00:48 patrick99e99 has joined #ruby
+2015-04-04 00:48 _1_alexcaro has joined #ruby
+2015-04-04 00:48 <_1_alexcaro> hey
+2015-04-04 00:49 <apeiros> _1_alexcaro: hi, welcome to the ruby programming language channel
+2015-04-04 00:49 <apeiros> !whatschat
+2015-04-04 00:49 <helpa> Please remove this app, it's crap
+2015-04-04 00:50 <shevy> hmm
+2015-04-04 00:50 Aswebb_ has quit []
+2015-04-04 00:50 <shevy> the WhatsApp folks are real people? Or are they bots?
+2015-04-04 00:51 <_1_alexcaro> sup
+2015-04-04 00:51 <apeiros> shevy: whatschat, not whatsapp
+2015-04-04 00:51 <shevy> ok
+2015-04-04 00:51 bonhoeffer_ has joined #ruby
+2015-04-04 00:52 valkyrka has quit [Ping timeout: 256 seconds]
+2015-04-04 00:52 Swappticon has joined #ruby
+2015-04-04 00:52 ico has quit [Remote host closed the connection]
+2015-04-04 00:53 bonhoeffer has quit [Ping timeout: 256 seconds]
+2015-04-04 00:53 <_1_alexcaro> Hw can we have fun in this room
+2015-04-04 00:53 djbkd has joined #ruby
+2015-04-04 00:54 <apeiros> _1_alexcaro: you understand that this room is about a programming language?
+2015-04-04 00:54 bonhoeffer has joined #ruby
+2015-04-04 00:54 <shevy> I don't see these folks interact
+2015-04-04 00:56 einarj has joined #ruby
+2015-04-04 00:56 bonhoeffer_ has quit [Ping timeout: 245 seconds]
+2015-04-04 00:56 RegulationD has joined #ruby
+2015-04-04 00:57 <vhlfd> Weekend!
+2015-04-04 00:57 <_1_alexcaro> good
+2015-04-04 00:58 djbkd has quit [Ping timeout: 246 seconds]
+2015-04-04 00:58 kblake has quit [Remote host closed the connection]
+2015-04-04 00:58 <vhlfd> shevy, they're w00w00!
+2015-04-04 00:58 <shevy> huh
+2015-04-04 00:59 <shevy> w00w00?
+2015-04-04 00:59 <vhlfd> shevy, Google it.
+2015-04-04 00:59 <shevy> is this the sound a dog makes
+2015-04-04 00:59 willharrison has joined #ruby
+2015-04-04 00:59 <riceandbeans> ummm
+2015-04-04 00:59 <shevy> I can't! I am writing a vimrc generator right now... because I can no longer want to be bothered to maintain a 10.000 lines file!
+2015-04-04 00:59 bonhoeffer_ has joined #ruby
+2015-04-04 00:59 <riceandbeans> shevy: that's what github is for
+2015-04-04 00:59 jschoolcraft has quit [Quit: peace]
+2015-04-04 01:00 mistergibson has quit [Quit: Leaving]
+2015-04-04 01:00 _1_alexcaro has quit [Remote host closed the connection]
+2015-04-04 01:00 <riceandbeans> ok, so I have a question for any non americans here
+2015-04-04 01:00 x77686d has joined #ruby
+2015-04-04 01:00 <shevy> you mean to store revision history of these files right?
+2015-04-04 01:00 einarj has quit [Ping timeout: 250 seconds]
+2015-04-04 01:00 <riceandbeans> if you use a . for what americans use a , to mean, ie, 10000 being 10.000, how do you say decimals? like 1 and 1/4
+2015-04-04 01:00 jerematic has quit [Remote host closed the connection]
+2015-04-04 01:01 <riceandbeans> shevy: to store a file and just git clone it wherever you go
+2015-04-04 01:01 bonhoeffer has quit [Ping timeout: 244 seconds]
+2015-04-04 01:01 bonhoeffer_ is now known as bonhoeffer
+2015-04-04 01:01 jenrzzz has quit [Ping timeout: 255 seconds]
+2015-04-04 01:01 <shevy> yeah but I just can't look at vimrc, it makes me angry
+2015-04-04 01:01 RegulationD has quit [Ping timeout: 264 seconds]
+2015-04-04 01:01 car has quit [Ping timeout: 245 seconds]
+2015-04-04 01:01 <riceandbeans> shevy: I have another solution
+2015-04-04 01:02 <riceandbeans> shevy: use emacs
+2015-04-04 01:02 <apeiros> riceandbeans: varies from country to country
+2015-04-04 01:02 <shevy> I have found emacs to be much harder than vim :)
+2015-04-04 01:02 dfinninger has quit [Remote host closed the connection]
+2015-04-04 01:02 <apeiros> riceandbeans: swiss use 10'000.123
+2015-04-04 01:02 <apeiros> riceandbeans: germans 10.000,12
+2015-04-04 01:02 <riceandbeans> apeiros: that just looks like lat lon
+2015-04-04 01:02 <riceandbeans> the swiss I mena
+2015-04-04 01:02 <riceandbeans> mean
+2015-04-04 01:02 <apeiros> I'm pretty sure there's a list of which countries use what
+2015-04-04 01:03 <shevy> the swiss are weird people
+2015-04-04 01:03 <riceandbeans> shevy: can you do with vim like you can do with emacs and have a .vimd or something?
+2015-04-04 01:03 JDiPierro has quit []
+2015-04-04 01:03 <riceandbeans> with all your stuff?
+2015-04-04 01:03 <shevy> you mean a directory?
+2015-04-04 01:03 <riceandbeans> a directives directory, yes
+2015-04-04 01:03 <shevy> I have had that already actually... all aliases in one file, all functions in another, and so forth
+2015-04-04 01:03 <riceandbeans> with files which are included
+2015-04-04 01:03 <shevy> yeah
+2015-04-04 01:03 <apeiros> I quite like using ' for thousands separator. it's much harder to mistake as decimal separator.
+2015-04-04 01:03 <shevy> I tried to clean up things like that
+2015-04-04 01:03 <shevy> and ended up abandoning vim :/
+2015-04-04 01:03 <riceandbeans> for what?
+2015-04-04 01:04 <shevy> bluefish 1.x°!
+2015-04-04 01:04 <riceandbeans> tell me nano
+2015-04-04 01:04 jlast has quit [Remote host closed the connection]
+2015-04-04 01:04 <riceandbeans> please tell me nano
+2015-04-04 01:04 <shevy> nah, nano is too cumbersome for large changes
+2015-04-04 01:04 maximski has joined #ruby
+2015-04-04 01:04 _blizzy_ has quit [Ping timeout: 244 seconds]
+2015-04-04 01:05 krisquigley has joined #ruby
+2015-04-04 01:05 bonhoeffer_ has joined #ruby
+2015-04-04 01:05 bonhoeffer has quit [Ping timeout: 245 seconds]
+2015-04-04 01:05 bonhoeffer_ is now known as bonhoeffer
+2015-04-04 01:08 Guest13435 has joined #ruby
+2015-04-04 01:09 x77686d has quit [Quit: x77686d]
+2015-04-04 01:09 <Guest13435> best python interpreter?
+2015-04-04 01:09 krisquigley has quit [Ping timeout: 256 seconds]
+2015-04-04 01:09 <riceandbeans> Guest13435: pypy
+2015-04-04 01:10 gregf1 has joined #ruby
+2015-04-04 01:10 zz_twistedpixels is now known as twistedpixels
+2015-04-04 01:12 <shevy> does one of you guy use and code in both ruby and python?
+2015-04-04 01:12 <shevy> *guys
+2015-04-04 01:12 <shevy> remove the first 'and' too
+2015-04-04 01:12 <shevy> I guess I need to get some sleep soon...
+2015-04-04 01:12 sarmiena_ has quit [Quit: sarmiena_]
+2015-04-04 01:15 bonhoeffer_ has joined #ruby
+2015-04-04 01:15 <shevy> I'd love to see if there is a noticable productivity difference, provided that one would have the same amount of experience in either, using that language
+2015-04-04 01:15 <shevy> I think when I compare my php days and my ruby days, I am simply more productive in ruby. That might be because I am better now? But I also think it is because php really is much more annoying to use
+2015-04-04 01:16 bonhoeffer has quit [Ping timeout: 252 seconds]
+2015-04-04 01:17 bonhoeffer has joined #ruby
+2015-04-04 01:19 bonhoeffer has quit [Client Quit]
+2015-04-04 01:19 _br_ has quit [Read error: Connection reset by peer]
+2015-04-04 01:19 bonhoeffer_ has quit [Ping timeout: 272 seconds]
+2015-04-04 01:24 sankaber has joined #ruby
+2015-04-04 01:27 bonhoeffer has joined #ruby
+2015-04-04 01:28 <riceandbeans> shevy: I do python when I have to and I hate it
+2015-04-04 01:28 <shevy> hehe
+2015-04-04 01:28 jamto11 has joined #ruby
+2015-04-04 01:29 <riceandbeans> I like ruby, but I tend to crank out code a LOT faster in perl, personally
+2015-04-04 01:29 <shevy> I am not a big fan of python either, but I wonder what would be if I would have picked python rather than ruby years ago
+2015-04-04 01:29 jeramy_s has joined #ruby
+2015-04-04 01:29 <riceandbeans> there's something wrong in my brain
+2015-04-04 01:29 delianides has quit [Remote host closed the connection]
+2015-04-04 01:29 icebourg has joined #ruby
+2015-04-04 01:30 iliketurtles has joined #ruby
+2015-04-04 01:30 commmmodo has joined #ruby
+2015-04-04 01:31 commmmodo has left #ruby [#ruby]
+2015-04-04 01:32 <mozzarella> I used to use python
+2015-04-04 01:32 <hoelzro> riceandbeans: I'm the same way
+2015-04-04 01:32 <riceandbeans> I had to use perl a lot more for work a couple jobs back
+2015-04-04 01:32 <riceandbeans> it just got...really heavily engrained in me
+2015-04-04 01:33 <shevy> mozzarella why did you switch to ruby, or are you still using both?
+2015-04-04 01:33 Sawbones has quit [Remote host closed the connection]
+2015-04-04 01:34 jamto11 has quit [Ping timeout: 264 seconds]
+2015-04-04 01:36 bonhoeffer has quit [Quit: bonhoeffer]
+2015-04-04 01:36 Synthbread has joined #ruby
+2015-04-04 01:36 Pupeno has quit [Quit: Leaving...]
+2015-04-04 01:37 <shevy> I don't like your nick
+2015-04-04 01:37 <shevy> you make me hungry man :(
+2015-04-04 01:37 jerematic has joined #ruby
+2015-04-04 01:37 yfeldblum has quit [Remote host closed the connection]
+2015-04-04 01:37 <shevy> oh and riceandbeans is also food related
+2015-04-04 01:37 <shevy> what's next... pizzaops
+2015-04-04 01:37 <shevy> oops
+2015-04-04 01:38 phutchins has joined #ruby
+2015-04-04 01:38 <mozzarella> I tried python, perl and php, and finally settled for ruby
+2015-04-04 01:38 <mozzarella> left python when the 2.x 3.x split happened
+2015-04-04 01:38 doodlehaus has quit [Remote host closed the connection]
+2015-04-04 01:39 jconnolly has joined #ruby
+2015-04-04 01:39 <shevy> ah that makes sense
+2015-04-04 01:39 <shevy> that was very unfun
+2015-04-04 01:39 <mozzarella> ruby is just more fun and more logical
+2015-04-04 01:41 djbkd has joined #ruby
+2015-04-04 01:41 rkazak_ has joined #ruby
+2015-04-04 01:41 sevvie has quit [Ping timeout: 252 seconds]
+2015-04-04 01:41 maximski has quit []
+2015-04-04 01:41 dfinninger has joined #ruby
+2015-04-04 01:41 jenrzzz has joined #ruby
+2015-04-04 01:42 sevvie has joined #ruby
+2015-04-04 01:42 dfinninger has quit [Remote host closed the connection]
+2015-04-04 01:43 jconnolly has quit [Ping timeout: 245 seconds]
+2015-04-04 01:45 <mozzarella> I didn't like the forced indentation of python, the explicit self, the fact that sometimes you must call methods on objects and sometimes you must pass objects to functions (i.e. len("str") vs "str".len), the fact that there are two different versions of the language, etc.
+2015-04-04 01:45 <shevy> yeah
+2015-04-04 01:46 <agent_white> CANIGETA-AMEN?!
+2015-04-04 01:47 Sawbones has joined #ruby
+2015-04-04 01:47 <shevy> AMEN
+2015-04-04 01:48 iliketurtles has quit [Quit: zzzzz…..]
+2015-04-04 01:48 iliketurtles has joined #ruby
+2015-04-04 01:49 <mozzarella> I like ruby's blocks and "functional" functions like map, select, find, etc.
+2015-04-04 01:50 <mozzarella> it's great to be able to chain them without having to nest function calls
+2015-04-04 01:50 vivekananda has quit [Quit: Leaving]
+2015-04-04 01:51 foureight84 has joined #ruby
+2015-04-04 01:51 jack_rabbit has quit [Ping timeout: 244 seconds]
+2015-04-04 01:52 netroby has joined #ruby
+2015-04-04 01:53 RowdyChildren has left #ruby [#ruby]
+2015-04-04 01:54 ramfjord has quit [Ping timeout: 256 seconds]
+2015-04-04 01:54 bonhoeffer has joined #ruby
+2015-04-04 01:55 foureight84 has quit [Ping timeout: 246 seconds]
+2015-04-04 01:56 einarj has joined #ruby
+2015-04-04 01:57 * agent_white smacks shevy's head -- watches him convulse whilst speaking ruby in tongue
+2015-04-04 01:58 <shevy> lol
+2015-04-04 01:58 <shevy> why so violent
+2015-04-04 01:58 * agent_white smacks shevy's head softly
+2015-04-04 01:58 <agent_white> :D
+2015-04-04 01:58 amystephen has quit [Quit: amystephen]
+2015-04-04 01:58 tubuliferous has quit [Ping timeout: 256 seconds]
+2015-04-04 01:58 <shevy> oh good you need more sex
+2015-04-04 01:59 jeramy_s has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 01:59 bonhoeffer has quit [Ping timeout: 246 seconds]
+2015-04-04 01:59 senayar has quit []
+2015-04-04 01:59 jeramy_s has joined #ruby
+2015-04-04 01:59 adriancb has joined #ruby
+2015-04-04 02:00 stef204 has quit [Remote host closed the connection]
+2015-04-04 02:00 Hijiri has joined #ruby
+2015-04-04 02:00 lessless has joined #ruby
+2015-04-04 02:00 einarj has quit [Ping timeout: 246 seconds]
+2015-04-04 02:01 gregf1 has quit [Quit: WeeChat 1.0.1]
+2015-04-04 02:01 yfeldblum has joined #ruby
+2015-04-04 02:03 teddyp1cker has joined #ruby
+2015-04-04 02:03 Cache_Money has joined #ruby
+2015-04-04 02:03 sevvie has quit [Ping timeout: 255 seconds]
+2015-04-04 02:03 <vhlfd> :(
+2015-04-04 02:04 netroby has quit [Remote host closed the connection]
+2015-04-04 02:04 gregf1 has joined #ruby
+2015-04-04 02:04 triple_b_ has joined #ruby
+2015-04-04 02:05 jlast has joined #ruby
+2015-04-04 02:05 netroby has joined #ruby
+2015-04-04 02:05 fortunate has joined #ruby
+2015-04-04 02:06 netroby has quit [Max SendQ exceeded]
+2015-04-04 02:07 netroby has joined #ruby
+2015-04-04 02:07 triple_b has quit [Ping timeout: 256 seconds]
+2015-04-04 02:07 teddyp1cker has quit [Ping timeout: 244 seconds]
+2015-04-04 02:08 ponga has joined #ruby
+2015-04-04 02:08 bradleyprice has quit [Remote host closed the connection]
+2015-04-04 02:08 Sawbones has quit [Remote host closed the connection]
+2015-04-04 02:09 <rkazak_> Hey this is a friendly chat room!!!  :O
+2015-04-04 02:09 jlast has quit [Ping timeout: 256 seconds]
+2015-04-04 02:12 jamto11 has joined #ruby
+2015-04-04 02:13 yh has quit [Ping timeout: 264 seconds]
+2015-04-04 02:13 zarubin_ has quit [Remote host closed the connection]
+2015-04-04 02:13 pwattste has quit [Remote host closed the connection]
+2015-04-04 02:14 phutchins has quit [Ping timeout: 252 seconds]
+2015-04-04 02:16 jenrzzz has quit [Ping timeout: 248 seconds]
+2015-04-04 02:17 jenrzzz has joined #ruby
+2015-04-04 02:17 x77686d has joined #ruby
+2015-04-04 02:17 Filete has joined #ruby
+2015-04-04 02:18 yeticry has quit [Ping timeout: 250 seconds]
+2015-04-04 02:19 bruno- has joined #ruby
+2015-04-04 02:19 tcrypt has quit [Remote host closed the connection]
+2015-04-04 02:19 yeticry has joined #ruby
+2015-04-04 02:22 red_horned_rihno has quit [Ping timeout: 256 seconds]
+2015-04-04 02:23 yh has joined #ruby
+2015-04-04 02:24 claptor has joined #ruby
+2015-04-04 02:24 bruno- has quit [Ping timeout: 252 seconds]
+2015-04-04 02:24 avarice has joined #ruby
+2015-04-04 02:26 claptor has quit [Client Quit]
+2015-04-04 02:27 lordkryss has quit [Quit: Connection closed for inactivity]
+2015-04-04 02:28 JoshGlzBrk has joined #ruby
+2015-04-04 02:29 avarice has quit [Client Quit]
+2015-04-04 02:29 fortunate has quit [Ping timeout: 256 seconds]
+2015-04-04 02:29 tier has joined #ruby
+2015-04-04 02:31 MatthewsFace has joined #ruby
+2015-04-04 02:31 yfeldblum has quit [Remote host closed the connection]
+2015-04-04 02:32 yh has quit [Ping timeout: 250 seconds]
+2015-04-04 02:35 MatthewsFace has quit [Ping timeout: 244 seconds]
+2015-04-04 02:35 JoshGlzBrk has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 02:35 JoshGlzBrk has joined #ruby
+2015-04-04 02:36 tus has quit []
+2015-04-04 02:37 arescorpio has quit [Excess Flood]
+2015-04-04 02:40 JoshGlzBrk has quit [Client Quit]
+2015-04-04 02:43 car has joined #ruby
+2015-04-04 02:45 RegulationD has joined #ruby
+2015-04-04 02:46 Guest65 has joined #ruby
+2015-04-04 02:47 Nirgali42 has quit [Ping timeout: 245 seconds]
+2015-04-04 02:47 Nirgali42 has joined #ruby
+2015-04-04 02:50 jmhmccr has quit [Quit: Connection closed for inactivity]
+2015-04-04 02:50 RegulationD has quit [Ping timeout: 256 seconds]
+2015-04-04 02:50 iasoon has quit [Ping timeout: 252 seconds]
+2015-04-04 02:51 sankaber has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 02:52 ponga has quit [Remote host closed the connection]
+2015-04-04 02:53 Cache_Money has quit [Quit: Cache_Money]
+2015-04-04 02:54 krisquigley has joined #ruby
+2015-04-04 02:54 bradleyprice has joined #ruby
+2015-04-04 02:54 frem has quit [Quit: Connection closed for inactivity]
+2015-04-04 02:55 davispuh has quit [Remote host closed the connection]
+2015-04-04 02:56 delianides has joined #ruby
+2015-04-04 02:57 djbkd has quit [Remote host closed the connection]
+2015-04-04 02:58 djbkd has joined #ruby
+2015-04-04 02:58 djbkd_ has joined #ruby
+2015-04-04 02:58 krisquigley has quit [Ping timeout: 245 seconds]
+2015-04-04 02:59 jordsmi has joined #ruby
+2015-04-04 03:01 delianides has quit [Ping timeout: 250 seconds]
+2015-04-04 03:02 Mia has quit [Read error: Connection reset by peer]
+2015-04-04 03:02 djbkd has quit [Ping timeout: 248 seconds]
+2015-04-04 03:03 charliesome has quit [Quit: zzz]
+2015-04-04 03:03 bwwrd has joined #ruby
+2015-04-04 03:05 bonhoeffer has joined #ruby
+2015-04-04 03:05 havenwood has quit [Remote host closed the connection]
+2015-04-04 03:05 braincrash has quit [Quit: bye bye]
+2015-04-04 03:05 jlast has joined #ruby
+2015-04-04 03:06 agrinb has quit [Remote host closed the connection]
+2015-04-04 03:06 androidbruce has quit []
+2015-04-04 03:06 djellemah has quit [Ping timeout: 272 seconds]
+2015-04-04 03:07 androidbruce_ is now known as androidbruce
+2015-04-04 03:07 androidbruce has quit [Changing host]
+2015-04-04 03:07 androidbruce has joined #ruby
+2015-04-04 03:07 androidbruce has left #ruby ["Leaving"]
+2015-04-04 03:07 tier has quit [Remote host closed the connection]
+2015-04-04 03:07 adamjleonard has joined #ruby
+2015-04-04 03:08 pontiki has joined #ruby
+2015-04-04 03:09 Wolland has joined #ruby
+2015-04-04 03:09 bonhoeffer has quit [Ping timeout: 252 seconds]
+2015-04-04 03:10 yh has joined #ruby
+2015-04-04 03:10 jlast has quit [Ping timeout: 256 seconds]
+2015-04-04 03:11 braincrash has joined #ruby
+2015-04-04 03:12 dfinninger has joined #ruby
+2015-04-04 03:14 djellemah has joined #ruby
+2015-04-04 03:14 iasoon has joined #ruby
+2015-04-04 03:16 gsd has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 03:17 havenwood has joined #ruby
+2015-04-04 03:19 bwwrd has quit [Quit: Textual IRC Client: www.textualapp.com]
+2015-04-04 03:19 jerematic has quit [Remote host closed the connection]
+2015-04-04 03:21 greenbagels has joined #ruby
+2015-04-04 03:23 charliesome has joined #ruby
+2015-04-04 03:24 ponga has joined #ruby
+2015-04-04 03:27 jconnolly has joined #ruby
+2015-04-04 03:29 benlieb_ has joined #ruby
+2015-04-04 03:29 jenrzzz has quit [Ping timeout: 264 seconds]
+2015-04-04 03:29 kickr has joined #ruby
+2015-04-04 03:31 iamninja has quit [Read error: Connection reset by peer]
+2015-04-04 03:31 iamninja has joined #ruby
+2015-04-04 03:32 _cake has quit [Quit: Leaving]
+2015-04-04 03:32 jconnolly has quit [Ping timeout: 248 seconds]
+2015-04-04 03:38 msnyon_ has quit [Ping timeout: 252 seconds]
+2015-04-04 03:38 centrx has joined #ruby
+2015-04-04 03:39 iliketurtles has quit [Quit: zzzzz…..]
+2015-04-04 03:39 Soda has quit [Remote host closed the connection]
+2015-04-04 03:39 doodlehaus has joined #ruby
+2015-04-04 03:40 gsd has joined #ruby
+2015-04-04 03:40 car has quit [Quit: Leaving]
+2015-04-04 03:42 Sawbones has joined #ruby
+2015-04-04 03:43 tubuliferous has joined #ruby
+2015-04-04 03:43 musashi1 has quit [Ping timeout: 272 seconds]
+2015-04-04 03:43 msnyon has joined #ruby
+2015-04-04 03:43 lektrik has joined #ruby
+2015-04-04 03:44 lektrik has quit [Max SendQ exceeded]
+2015-04-04 03:44 doodlehaus has quit [Ping timeout: 245 seconds]
+2015-04-04 03:44 lektrik has joined #ruby
+2015-04-04 03:45 einarj has joined #ruby
+2015-04-04 03:47 bim has quit [Remote host closed the connection]
+2015-04-04 03:47 tubuliferous has quit [Ping timeout: 252 seconds]
+2015-04-04 03:48 bim has joined #ruby
+2015-04-04 03:48 msnyon has quit [Ping timeout: 256 seconds]
+2015-04-04 03:48 adriancb has quit [Remote host closed the connection]
+2015-04-04 03:48 adriancb has joined #ruby
+2015-04-04 03:49 adamjleonard has quit [Quit: Leaving...]
+2015-04-04 03:49 einarj has quit [Ping timeout: 246 seconds]
+2015-04-04 03:49 bim has quit [Remote host closed the connection]
+2015-04-04 03:51 iasoon has quit [Ping timeout: 252 seconds]
+2015-04-04 03:51 kickr has quit [Quit: Be back later ...]
+2015-04-04 03:51 guiburgueira has joined #ruby
+2015-04-04 03:51 adriancb has quit [Remote host closed the connection]
+2015-04-04 03:52 Filete has quit [Ping timeout: 264 seconds]
+2015-04-04 03:52 sdothum has quit [Quit: ZNC - 1.6.0 - http://znc.in]
+2015-04-04 03:52 triple_b_ has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 03:52 Wolland has quit [Remote host closed the connection]
+2015-04-04 03:56 Andymeows has quit [Ping timeout: 252 seconds]
+2015-04-04 03:57 Filete has joined #ruby
+2015-04-04 03:57 jeramy_s has quit [Quit: Peace out!]
+2015-04-04 03:57 govg has quit [Quit: leaving]
+2015-04-04 03:58 ponga has quit [Remote host closed the connection]
+2015-04-04 04:02 Guest65 has quit [Ping timeout: 256 seconds]
+2015-04-04 04:02 kickr has joined #ruby
+2015-04-04 04:03 lavros has joined #ruby
+2015-04-04 04:03 jamto11 has quit [Remote host closed the connection]
+2015-04-04 04:04 teddyp1cker has joined #ruby
+2015-04-04 04:04 C1V0 has joined #ruby
+2015-04-04 04:05 x77686d has quit [Quit: x77686d]
+2015-04-04 04:05 sevvie has joined #ruby
+2015-04-04 04:06 Akuma has quit [Quit: So long sukkas!]
+2015-04-04 04:06 lessless has quit [Ping timeout: 246 seconds]
+2015-04-04 04:06 jlast has joined #ruby
+2015-04-04 04:06 kickr has quit [Ping timeout: 250 seconds]
+2015-04-04 04:07 iasoon has joined #ruby
+2015-04-04 04:08 teddyp1cker has quit [Ping timeout: 264 seconds]
+2015-04-04 04:08 tubuliferous has joined #ruby
+2015-04-04 04:09 bigmac has joined #ruby
+2015-04-04 04:09 benlieb_ has quit [Quit: benlieb_]
+2015-04-04 04:09 A205B064 has quit [Ping timeout: 252 seconds]
+2015-04-04 04:09 sevvie has quit [Ping timeout: 252 seconds]
+2015-04-04 04:11 jlast has quit [Ping timeout: 265 seconds]
+2015-04-04 04:15 freerobby has joined #ruby
+2015-04-04 04:16 renier_ has joined #ruby
+2015-04-04 04:16 brainslug has joined #ruby
+2015-04-04 04:17 renier has quit [Ping timeout: 255 seconds]
+2015-04-04 04:18 DerisiveLogic has quit [Ping timeout: 244 seconds]
+2015-04-04 04:20 duncannz has quit [Ping timeout: 264 seconds]
+2015-04-04 04:29 netShadow has joined #ruby
+2015-04-04 04:31 Megtastique has quit []
+2015-04-04 04:34 Swappticon has quit [Ping timeout: 255 seconds]
+2015-04-04 04:34 RegulationD has joined #ruby
+2015-04-04 04:34 androidbruce_ has joined #ruby
+2015-04-04 04:36 robbyoconnor has quit [Ping timeout: 272 seconds]
+2015-04-04 04:36 gsd has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 04:36 pontiki has quit [Ping timeout: 264 seconds]
+2015-04-04 04:36 robbyoconnor has joined #ruby
+2015-04-04 04:37 netroby has quit [Quit: Leaving]
+2015-04-04 04:38 RegulationD has quit [Ping timeout: 246 seconds]
+2015-04-04 04:39 LudicrousMango has joined #ruby
+2015-04-04 04:40 cpt_yossarian has quit [Ping timeout: 250 seconds]
+2015-04-04 04:42 hmsimha has joined #ruby
+2015-04-04 04:43 krisquigley has joined #ruby
+2015-04-04 04:43 willharrison has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 04:44 yfeldblum has joined #ruby
+2015-04-04 04:45 pontiki has joined #ruby
+2015-04-04 04:47 benlieb_ has joined #ruby
+2015-04-04 04:47 nyilmeregbeka has quit [Quit: Bye]
+2015-04-04 04:48 krisquigley has quit [Ping timeout: 265 seconds]
+2015-04-04 04:48 netShadow has quit [Quit: netShadow]
+2015-04-04 04:49 iliketurtles has joined #ruby
+2015-04-04 04:51 yfeldblum has quit [Remote host closed the connection]
+2015-04-04 04:52 adriancb has joined #ruby
+2015-04-04 04:53 mleung has joined #ruby
+2015-04-04 04:54 mleung has left #ruby [#ruby]
+2015-04-04 04:54 cpt_yossarian has joined #ruby
+2015-04-04 04:55 JoshGlzBrk has joined #ruby
+2015-04-04 04:56 Sawbones has quit [Remote host closed the connection]
+2015-04-04 05:02 Sawbones has joined #ruby
+2015-04-04 05:02 vivekananda has joined #ruby
+2015-04-04 05:05 braincra- has joined #ruby
+2015-04-04 05:06 jmhmccr has joined #ruby
+2015-04-04 05:06 Sthebig has quit [Ping timeout: 244 seconds]
+2015-04-04 05:07 Sthebig has joined #ruby
+2015-04-04 05:07 jlast has joined #ruby
+2015-04-04 05:07 AlphaTech is now known as zz_AlphaTech
+2015-04-04 05:07 braincrash has quit [Ping timeout: 255 seconds]
+2015-04-04 05:09 ponga has joined #ruby
+2015-04-04 05:09 longfeet has joined #ruby
+2015-04-04 05:11 phutchins has joined #ruby
+2015-04-04 05:12 jlast has quit [Ping timeout: 256 seconds]
+2015-04-04 05:12 Sawbones has quit [Remote host closed the connection]
+2015-04-04 05:12 Joufflu_ has joined #ruby
+2015-04-04 05:13 ponga has quit [Ping timeout: 264 seconds]
+2015-04-04 05:14 Lildirt has quit [Max SendQ exceeded]
+2015-04-04 05:15 Lildirt has joined #ruby
+2015-04-04 05:15 vivekananda has quit [Quit: Leaving]
+2015-04-04 05:16 jconnolly has joined #ruby
+2015-04-04 05:16 phutchins has quit [Ping timeout: 264 seconds]
+2015-04-04 05:16 kobain has quit [Quit: KVIrc 4.1.3 Equilibrium http://www.kvirc.net/]
+2015-04-04 05:18 lektrik has quit [Ping timeout: 256 seconds]
+2015-04-04 05:19 djbkd_ has quit [Quit: Leaving...]
+2015-04-04 05:19 browndawg has joined #ruby
+2015-04-04 05:21 jconnolly has quit [Ping timeout: 250 seconds]
+2015-04-04 05:21 kyrylo has quit [Ping timeout: 250 seconds]
+2015-04-04 05:23 centrx has quit [Quit: Shutting down, Please wait...]
+2015-04-04 05:24 Joufflu_ has quit [Quit: Peace]
+2015-04-04 05:26 sigurding has joined #ruby
+2015-04-04 05:26 yh has quit [Ping timeout: 265 seconds]
+2015-04-04 05:27 yh has joined #ruby
+2015-04-04 05:28 freerobby has quit [Quit: Leaving.]
+2015-04-04 05:29 varunwachaspati has joined #ruby
+2015-04-04 05:31 sigurding has quit [Ping timeout: 250 seconds]
+2015-04-04 05:32 tubuliferous_ has joined #ruby
+2015-04-04 05:32 browndawg has left #ruby [#ruby]
+2015-04-04 05:33 speaking1ode has joined #ruby
+2015-04-04 05:34 speakingcode has quit [Ping timeout: 245 seconds]
+2015-04-04 05:35 pontiki has quit [Quit: brb]
+2015-04-04 05:35 Limix has joined #ruby
+2015-04-04 05:36 pontiki has joined #ruby
+2015-04-04 05:36 Limix has quit [Client Quit]
+2015-04-04 05:36 jordsmi has quit [Quit: Connection closed for inactivity]
+2015-04-04 05:37 tubuliferous_ has quit [Ping timeout: 256 seconds]
+2015-04-04 05:38 bim has joined #ruby
+2015-04-04 05:38 Filete has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 05:39 Limix has joined #ruby
+2015-04-04 05:40 serivichi has joined #ruby
+2015-04-04 05:40 doodlehaus has joined #ruby
+2015-04-04 05:41 brainslug has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 05:41 A205B064 has joined #ruby
+2015-04-04 05:42 bim has quit [Ping timeout: 250 seconds]
+2015-04-04 05:42 dfinninger has quit [Remote host closed the connection]
+2015-04-04 05:44 kyrylo has joined #ruby
+2015-04-04 05:44 JoshGlzBrk has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 05:45 doodlehaus has quit [Ping timeout: 265 seconds]
+2015-04-04 05:46 vivekananda has joined #ruby
+2015-04-04 05:48 Limix has quit [Quit: Limix]
+2015-04-04 05:49 vivekananda has quit [Read error: Connection reset by peer]
+2015-04-04 05:50 Limix has joined #ruby
+2015-04-04 05:50 chinmay_dd has joined #ruby
+2015-04-04 05:50 charliesome has quit [Quit: zzz]
+2015-04-04 05:50 Darryl___ has joined #ruby
+2015-04-04 05:51 Limix has quit [Client Quit]
+2015-04-04 05:55 serivichi has quit [Ping timeout: 244 seconds]
+2015-04-04 05:57 bruno- has joined #ruby
+2015-04-04 05:58 roolo has joined #ruby
+2015-04-04 06:00 discypher has joined #ruby
+2015-04-04 06:01 RegulationD has joined #ruby
+2015-04-04 06:01 serivichi has joined #ruby
+2015-04-04 06:02 bruno- has quit [Ping timeout: 252 seconds]
+2015-04-04 06:02 charliesome has joined #ruby
+2015-04-04 06:03 arup_r has joined #ruby
+2015-04-04 06:04 teddyp1cker has joined #ruby
+2015-04-04 06:05 RegulationD has quit [Ping timeout: 252 seconds]
+2015-04-04 06:06 benlieb_ has quit [Quit: benlieb_]
+2015-04-04 06:07 arup_r has quit [Remote host closed the connection]
+2015-04-04 06:08 jlast has joined #ruby
+2015-04-04 06:09 teddyp1cker has quit [Ping timeout: 255 seconds]
+2015-04-04 06:12 jlast has quit [Ping timeout: 256 seconds]
+2015-04-04 06:15 bradleyprice has quit [Remote host closed the connection]
+2015-04-04 06:15 rippa has joined #ruby
+2015-04-04 06:15 pontiki has quit [Quit: good night, all]
+2015-04-04 06:16 Channel6 has quit [Quit: Leaving]
+2015-04-04 06:17 LudicrousMango has quit [Ping timeout: 265 seconds]
+2015-04-04 06:19 sarmiena_ has joined #ruby
+2015-04-04 06:19 lemur has joined #ruby
+2015-04-04 06:23 QuintinAdam has quit [Ping timeout: 252 seconds]
+2015-04-04 06:23 LudicrousMango has joined #ruby
+2015-04-04 06:26 lxsameer has joined #ruby
+2015-04-04 06:28 hyperdrive has quit [Changing host]
+2015-04-04 06:28 hyperdrive has joined #ruby
+2015-04-04 06:28 hyperdrive is now known as hdrv
+2015-04-04 06:30 lessless has joined #ruby
+2015-04-04 06:31 lemur has quit [Remote host closed the connection]
+2015-04-04 06:31 krisquigley has joined #ruby
+2015-04-04 06:32 musashi1 has joined #ruby
+2015-04-04 06:32 varunwachaspati has quit [Ping timeout: 272 seconds]
+2015-04-04 06:36 serivichi has quit [Ping timeout: 252 seconds]
+2015-04-04 06:37 LudicrousMango has quit [Ping timeout: 256 seconds]
+2015-04-04 06:37 krisquigley has quit [Ping timeout: 244 seconds]
+2015-04-04 06:37 Xiti has quit [Quit: Xiti]
+2015-04-04 06:39 serivichi has joined #ruby
+2015-04-04 06:41 icebourg has quit []
+2015-04-04 06:42 ramfjord has joined #ruby
+2015-04-04 06:42 JoshGlzBrk has joined #ruby
+2015-04-04 06:42 piotrj has quit [Remote host closed the connection]
+2015-04-04 06:43 dfinninger has joined #ruby
+2015-04-04 06:47 dfinninger has quit [Ping timeout: 246 seconds]
+2015-04-04 06:48 f3lp has joined #ruby
+2015-04-04 06:48 iliketurtles has quit [Remote host closed the connection]
+2015-04-04 06:51 Zen-Zen has joined #ruby
+2015-04-04 06:52 beneggett has quit [Ping timeout: 256 seconds]
+2015-04-04 06:52 markholmes has joined #ruby
+2015-04-04 06:53 jheg has joined #ruby
+2015-04-04 06:54 roolo has quit [Remote host closed the connection]
+2015-04-04 06:55 Guest13435 has quit [Quit: WeeChat 0.4.2]
+2015-04-04 06:56 chinmay_dd has quit [Remote host closed the connection]
+2015-04-04 06:57 yh has quit [Ping timeout: 272 seconds]
+2015-04-04 07:00 jack_rabbit has joined #ruby
+2015-04-04 07:01 doodlehaus has joined #ruby
+2015-04-04 07:01 beneggett has joined #ruby
+2015-04-04 07:01 piotrj has joined #ruby
+2015-04-04 07:03 zorak8 has quit [Ping timeout: 245 seconds]
+2015-04-04 07:04 iasoon has quit [Ping timeout: 245 seconds]
+2015-04-04 07:05 jconnolly has joined #ruby
+2015-04-04 07:05 doodlehaus has quit [Ping timeout: 245 seconds]
+2015-04-04 07:06 Takle has joined #ruby
+2015-04-04 07:08 tvw has joined #ruby
+2015-04-04 07:08 digitalextremist has quit [Ping timeout: 248 seconds]
+2015-04-04 07:08 jlast has joined #ruby
+2015-04-04 07:09 digitalextremist has joined #ruby
+2015-04-04 07:10 jconnolly has quit [Ping timeout: 244 seconds]
+2015-04-04 07:10 Takle has quit [Ping timeout: 264 seconds]
+2015-04-04 07:11 govg has joined #ruby
+2015-04-04 07:11 kyrylo has quit [Ping timeout: 252 seconds]
+2015-04-04 07:13 jlast has quit [Ping timeout: 256 seconds]
+2015-04-04 07:13 RedCrustacean has joined #ruby
+2015-04-04 07:17 lolmaus has joined #ruby
+2015-04-04 07:17 beneggett has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 07:19 ackpacket has quit [Ping timeout: 246 seconds]
+2015-04-04 07:20 digitalextremist has quit [Quit: Leaving]
+2015-04-04 07:20 tubuliferous_ has joined #ruby
+2015-04-04 07:21 longfeet has quit [Read error: Connection reset by peer]
+2015-04-04 07:22 ramfjord has quit [Ping timeout: 264 seconds]
+2015-04-04 07:22 einarj has joined #ruby
+2015-04-04 07:23 beneggett has joined #ruby
+2015-04-04 07:25 tubuliferous_ has quit [Ping timeout: 244 seconds]
+2015-04-04 07:25 JoshGlzBrk has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 07:25 browndawg has joined #ruby
+2015-04-04 07:25 djbkd has joined #ruby
+2015-04-04 07:26 benlieb_ has joined #ruby
+2015-04-04 07:27 nyilmeregbeka has joined #ruby
+2015-04-04 07:27 bim has joined #ruby
+2015-04-04 07:27 einarj has quit [Ping timeout: 264 seconds]
+2015-04-04 07:29 Morkel has joined #ruby
+2015-04-04 07:30 sandelius has joined #ruby
+2015-04-04 07:31 bim has quit [Ping timeout: 244 seconds]
+2015-04-04 07:32 piotrj has quit [Remote host closed the connection]
+2015-04-04 07:32 ramfjord has joined #ruby
+2015-04-04 07:33 serivichi has quit [Ping timeout: 272 seconds]
+2015-04-04 07:33 Jiyuhen has joined #ruby
+2015-04-04 07:34 beneggett has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 07:34 Pharaoh2 has joined #ruby
+2015-04-04 07:38 mostlybadfly has quit [Quit: Connection closed for inactivity]
+2015-04-04 07:39 <sandelius> Is API <-> client side frameworks the future of web development?
+2015-04-04 07:41 nyilmeregbeka has quit [Read error: Connection reset by peer]
+2015-04-04 07:44 dfinninger has joined #ruby
+2015-04-04 07:45 _blizzy_ has joined #ruby
+2015-04-04 07:46 bruno- has joined #ruby
+2015-04-04 07:46 chinmay_dd has joined #ruby
+2015-04-04 07:47 benlieb_ has quit [Quit: benlieb_]
+2015-04-04 07:48 ThinkNode has joined #ruby
+2015-04-04 07:48 <ThinkNode> do you guys code in ruby?
+2015-04-04 07:48 <Nilium> I'd guess so.
+2015-04-04 07:48 markholmes has quit [Quit: So it goes.]
+2015-04-04 07:49 ramfjord has quit [Ping timeout: 256 seconds]
+2015-04-04 07:49 dfinninger has quit [Ping timeout: 246 seconds]
+2015-04-04 07:50 Morkel has quit [Quit: Morkel]
+2015-04-04 07:50 RegulationD has joined #ruby
+2015-04-04 07:50 overcrush has joined #ruby
+2015-04-04 07:50 <sandelius> yeah
+2015-04-04 07:51 bruno- has quit [Ping timeout: 252 seconds]
+2015-04-04 07:53 dtusk has joined #ruby
+2015-04-04 07:54 lessless has quit [Ping timeout: 248 seconds]
+2015-04-04 07:54 RegulationD has quit [Ping timeout: 272 seconds]
+2015-04-04 07:55 yfeldblum has joined #ruby
+2015-04-04 07:56 <wasamasa> ThinkNode: no, this is actually a channel dedicated to the html tag
+2015-04-04 07:56 Morkel has joined #ruby
+2015-04-04 07:56 ramfjord has joined #ruby
+2015-04-04 07:57 quimrstorres has joined #ruby
+2015-04-04 07:57 <ThinkNode> damn
+2015-04-04 07:57 Morkel has quit [Client Quit]
+2015-04-04 07:57 <ThinkNode> why so sarcastic
+2015-04-04 07:57 <wasamasa> you have "Node" in your nick
+2015-04-04 07:58 <wasamasa> you cannot possibly expect serious answers on that
+2015-04-04 07:58 <ThinkNode> what's wrong with node ?
+2015-04-04 07:58 LudicrousMango has joined #ruby
+2015-04-04 07:59 noobda has joined #ruby
+2015-04-04 07:59 psy_ has quit [Quit: Leaving]
+2015-04-04 08:00 bradleyprice has joined #ruby
+2015-04-04 08:01 jack_rabbit has quit [Ping timeout: 245 seconds]
+2015-04-04 08:02 <noobda> hey all, how to make class variables public?
+2015-04-04 08:02 psy_ has joined #ruby
+2015-04-04 08:04 exadeci has joined #ruby
+2015-04-04 08:05 teddyp1cker has joined #ruby
+2015-04-04 08:06 <browndawg> noobda: :attr_accessors
+2015-04-04 08:07 <chinmay_dd> hey guys, i am a sophomore studying Information Technology. i have to give an introductory talk on ruby for about an hour. What do you guys think i should cover?
+2015-04-04 08:07 quimrstorres has quit [Remote host closed the connection]
+2015-04-04 08:07 alex1404 has joined #ruby
+2015-04-04 08:07 <noobda> chinmay kaunse college me he?
+2015-04-04 08:08 <chinmay_dd> NITK Surathkal
+2015-04-04 08:08 varunwachaspati has joined #ruby
+2015-04-04 08:08 <noobda> hawa kar raha he saala haha
+2015-04-04 08:08 <chinmay_dd> eh?
+2015-04-04 08:08 <noobda> just kidding lol
+2015-04-04 08:08 Jackneill has joined #ruby
+2015-04-04 08:08 <ThinkNode> what the fuck
+2015-04-04 08:08 <ThinkNode> lol
+2015-04-04 08:08 <noobda> cover that ruby is magic
+2015-04-04 08:08 <noobda> end of story
+2015-04-04 08:09 <ThinkNode> you guys hate node?
+2015-04-04 08:09 <browndawg> bc
+2015-04-04 08:09 yfeldblu_ has joined #ruby
+2015-04-04 08:09 jlast has joined #ruby
+2015-04-04 08:09 Mark-6ma has joined #ruby
+2015-04-04 08:10 sevenseacat has joined #ruby
+2015-04-04 08:10 teddyp1cker has quit [Ping timeout: 264 seconds]
+2015-04-04 08:11 greenbagels_ has joined #ruby
+2015-04-04 08:11 govg has quit [Ping timeout: 252 seconds]
+2015-04-04 08:11 sandelius has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 08:12 bayed has joined #ruby
+2015-04-04 08:12 greenbagels has quit [Disconnected by services]
+2015-04-04 08:13 yfeldblum has quit [Ping timeout: 264 seconds]
+2015-04-04 08:13 noobda has quit [Quit: Page closed]
+2015-04-04 08:13 govg has joined #ruby
+2015-04-04 08:13 Dude007 has joined #ruby
+2015-04-04 08:13 _hollywood has joined #ruby
+2015-04-04 08:14 jlast has quit [Ping timeout: 256 seconds]
+2015-04-04 08:14 Darryl___ has quit [Quit: Connection closed for inactivity]
+2015-04-04 08:14 greenbagels_ has quit [Client Quit]
+2015-04-04 08:15 greenbagels has joined #ruby
+2015-04-04 08:18 jheg has quit [Quit: jheg]
+2015-04-04 08:18 Mon_Ouie has joined #ruby
+2015-04-04 08:18 Mon_Ouie has quit [Changing host]
+2015-04-04 08:18 Mon_Ouie has joined #ruby
+2015-04-04 08:19 <ThinkNode> why do u fuckers hate node?
+2015-04-04 08:19 alex1404 has quit []
+2015-04-04 08:20 krisquigley has joined #ruby
+2015-04-04 08:21 <browndawg> because adolf hitler used node, and we all know how that turned out
+2015-04-04 08:21 beneggett has joined #ruby
+2015-04-04 08:21 <ThinkNode> oh true
+2015-04-04 08:21 <chinmay_dd> XD
+2015-04-04 08:22 <ThinkNode> yeah those were the days right
+2015-04-04 08:22 <ThinkNode> nowadays jews can run around unchecked
+2015-04-04 08:23 einarj has joined #ruby
+2015-04-04 08:23 <sevenseacat> hi everyone!
+2015-04-04 08:24 musashi1 has quit [Read error: Connection timed out]
+2015-04-04 08:24 <ThinkNode> sevenseacat:do you hate node?
+2015-04-04 08:24 <sevenseacat> i am indifferent to node
+2015-04-04 08:24 wicope has joined #ruby
+2015-04-04 08:24 wicope has quit [Max SendQ exceeded]
+2015-04-04 08:25 <ThinkNode> most people here are node haters
+2015-04-04 08:25 wicope has joined #ruby
+2015-04-04 08:25 krisquigley has quit [Ping timeout: 246 seconds]
+2015-04-04 08:25 <ThinkNode> saw my name and started talking shit
+2015-04-04 08:25 <sevenseacat> thats nice. they're allowed to.
+2015-04-04 08:25 <ThinkNode> yeah if they want to be little bitches, then they have the right to do so
+2015-04-04 08:25 ThinkNode was kicked from #ruby by sevenseacat [Your behavior is not conducive to the desired environment.]
+2015-04-04 08:26 roshanavand has joined #ruby
+2015-04-04 08:26 musashi1 has joined #ruby
+2015-04-04 08:27 beneggett has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 08:27 bluOxigen has joined #ruby
+2015-04-04 08:28 quimrstorres has joined #ruby
+2015-04-04 08:28 red_horned_rihno has joined #ruby
+2015-04-04 08:28 einarj has quit [Ping timeout: 252 seconds]
+2015-04-04 08:28 bruno- has joined #ruby
+2015-04-04 08:30 Elite6809 has joined #ruby
+2015-04-04 08:30 roshanavand has quit [Ping timeout: 246 seconds]
+2015-04-04 08:31 roshanavand has joined #ruby
+2015-04-04 08:33 zzing has joined #ruby
+2015-04-04 08:33 BradPitt has joined #ruby
+2015-04-04 08:34 Takle has joined #ruby
+2015-04-04 08:36 f3lp has quit [Ping timeout: 272 seconds]
+2015-04-04 08:37 ahmetkapikiran has joined #ruby
+2015-04-04 08:38 ahmetkapikiran has quit [Client Quit]
+2015-04-04 08:41 roshanavand has quit [Quit: roshanavand]
+2015-04-04 08:42 roshanavand has joined #ruby
+2015-04-04 08:42 Bacta has joined #ruby
+2015-04-04 08:42 <Bacta> I've got a directory of Ruby files with each defining a class inside module X and inheriting from X::Base
+2015-04-04 08:43 <Bacta> But when I call descendants I only get the classes from source files I'm included
+2015-04-04 08:43 djbkd has quit [Remote host closed the connection]
+2015-04-04 08:43 <Bacta> I'm a beginner to Ruby but not to programming. It smells like the code I've inherited wasn't designed very well in terms of structure.
+2015-04-04 08:44 <Bacta> Any ideas on what's going wrong?
+2015-04-04 08:45 <sevenseacat> you cant use classes defined in files you havent loaded
+2015-04-04 08:45 dfinninger has joined #ruby
+2015-04-04 08:46 davedev24_ has quit [Remote host closed the connection]
+2015-04-04 08:46 <Bacta> Makes sense. What's the "Ruby Way" for initialising modules spanning multiple files?
+2015-04-04 08:46 <sevenseacat> to require all of the modules that the class depends on, in the file itself
+2015-04-04 08:48 quimrstorres has quit [Remote host closed the connection]
+2015-04-04 08:50 dfinninger has quit [Ping timeout: 252 seconds]
+2015-04-04 08:50 chinmay_dd has quit [Quit: Leaving]
+2015-04-04 08:52 roolo has joined #ruby
+2015-04-04 08:52 beneggett has joined #ruby
+2015-04-04 08:54 jconnolly has joined #ruby
+2015-04-04 08:54 govg has quit [Ping timeout: 256 seconds]
+2015-04-04 08:55 govg has joined #ruby
+2015-04-04 08:56 beneggett has quit [Client Quit]
+2015-04-04 08:56 _blizzy_ has quit [Ping timeout: 244 seconds]
+2015-04-04 08:56 sandelius has joined #ruby
+2015-04-04 08:57 lele is now known as Guest24
+2015-04-04 08:57 A205B064 has quit [Ping timeout: 248 seconds]
+2015-04-04 08:57 roolo has quit [Ping timeout: 256 seconds]
+2015-04-04 08:59 jconnolly has quit [Ping timeout: 264 seconds]
+2015-04-04 09:02 doodlehaus has joined #ruby
+2015-04-04 09:02 ponga has joined #ruby
+2015-04-04 09:03 _1_ has joined #ruby
+2015-04-04 09:03 _1_ has left #ruby [#ruby]
+2015-04-04 09:04 decoponio has joined #ruby
+2015-04-04 09:05 senayar has joined #ruby
+2015-04-04 09:05 senayar has joined #ruby
+2015-04-04 09:06 Deathcode has joined #ruby
+2015-04-04 09:07 doodlehaus has quit [Ping timeout: 265 seconds]
+2015-04-04 09:08 adamjleonard has joined #ruby
+2015-04-04 09:09 tubuliferous_ has joined #ruby
+2015-04-04 09:10 pawanspace has joined #ruby
+2015-04-04 09:10 Musashi007 has joined #ruby
+2015-04-04 09:10 jlast has joined #ruby
+2015-04-04 09:10 <Deathcode> i want to use ruby to make an IRC
+2015-04-04 09:10 <Deathcode> can that be possible?
+2015-04-04 09:10 pawanspace has quit [Client Quit]
+2015-04-04 09:11 mhib has joined #ruby
+2015-04-04 09:11 <BradPitt> a bot, DeathCode? It is certainly possible
+2015-04-04 09:12 <Deathcode> no
+2015-04-04 09:12 <Deathcode> a whole IRC
+2015-04-04 09:12 <Deathcode> like freenode
+2015-04-04 09:12 <BradPitt> Do you mean a server?
+2015-04-04 09:12 <Deathcode> yes
+2015-04-04 09:12 <Deathcode> the server
+2015-04-04 09:12 <Deathcode> ruby on rails mayeb
+2015-04-04 09:12 <Deathcode> maybe
+2015-04-04 09:13 <sandelius> DeathCode read about networking
+2015-04-04 09:13 <BradPitt> Yes, not wiht Webrick though. Thin/unicorn/puma
+2015-04-04 09:13 <BradPitt> or I guess nginx delegating to multiple RoR instances'
+2015-04-04 09:13 bradleyprice has quit [Remote host closed the connection]
+2015-04-04 09:13 <sandelius> DeathCode web-based?
+2015-04-04 09:13 relix has joined #ruby
+2015-04-04 09:13 <Deathcode> yes web-based
+2015-04-04 09:14 <sandelius> DeathCode it's possible but I would use e.g erlang (or perhaps elixir?) for something like that
+2015-04-04 09:14 tubuliferous_ has quit [Ping timeout: 256 seconds]
+2015-04-04 09:15 jlast has quit [Ping timeout: 265 seconds]
+2015-04-04 09:16 netroby has joined #ruby
+2015-04-04 09:16 beneggett has joined #ruby
+2015-04-04 09:17 jheg has joined #ruby
+2015-04-04 09:17 Zai00 has joined #ruby
+2015-04-04 09:17 <vhlfd> BradPitt writes ruby?
+2015-04-04 09:18 <Deathcode> brad pitt's acting gig is not looking very sharp right now
+2015-04-04 09:18 <Deathcode> touch economy
+2015-04-04 09:18 BradPitt has quit [Ping timeout: 265 seconds]
+2015-04-04 09:18 BradPitt has joined #ruby
+2015-04-04 09:19 tvw has quit [Ping timeout: 264 seconds]
+2015-04-04 09:19 DEA7TH has joined #ruby
+2015-04-04 09:20 kiri has joined #ruby
+2015-04-04 09:20 codecop has joined #ruby
+2015-04-04 09:22 chinmay_dd has joined #ruby
+2015-04-04 09:24 tvw has joined #ruby
+2015-04-04 09:24 charliesome has quit [Quit: zzz]
+2015-04-04 09:25 Violentr has joined #ruby
+2015-04-04 09:26 Jiyuhen has quit [Ping timeout: 256 seconds]
+2015-04-04 09:26 DEA7TH has quit [Changing host]
+2015-04-04 09:26 DEA7TH has joined #ruby
+2015-04-04 09:27 blackmesa has joined #ruby
+2015-04-04 09:28 jimms has joined #ruby
+2015-04-04 09:29 govg has quit [Quit: leaving]
+2015-04-04 09:33 sarmiena_ has quit [Quit: sarmiena_]
+2015-04-04 09:33 tvw has quit [Ping timeout: 265 seconds]
+2015-04-04 09:36 FernandoBasso has joined #ruby
+2015-04-04 09:38 Musashi007 has quit [Quit: Musashi007]
+2015-04-04 09:38 rkazak_ has quit [Quit: Sleep.....ing....]
+2015-04-04 09:38 IronKoopa has joined #ruby
+2015-04-04 09:38 RegulationD has joined #ruby
+2015-04-04 09:39 BradPitt has quit [Ping timeout: 256 seconds]
+2015-04-04 09:39 Alina-malina has quit [Read error: Connection reset by peer]
+2015-04-04 09:40 Alina-malina has joined #ruby
+2015-04-04 09:42 bentanweihao has joined #ruby
+2015-04-04 09:42 duncannz has joined #ruby
+2015-04-04 09:43 yeticry has quit [Ping timeout: 252 seconds]
+2015-04-04 09:43 IronKoopa has quit [Ping timeout: 256 seconds]
+2015-04-04 09:43 RegulationD has quit [Ping timeout: 250 seconds]
+2015-04-04 09:43 yeticry has joined #ruby
+2015-04-04 09:43 ghr has joined #ruby
+2015-04-04 09:44 serivichi has joined #ruby
+2015-04-04 09:45 mengu has joined #ruby
+2015-04-04 09:46 duncannz has quit [Max SendQ exceeded]
+2015-04-04 09:46 duncannz has joined #ruby
+2015-04-04 09:47 duncannz has quit [Max SendQ exceeded]
+2015-04-04 09:48 nszceta has joined #ruby
+2015-04-04 09:49 jimms has quit [Remote host closed the connection]
+2015-04-04 09:50 sdothum has joined #ruby
+2015-04-04 09:50 duncannz has joined #ruby
+2015-04-04 09:50 zzing has quit [Quit: Textual IRC Client: www.textualapp.com]
+2015-04-04 09:50 duncannz has quit [Max SendQ exceeded]
+2015-04-04 09:52 Rephiax has joined #ruby
+2015-04-04 09:52 duncannz has joined #ruby
+2015-04-04 09:53 postmodern has quit [Quit: Leaving]
+2015-04-04 09:53 duncannz has quit [Max SendQ exceeded]
+2015-04-04 09:54 djbkd has joined #ruby
+2015-04-04 09:54 yh has joined #ruby
+2015-04-04 09:54 Rephiax has quit [Client Quit]
+2015-04-04 09:54 duncannz has joined #ruby
+2015-04-04 09:54 beneggett has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 09:55 duncannz has quit [Max SendQ exceeded]
+2015-04-04 09:56 red_horned_rihno has quit [Ping timeout: 246 seconds]
+2015-04-04 09:56 duncannz has joined #ruby
+2015-04-04 09:56 sandelius has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 09:57 blackmesa has quit [Ping timeout: 264 seconds]
+2015-04-04 09:59 djbkd has quit [Ping timeout: 252 seconds]
+2015-04-04 09:59 lordkryss has joined #ruby
+2015-04-04 09:59 yh has quit [Ping timeout: 272 seconds]
+2015-04-04 09:59 Andymeows has joined #ruby
+2015-04-04 10:00 davedev24_ has joined #ruby
+2015-04-04 10:00 Mia has joined #ruby
+2015-04-04 10:00 Mia has joined #ruby
+2015-04-04 10:01 LudicrousMango has quit [Remote host closed the connection]
+2015-04-04 10:02 Bacta has quit [Ping timeout: 256 seconds]
+2015-04-04 10:02 decoponyo has joined #ruby
+2015-04-04 10:03 vivekananda has joined #ruby
+2015-04-04 10:05 decoponio has quit [Ping timeout: 256 seconds]
+2015-04-04 10:05 avril14th has joined #ruby
+2015-04-04 10:05 senayar has quit [Remote host closed the connection]
+2015-04-04 10:06 cvtsx has joined #ruby
+2015-04-04 10:06 teddyp1cker has joined #ruby
+2015-04-04 10:07 Andymeows has quit [Ping timeout: 265 seconds]
+2015-04-04 10:08 arup_r has joined #ruby
+2015-04-04 10:09 krisquigley has joined #ruby
+2015-04-04 10:10 lkba has joined #ruby
+2015-04-04 10:11 jlast has joined #ruby
+2015-04-04 10:11 teddyp1cker has quit [Ping timeout: 256 seconds]
+2015-04-04 10:12 arup_r has quit [Ping timeout: 250 seconds]
+2015-04-04 10:13 red_horned_rihno has joined #ruby
+2015-04-04 10:14 Karpuragauram has joined #ruby
+2015-04-04 10:14 krisquigley has quit [Ping timeout: 250 seconds]
+2015-04-04 10:15 jlast has quit [Ping timeout: 265 seconds]
+2015-04-04 10:18 bMalum has joined #ruby
+2015-04-04 10:18 bim has joined #ruby
+2015-04-04 10:19 adamjleonard has quit [Quit: Leaving...]
+2015-04-04 10:21 Stalkr has joined #ruby
+2015-04-04 10:21 Takle has quit [Remote host closed the connection]
+2015-04-04 10:25 jheg has quit [Quit: jheg]
+2015-04-04 10:25 Advocation has joined #ruby
+2015-04-04 10:26 freerobby has joined #ruby
+2015-04-04 10:26 sankaber has joined #ruby
+2015-04-04 10:27 Advocation has quit [Client Quit]
+2015-04-04 10:27 bentanweihao has quit []
+2015-04-04 10:28 banister has joined #ruby
+2015-04-04 10:29 sankaber has quit [Client Quit]
+2015-04-04 10:29 bim has quit [Remote host closed the connection]
+2015-04-04 10:30 mrbond has joined #ruby
+2015-04-04 10:30 wicope has quit [Read error: Connection reset by peer]
+2015-04-04 10:30 Advocation has joined #ruby
+2015-04-04 10:31 overcrush has quit [Remote host closed the connection]
+2015-04-04 10:33 relix has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 10:34 psy_ has quit [Quit: Leaving]
+2015-04-04 10:35 otisZart has joined #ruby
+2015-04-04 10:37 bMalum has quit [Quit: bMalum]
+2015-04-04 10:38 banister has quit [Quit: My MacBook has gone to sleep. ZZZzzz…]
+2015-04-04 10:40 nszceta has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 10:41 dtusk has quit [Remote host closed the connection]
+2015-04-04 10:42 BTRE has quit [Read error: Connection reset by peer]
+2015-04-04 10:42 jconnolly has joined #ruby
+2015-04-04 10:43 Elite6809 has quit [Quit: WeeChat 1.1.1]
+2015-04-04 10:44 bonhoeffer has joined #ruby
+2015-04-04 10:45 FernandoBasso has quit [Quit: leaving]
+2015-04-04 10:45 Deele has joined #ruby
+2015-04-04 10:45 Bacta has joined #ruby
+2015-04-04 10:46 relix has joined #ruby
+2015-04-04 10:46 relix has quit [Client Quit]
+2015-04-04 10:46 ponga has quit [Remote host closed the connection]
+2015-04-04 10:47 lennae has joined #ruby
+2015-04-04 10:47 serivichi has quit [Ping timeout: 244 seconds]
+2015-04-04 10:47 dfinninger has joined #ruby
+2015-04-04 10:47 jconnolly has quit [Ping timeout: 255 seconds]
+2015-04-04 10:47 bMalum has joined #ruby
+2015-04-04 10:48 jimms has joined #ruby
+2015-04-04 10:49 valkyrka has joined #ruby
+2015-04-04 10:50 relix has joined #ruby
+2015-04-04 10:50 duncannz has quit [Remote host closed the connection]
+2015-04-04 10:50 Rephiax has joined #ruby
+2015-04-04 10:51 mhib has quit [Remote host closed the connection]
+2015-04-04 10:51 dfinninger has quit [Ping timeout: 244 seconds]
+2015-04-04 10:52 CorpusCallosum has joined #ruby
+2015-04-04 10:55 noname1 has quit [Ping timeout: 248 seconds]
+2015-04-04 10:56 Pharaoh2_ has joined #ruby
+2015-04-04 10:56 Pharaoh2 has quit [Disconnected by services]
+2015-04-04 10:57 kirun has joined #ruby
+2015-04-04 10:58 tubuliferous_ has joined #ruby
+2015-04-04 11:03 doodlehaus has joined #ruby
+2015-04-04 11:03 tubuliferous_ has quit [Ping timeout: 264 seconds]
+2015-04-04 11:05 digitalextremist has joined #ruby
+2015-04-04 11:06 Rollabun_ has quit [Remote host closed the connection]
+2015-04-04 11:06 senayar has joined #ruby
+2015-04-04 11:06 senayar has joined #ruby
+2015-04-04 11:06 Rollabunna has joined #ruby
+2015-04-04 11:06 Pupeno has joined #ruby
+2015-04-04 11:06 Pupeno has joined #ruby
+2015-04-04 11:08 doodlehaus has quit [Ping timeout: 250 seconds]
+2015-04-04 11:08 noname1 has joined #ruby
+2015-04-04 11:09 jimms has quit [Remote host closed the connection]
+2015-04-04 11:09 aswen has joined #ruby
+2015-04-04 11:10 Deathcode has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+2015-04-04 11:10 jgorak has joined #ruby
+2015-04-04 11:11 Cust0sLim3n has quit [Quit: Leaving]
+2015-04-04 11:11 jlast has joined #ruby
+2015-04-04 11:11 senayar has quit [Ping timeout: 244 seconds]
+2015-04-04 11:12 <jgorak> Hi all.  Is there some shorthand for this structure?  I googled but can't find anything better:   y=if(defined? x); x; else; 1; end
+2015-04-04 11:12 delianides has joined #ruby
+2015-04-04 11:12 <toertore> do you actually need to use defined? ?
+2015-04-04 11:12 chinmay_dd has quit [Quit: Leaving]
+2015-04-04 11:12 <toertore> i guess so, since it's a local var
+2015-04-04 11:13 bMalum has quit [Quit: bMalum]
+2015-04-04 11:13 <toertore> the only "shorthand" is to use a ternary
+2015-04-04 11:13 <jhass> being uncertain whether a local var is defined is a clear sign that something is going wrong
+2015-04-04 11:13 <jhass> jgorak: why do you need that check?
+2015-04-04 11:13 <jgorak> i'm using it in a template.  i want to have a default value if variable wasn't set when the template is ... templated
+2015-04-04 11:13 <avril14th> val ||= 1 ?
+2015-04-04 11:14 <toertore> jgorak: what do you mean by template?
+2015-04-04 11:14 <toertore> gist some code?
+2015-04-04 11:15 <jgorak> I'm using erb by just cat'ing two files and piping them into it.  One file sets variables. The other is the template.
+2015-04-04 11:15 <toertore> gist?
+2015-04-04 11:16 bMalum has joined #ruby
+2015-04-04 11:16 Zai00 has quit [Quit: Zai00]
+2015-04-04 11:16 <jgorak> hang on, i'm putting an example together
+2015-04-04 11:16 <Mark-6ma> does anyone know pretty themes for YARD docs?
+2015-04-04 11:16 bonhoeffer has quit [Quit: bonhoeffer]
+2015-04-04 11:16 jlast has quit [Ping timeout: 265 seconds]
+2015-04-04 11:17 havenwood has quit [Remote host closed the connection]
+2015-04-04 11:17 delianides has quit [Ping timeout: 272 seconds]
+2015-04-04 11:17 mrbond has quit [Quit: mrbond]
+2015-04-04 11:18 <Mark-6ma> any theme besides default ones
+2015-04-04 11:18 Takle has joined #ruby
+2015-04-04 11:19 vivekananda has quit [Ping timeout: 255 seconds]
+2015-04-04 11:19 C1V0 has quit []
+2015-04-04 11:19 <jgorak> gist for what I'm doing is at https://gist.github.com/anonymous/0648122388927e200590 .  sometimes my vars file won't have variables defined
+2015-04-04 11:21 <jgorak> i want my doc to have a default value if the vars file doesn't set it
+2015-04-04 11:21 <toertore> do you need to distinguish between "being set" and "being non-nil"?
+2015-04-04 11:22 Cust0sL1men has quit [Ping timeout: 264 seconds]
+2015-04-04 11:23 <jgorak> As in- can I set it to empty to start and append/reassign as needed?
+2015-04-04 11:23 <jgorak> My problem there is the naming is currently all caps, and it complains about changing constants
+2015-04-04 11:24 <jgorak> Ideally I keep that, but I really don't have to.
+2015-04-04 11:24 <toertore> gist real code pls?
+2015-04-04 11:24 <toertore> i don't really like erb, it's too metaprogrammy
+2015-04-04 11:24 <jgorak> Can't use the exact stuff.  It's on a work computer.  I'll build enough that it's useful for this convo
+2015-04-04 11:25 Cust0sL1men has joined #ruby
+2015-04-04 11:27 RegulationD has joined #ruby
+2015-04-04 11:28 aswen has quit [Ping timeout: 248 seconds]
+2015-04-04 11:29 DerisiveLogic has joined #ruby
+2015-04-04 11:29 bim has joined #ruby
+2015-04-04 11:30 tier has joined #ruby
+2015-04-04 11:31 fella5s has quit [Ping timeout: 244 seconds]
+2015-04-04 11:32 RegulationD has quit [Ping timeout: 252 seconds]
+2015-04-04 11:32 red_horned_rihno has quit [Ping timeout: 256 seconds]
+2015-04-04 11:34 DerisiveLogic has quit [Ping timeout: 246 seconds]
+2015-04-04 11:34 riotjones has joined #ruby
+2015-04-04 11:34 bim has quit [Ping timeout: 272 seconds]
+2015-04-04 11:37 psy_ has joined #ruby
+2015-04-04 11:39 VBlizzard has joined #ruby
+2015-04-04 11:39 <jgorak> https://gist.github.com/anonymous/264eb5f74413528cd331 is a little closer to what I mean.  I'm templating bash scripts that go on servers.  I'm trying to match the variable names in the ruby parts with the variable names in the bash parts, all caps.
+2015-04-04 11:39 riotjones has quit [Ping timeout: 255 seconds]
+2015-04-04 11:39 fella5s has joined #ruby
+2015-04-04 11:40 <jgorak> I'd like to not have to define JAVA_XMS for every node, but if I just set a default in common.erb, the ones that overwrite it warn me because it is a constant
+2015-04-04 11:40 aryaching has joined #ruby
+2015-04-04 11:41 jimms has joined #ruby
+2015-04-04 11:41 <jgorak> I want something like ${x-someDefaultValue} that i have in shell
+2015-04-04 11:43 jconnolly has joined #ruby
+2015-04-04 11:44 ghr has quit [Ping timeout: 264 seconds]
+2015-04-04 11:45 red_horned_rihno has joined #ruby
+2015-04-04 11:46 jimms has quit [Ping timeout: 265 seconds]
+2015-04-04 11:48 dfinninger has joined #ruby
+2015-04-04 11:48 Advocation has quit [Quit: Advocation]
+2015-04-04 11:48 jconnolly has quit [Ping timeout: 252 seconds]
+2015-04-04 11:49 <jgorak> I think using ||= as suggested earlier is the best course of action.
+2015-04-04 11:50 lkba has quit [Ping timeout: 264 seconds]
+2015-04-04 11:52 dfinninger has quit [Ping timeout: 264 seconds]
+2015-04-04 11:56 <toertore> you can't use ||= when it's undefined
+2015-04-04 11:56 <toertore> https://gist.github.com/toretore/32c70bf8b8b0271571cb
+2015-04-04 11:56 bonhoeffer has joined #ruby
+2015-04-04 11:57 <jhass> toertore: actually you can
+2015-04-04 11:57 <jhass> for the same reason foo = 1 if false defines it
+2015-04-04 11:57 <toertore> oh right
+2015-04-04 11:57 <toertore> but i like to pretend that it's not possible
+2015-04-04 11:58 <apeiros> helpa: !part #ruby
+2015-04-04 11:58 helpa has left #ruby [#ruby]
+2015-04-04 11:58 relix has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 11:58 eval-in_ was kicked from #ruby by apeiros [eval-in_]
+2015-04-04 11:58 krisquigley has joined #ruby
+2015-04-04 11:59 ruboto has joined #ruby
+2015-04-04 11:59 <wasamasa> ._.
+2015-04-04 12:00 <apeiros> ?ruboto
+2015-04-04 12:00 <ruboto> I'm the channel bot, linker of the rules, knower of the facts, wielder of the banhammer.
+2015-04-04 12:00 <wasamasa> holy shit
+2015-04-04 12:00 <apeiros> >> 1+1
+2015-04-04 12:00 <ruboto> apeiros # => 2 (https://eval.in/308515)
+2015-04-04 12:00 <apeiros> welcome our new channel, official bot :D
+2015-04-04 12:00 <apeiros> whoops
+2015-04-04 12:00 CatMartyn has joined #ruby
+2015-04-04 12:00 <apeiros> welcome our new, official channel bot :D
+2015-04-04 12:00 <apeiros> fixed :D
+2015-04-04 12:00 <sevenseacat> i for one welcome our new robot overlord
+2015-04-04 12:01 <toertore> ruboto: nice to meet you
+2015-04-04 12:01 <agent_white> Wat happen eval-in?
+2015-04-04 12:02 <agent_white> Lost his visa?
+2015-04-04 12:02 <apeiros> nothing. charliesome gave me its code to embedd it into one official bot
+2015-04-04 12:02 <djellemah> >> fibonacci = Hash.new{ |h,k| h[k] = k < 2 ? k : h[k-1] + h[k-2] }; fibonacci[6]
+2015-04-04 12:02 <ruboto> djellemah # => 8 (https://eval.in/308516)
+2015-04-04 12:02 <apeiros> since charliesome isn't around atm, I kicked. otherwise he'd have removed the bot.
+2015-04-04 12:02 <agent_white> charliesome was to remove eval, anyways?!
+2015-04-04 12:03 <agent_white> More like Abrahamsome!
+2015-04-04 12:03 krisquigley has quit [Ping timeout: 256 seconds]
+2015-04-04 12:03 <agent_white> ruboto: HELLO
+2015-04-04 12:04 <apeiros> agent_white: it's a very silent bot ;-)
+2015-04-04 12:04 <agent_white> Creeper bots!
+2015-04-04 12:04 <agent_white> ruboto: you are creepy but that's OK.
+2015-04-04 12:05 <apeiros> it is even more creepy. it logs everything you say!
+2015-04-04 12:05 <apeiros> logs will be available on ruby-community.com as soon as we get to it.
+2015-04-04 12:06 <agent_white> ruboto first 10 logs: "agent_white: YOU ARE CREEPY"
+2015-04-04 12:06 <agent_white> ;D
+2015-04-04 12:06 <apeiros> na, logs will only be available via the website
+2015-04-04 12:07 <apeiros> maybe at one time via the bot in a limited fashion. certainly never for everybody on the channel (i.e. if for everybody, then in the query)
+2015-04-04 12:07 ponga has joined #ruby
+2015-04-04 12:07 * apeiros afk, cy'all
+2015-04-04 12:07 <jhass> ?botsnack
+2015-04-04 12:07 <ruboto> nomnomnomnom
+2015-04-04 12:07 teddyp1cker has joined #ruby
+2015-04-04 12:07 <shevy> sevenseacat cat-robots are good
+2015-04-04 12:08 <wasamasa> ?help
+2015-04-04 12:08 <ruboto> I don't know anything about help
+2015-04-04 12:08 <wasamasa> how dare you
+2015-04-04 12:08 <wasamasa> ?owner
+2015-04-04 12:08 <ruboto> I don't know anything about owner
+2015-04-04 12:08 <sevenseacat> a cat robot would be a total asshole
+2015-04-04 12:09 <wasamasa> this bot is lost
+2015-04-04 12:09 <wasamasa> sevenseacat: that reminds me that I should recommence work on nekobot
+2015-04-04 12:10 <shevy> a cat robot would bring attitude!
+2015-04-04 12:10 <shevy> pouncing with style
+2015-04-04 12:11 bonhoeffer has quit [Quit: bonhoeffer]
+2015-04-04 12:12 teddyp1cker has quit [Ping timeout: 264 seconds]
+2015-04-04 12:12 jlast has joined #ruby
+2015-04-04 12:17 jlast has quit [Ping timeout: 265 seconds]
+2015-04-04 12:19 _hollywood has quit [Quit: Leaving]
+2015-04-04 12:20 Zai00 has joined #ruby
+2015-04-04 12:21 amystephen has joined #ruby
+2015-04-04 12:21 Cust0sL1men has quit [Ping timeout: 265 seconds]
+2015-04-04 12:21 VBlizzard is now known as _blizzy_
+2015-04-04 12:23 CorpusCallosum has quit [Remote host closed the connection]
+2015-04-04 12:24 Cust0sL1men has joined #ruby
+2015-04-04 12:24 agent_white has quit [Remote host closed the connection]
+2015-04-04 12:24 relix has joined #ruby
+2015-04-04 12:24 ponga has quit [Remote host closed the connection]
+2015-04-04 12:25 teddyp1cker has joined #ruby
+2015-04-04 12:26 Advocation has joined #ruby
+2015-04-04 12:27 roshanavand1 has joined #ruby
+2015-04-04 12:27 roshanavand has quit [Ping timeout: 250 seconds]
+2015-04-04 12:30 nszceta has joined #ruby
+2015-04-04 12:35 guy_ has joined #ruby
+2015-04-04 12:36 aryaching has quit []
+2015-04-04 12:37 guy_ has left #ruby [#ruby]
+2015-04-04 12:38 teddyp1cker has quit [Remote host closed the connection]
+2015-04-04 12:38 Violentr has quit [Ping timeout: 264 seconds]
+2015-04-04 12:40 iasoon has joined #ruby
+2015-04-04 12:43 Mark-6ma has quit [Quit: -]
+2015-04-04 12:43 teddyp1cker has joined #ruby
+2015-04-04 12:43 mostlybadfly has joined #ruby
+2015-04-04 12:43 RegulationD has joined #ruby
+2015-04-04 12:45 bim has joined #ruby
+2015-04-04 12:46 mkode has joined #ruby
+2015-04-04 12:47 tubuliferous_ has joined #ruby
+2015-04-04 12:47 ponga has joined #ruby
+2015-04-04 12:47 piotrj has joined #ruby
+2015-04-04 12:48 quimrstorres has joined #ruby
+2015-04-04 12:48 RegulationD has quit [Ping timeout: 246 seconds]
+2015-04-04 12:48 dfinninger has joined #ruby
+2015-04-04 12:49 edwinvdgraaf has quit [Remote host closed the connection]
+2015-04-04 12:49 quimrstorres has quit [Remote host closed the connection]
+2015-04-04 12:49 edwinvdgraaf has joined #ruby
+2015-04-04 12:49 panga has joined #ruby
+2015-04-04 12:50 jerematic has joined #ruby
+2015-04-04 12:50 mroach has quit [Quit: mroach]
+2015-04-04 12:50 bim has quit [Ping timeout: 256 seconds]
+2015-04-04 12:51 jerematic has quit [Client Quit]
+2015-04-04 12:51 tubuliferous_ has quit [Ping timeout: 246 seconds]
+2015-04-04 12:53 dfinninger has quit [Ping timeout: 255 seconds]
+2015-04-04 12:53 teddyp1cker has quit [Remote host closed the connection]
+2015-04-04 12:54 mroach has joined #ruby
+2015-04-04 12:55 Dude007 has quit [Remote host closed the connection]
+2015-04-04 12:57 ramfjord has quit [Ping timeout: 256 seconds]
+2015-04-04 12:57 Pharaoh2_ is now known as Pharaoh2
+2015-04-04 13:00 davedev24_ has quit [Remote host closed the connection]
+2015-04-04 13:01 nszceta has quit [Remote host closed the connection]
+2015-04-04 13:02 nszceta has joined #ruby
+2015-04-04 13:02 sameerynho has joined #ruby
+2015-04-04 13:02 tier has quit [Remote host closed the connection]
+2015-04-04 13:02 jerematic has joined #ruby
+2015-04-04 13:03 mkode has quit [Ping timeout: 250 seconds]
+2015-04-04 13:03 lxsameer has quit [Ping timeout: 250 seconds]
+2015-04-04 13:03 einarj has joined #ruby
+2015-04-04 13:04 elaptics_away is now known as elaptics
+2015-04-04 13:04 yh has joined #ruby
+2015-04-04 13:05 nszceta_ has joined #ruby
+2015-04-04 13:08 nszceta has quit [Ping timeout: 256 seconds]
+2015-04-04 13:08 senayar has joined #ruby
+2015-04-04 13:08 lennae has quit [Ping timeout: 244 seconds]
+2015-04-04 13:10 mkode has joined #ruby
+2015-04-04 13:11 browndawg has quit [Ping timeout: 255 seconds]
+2015-04-04 13:12 iamninja has quit [Read error: Connection reset by peer]
+2015-04-04 13:12 iamninja has joined #ruby
+2015-04-04 13:13 jlast has joined #ruby
+2015-04-04 13:13 senayar has quit [Ping timeout: 265 seconds]
+2015-04-04 13:13 doodlehaus has joined #ruby
+2015-04-04 13:14 doodlehaus has quit [Remote host closed the connection]
+2015-04-04 13:14 jconnolly has joined #ruby
+2015-04-04 13:14 doodlehaus has joined #ruby
+2015-04-04 13:14 lennae has joined #ruby
+2015-04-04 13:15 bradleyprice has joined #ruby
+2015-04-04 13:17 lxsameer_ has joined #ruby
+2015-04-04 13:18 jlast has quit [Ping timeout: 256 seconds]
+2015-04-04 13:19 jerematic has quit [Remote host closed the connection]
+2015-04-04 13:19 jconnolly has quit [Ping timeout: 250 seconds]
+2015-04-04 13:19 sameerynho has quit [Ping timeout: 248 seconds]
+2015-04-04 13:20 iasoon has quit [Ping timeout: 252 seconds]
+2015-04-04 13:22 lessless has joined #ruby
+2015-04-04 13:23 edwinvdgraaf has quit [Remote host closed the connection]
+2015-04-04 13:23 rbennacer has joined #ruby
+2015-04-04 13:24 Xiti has joined #ruby
+2015-04-04 13:24 browndawg has joined #ruby
+2015-04-04 13:25 netroby has quit [Remote host closed the connection]
+2015-04-04 13:29 Soda has joined #ruby
+2015-04-04 13:30 jconnolly has joined #ruby
+2015-04-04 13:31 centrx has joined #ruby
+2015-04-04 13:32 sameerynho has joined #ruby
+2015-04-04 13:32 piotrj has quit [Remote host closed the connection]
+2015-04-04 13:32 lxsameer_ has quit [Ping timeout: 256 seconds]
+2015-04-04 13:33 mroach has quit [Quit: mroach]
+2015-04-04 13:33 mroach has joined #ruby
+2015-04-04 13:35 jconnolly has quit [Ping timeout: 244 seconds]
+2015-04-04 13:37 browndawg has quit [Quit: Leaving.]
+2015-04-04 13:43 horsecowdog has joined #ruby
+2015-04-04 13:45 tier has joined #ruby
+2015-04-04 13:45 bMalum has quit [Quit: bMalum]
+2015-04-04 13:47 bim has joined #ruby
+2015-04-04 13:47 wicope has joined #ruby
+2015-04-04 13:47 tus has joined #ruby
+2015-04-04 13:47 krisquigley has joined #ruby
+2015-04-04 13:49 dfinninger has joined #ruby
+2015-04-04 13:51 bim has quit [Ping timeout: 264 seconds]
+2015-04-04 13:52 mengu has quit []
+2015-04-04 13:52 krisquigley has quit [Ping timeout: 272 seconds]
+2015-04-04 13:53 FernandoBasso has joined #ruby
+2015-04-04 13:53 enebo has joined #ruby
+2015-04-04 13:53 varunwachaspati has quit [Ping timeout: 265 seconds]
+2015-04-04 13:54 dfinninger has quit [Ping timeout: 272 seconds]
+2015-04-04 14:01 lessless has quit [Max SendQ exceeded]
+2015-04-04 14:01 delianides has joined #ruby
+2015-04-04 14:02 kyrylo has joined #ruby
+2015-04-04 14:02 slackbotgz has quit [Remote host closed the connection]
+2015-04-04 14:03 slackbotgz has joined #ruby
+2015-04-04 14:03 kobain has joined #ruby
+2015-04-04 14:04 dx7 has joined #ruby
+2015-04-04 14:06 delianides has quit [Ping timeout: 252 seconds]
+2015-04-04 14:06 musashi1 has quit [Ping timeout: 250 seconds]
+2015-04-04 14:09 senayar has joined #ruby
+2015-04-04 14:10 roshanavand1 has quit [Read error: Connection reset by peer]
+2015-04-04 14:12 willharrison has joined #ruby
+2015-04-04 14:14 jlast has joined #ruby
+2015-04-04 14:14 senayar has quit [Ping timeout: 256 seconds]
+2015-04-04 14:18 jlast has quit [Ping timeout: 256 seconds]
+2015-04-04 14:19 Takle has quit [Read error: Connection reset by peer]
+2015-04-04 14:20 hpoydar has joined #ruby
+2015-04-04 14:20 VBlizzard has joined #ruby
+2015-04-04 14:21 agrinb has joined #ruby
+2015-04-04 14:21 _blizzy_ has quit [Disconnected by services]
+2015-04-04 14:21 VBlizzard is now known as _blizzy_
+2015-04-04 14:21 roshanavand has joined #ruby
+2015-04-04 14:21 tier has quit [Remote host closed the connection]
+2015-04-04 14:22 tier has joined #ruby
+2015-04-04 14:22 hpoydar has quit [Remote host closed the connection]
+2015-04-04 14:25 davedev24_ has joined #ruby
+2015-04-04 14:25 roshanavand has quit [Ping timeout: 248 seconds]
+2015-04-04 14:26 sevenseacat has joined #ruby
+2015-04-04 14:27 tier has quit [Ping timeout: 248 seconds]
+2015-04-04 14:28 zcreative has joined #ruby
+2015-04-04 14:28 tier has joined #ruby
+2015-04-04 14:28 <FernandoBasso> I am taking a look at all the links the docs mention. I'd like some kind of tutorial/book that teaches by using programs, instead of "5.to_s converts 5 to a string"-like stuff. Is there such a thing?
+2015-04-04 14:29 <FernandoBasso> I just saw the example "puts `ls`". I have no idea on how to make something useful with that.
+2015-04-04 14:31 <FernandoBasso> (that is one reason I kind of like the head first books)
+2015-04-04 14:31 <FernandoBasso> Perhaps a cookbook.
+2015-04-04 14:31 lennae has quit [Ping timeout: 255 seconds]
+2015-04-04 14:31 rbennacer has quit [Remote host closed the connection]
+2015-04-04 14:32 RegulationD has joined #ruby
+2015-04-04 14:32 hpoydar has joined #ruby
+2015-04-04 14:33 <tier> FernandoBasso: http://learnrubythehardway.org/book/ may be of help
+2015-04-04 14:34 <FernandoBasso> The ##C folks discourage learnCthehardway. I hope it is not the same with the ruby one.
+2015-04-04 14:34 red_horned_rihno has quit [Quit: Leaving]
+2015-04-04 14:34 <FernandoBasso> Although I admit I like the "thehardway" series. But I didn't know there was a ruby one. Thanks.
+2015-04-04 14:34 <sevenseacat> why do they discourage it? out of curiosity
+2015-04-04 14:34 red_horned_rihno has joined #ruby
+2015-04-04 14:34 overcrush has joined #ruby
+2015-04-04 14:34 brainslug has joined #ruby
+2015-04-04 14:34 piotrj has joined #ruby
+2015-04-04 14:35 Limix has joined #ruby
+2015-04-04 14:35 <FernandoBasso> They say the guy teachs poor C, and don't cover things that should be covered.
+2015-04-04 14:35 hpoydar has quit [Remote host closed the connection]
+2015-04-04 14:36 tubuliferous_ has joined #ruby
+2015-04-04 14:36 Limix has quit [Client Quit]
+2015-04-04 14:36 <sevenseacat> and im sure if they told zed that, he'd just tell them to f off
+2015-04-04 14:36 <FernandoBasso> Too many factual problems and a presentation that gets you to do things wrongly before being shown how to do it correctly, and not even always then.
+2015-04-04 14:36 <FernandoBasso> (Just quoted ##C)
+2015-04-04 14:36 RegulationD has quit [Ping timeout: 252 seconds]
+2015-04-04 14:37 <FernandoBasso> sevenseacat: I am also sure about that. :)
+2015-04-04 14:37 <sevenseacat> :D
+2015-04-04 14:37 <FernandoBasso> I appreciate those resources anyway.
+2015-04-04 14:37 <tier> let's be honest, if you're just starting with a language you have no idea what's good and what isn't anyway
+2015-04-04 14:37 <sevenseacat> i have to admit i like the head first series for concepts, but not for languages
+2015-04-04 14:37 <sevenseacat> head first design patterns was probably my favorite
+2015-04-04 14:38 <FernandoBasso> tier: yeah, but that is also a good reason one should read something reliable. I guess your argument actually can work both ways.
+2015-04-04 14:38 jonathan2 has joined #ruby
+2015-04-04 14:38 jwinder has joined #ruby
+2015-04-04 14:39 <jonathan2> bundle install is failing when i include a particular gem in gemspec, but manually "gem install"ing works. why would that happen?
+2015-04-04 14:39 overcrush has quit [Ping timeout: 265 seconds]
+2015-04-04 14:39 <sevenseacat> jonathan2: got an error for us to see?
+2015-04-04 14:39 <sevenseacat> 'its failing' doesnt tell us whats going wrong
+2015-04-04 14:40 <jonathan2> sure
+2015-04-04 14:40 adriancb has quit [Remote host closed the connection]
+2015-04-04 14:40 adriancb has joined #ruby
+2015-04-04 14:40 <jonathan2> http://pastebin.com/KuETbnw9
+2015-04-04 14:40 lennae has joined #ruby
+2015-04-04 14:40 tubuliferous_ has quit [Ping timeout: 252 seconds]
+2015-04-04 14:40 <sevenseacat> the full error please
+2015-04-04 14:41 <jonathan2> oops, one sec
+2015-04-04 14:41 <jonathan2> http://pastebin.com/Xq7gCCQj
+2015-04-04 14:42 Dude007 has joined #ruby
+2015-04-04 14:42 Darryl___ has joined #ruby
+2015-04-04 14:42 <jonathan2> the gem install that the error references does fail. but bundle install succeeds if i leave out "redis", and "gem install redis" succeeds separately
+2015-04-04 14:43 tier has quit [Remote host closed the connection]
+2015-04-04 14:44 <sevenseacat> so what do the results say in gem_make.out
+2015-04-04 14:45 <jonathan2> same as the first few lines of the pastebin entry
+2015-04-04 14:45 dx7 has quit [Remote host closed the connection]
+2015-04-04 14:45 adriancb has quit [Remote host closed the connection]
+2015-04-04 14:46 <sevenseacat> you're missing the c++ development headers
+2015-04-04 14:46 <sevenseacat> what distro are you using
+2015-04-04 14:47 zarubin_ has joined #ruby
+2015-04-04 14:47 brainslug has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 14:47 <jonathan2> this is in a docker container based on progrium/busybox. my question is why the bundle install would fail while gem install would succeed, though.
+2015-04-04 14:48 <sevenseacat> `gem unstall unf_ext -v 0.0.6` succeeds?
+2015-04-04 14:48 <jonathan2> no, that fails
+2015-04-04 14:48 kyrylo has quit [Ping timeout: 245 seconds]
+2015-04-04 14:48 <sevenseacat> so whats redis got to do with anything
+2015-04-04 14:48 <jonathan2> redis is what i'm actually trying to install
+2015-04-04 14:48 Biohazard has joined #ruby
+2015-04-04 14:48 <jonathan2> (the ruby gem named redis)
+2015-04-04 14:49 Biohazard is now known as Guest85510
+2015-04-04 14:49 <jonathan2> i don't care about unf_ext except that the redis gem seems to depend on it
+2015-04-04 14:49 <sevenseacat> the version of the gem you've included in your bundle, yeah
+2015-04-04 14:49 <sevenseacat> the version you're installing with `gem install redis` probably doesnt
+2015-04-04 14:50 <jonathan2> i'm not specifying a version explicitly in the gemspec file, so i'm not sure why the two methods would be trying different versions
+2015-04-04 14:51 jerematic has joined #ruby
+2015-04-04 14:51 triple_b has joined #ruby
+2015-04-04 14:51 <sevenseacat> because bundler has worked out a different dependency graph based on other gems in your Gemfile
+2015-04-04 14:51 <sevenseacat> thats what it does :)
+2015-04-04 14:51 <jonathan2> oh, interesting
+2015-04-04 14:52 <sevenseacat> so, what distro are you using?
+2015-04-04 14:52 zarubin_ has quit [Ping timeout: 264 seconds]
+2015-04-04 14:54 VBlizzard has joined #ruby
+2015-04-04 14:54 <jonathan2> i guess it might be openwrt (https://github.com/progrium/busybox)
+2015-04-04 14:55 <jonathan2> thanks for your help
+2015-04-04 14:55 jonathan2 has quit [Quit: Leaving]
+2015-04-04 14:55 msnyon has joined #ruby
+2015-04-04 14:56 <sevenseacat> no idea what that is, but yw
+2015-04-04 14:57 pandaant has quit [Remote host closed the connection]
+2015-04-04 14:57 _blizzy_ has quit [Ping timeout: 255 seconds]
+2015-04-04 14:58 <jhass> openwrt is a router firmware
+2015-04-04 14:58 <jhass> looks like somebody abused it to get a minimal container
+2015-04-04 14:59 Aswebb_ has joined #ruby
+2015-04-04 14:59 <jhass> or opkg is its package manager rather
+2015-04-04 15:00 nateberkopec has joined #ruby
+2015-04-04 15:01 VBlizzard is now known as _blizzy_
+2015-04-04 15:03 Coraline has joined #ruby
+2015-04-04 15:04 zz_AlphaTech is now known as AlphaTech
+2015-04-04 15:04 sameerynho has quit [Quit: Leaving]
+2015-04-04 15:04 Inoperable has joined #ruby
+2015-04-04 15:05 mleung has joined #ruby
+2015-04-04 15:05 Megtastique has joined #ruby
+2015-04-04 15:05 Inoperable has quit [Quit: ZNC - http://znc.in]
+2015-04-04 15:06 Inoperable has joined #ruby
+2015-04-04 15:06 mleung has quit [Client Quit]
+2015-04-04 15:08 mleung has joined #ruby
+2015-04-04 15:10 KrzaQ has quit [Read error: Connection reset by peer]
+2015-04-04 15:11 bim has joined #ruby
+2015-04-04 15:11 KrzaQ has joined #ruby
+2015-04-04 15:13 riotjones has joined #ruby
+2015-04-04 15:13 Kilo`byte has quit [Ping timeout: 244 seconds]
+2015-04-04 15:13 beneggett has joined #ruby
+2015-04-04 15:14 varunwachaspati has joined #ruby
+2015-04-04 15:14 Prysm has joined #ruby
+2015-04-04 15:14 jlast has joined #ruby
+2015-04-04 15:15 browndawg has joined #ruby
+2015-04-04 15:15 Kilo`byte has joined #ruby
+2015-04-04 15:15 digitalextremist has quit [Remote host closed the connection]
+2015-04-04 15:15 govg has joined #ruby
+2015-04-04 15:16 horsecowdog has quit [Remote host closed the connection]
+2015-04-04 15:16 JDiPierro has joined #ruby
+2015-04-04 15:17 riotjones has quit [Ping timeout: 265 seconds]
+2015-04-04 15:18 adriancb has joined #ruby
+2015-04-04 15:18 hpoydar has joined #ruby
+2015-04-04 15:18 <FernandoBasso> I did p = Person.new. Now to get only methods I wrote in the Person class myself?
+2015-04-04 15:18 <FernandoBasso> p.methods(false) doesn't show the ones I defined.
+2015-04-04 15:18 <FernandoBasso> s/Now/How/
+2015-04-04 15:19 jlast has quit [Ping timeout: 265 seconds]
+2015-04-04 15:20 ramfjord has joined #ruby
+2015-04-04 15:22 <jhass> >> class Person; def foo; end; end; Person.new.methods(false)
+2015-04-04 15:22 <ruboto> jhass # => [] (https://eval.in/308533)
+2015-04-04 15:22 <jhass> mh, right
+2015-04-04 15:22 AlexRussia has quit [Ping timeout: 250 seconds]
+2015-04-04 15:22 <hanmac> >> class Person; def foo; end; end; Person.instance_methods(false)
+2015-04-04 15:22 <ruboto> hanmac # => [:foo] (https://eval.in/308534)
+2015-04-04 15:23 Bacta has quit [Quit: Leaving]
+2015-04-04 15:23 <hanmac> hm apeiros, "evalin" does have a new name, i am confused, is it still "Hanmac-proof"? ;P
+2015-04-04 15:24 Takle has joined #ruby
+2015-04-04 15:24 <apeiros> hanmac: same code
+2015-04-04 15:25 digitalextremist has joined #ruby
+2015-04-04 15:26 <jhass> oh, works as documented
+2015-04-04 15:26 benlieb_ has joined #ruby
+2015-04-04 15:26 <jhass> "If the optional parameter is false, it returns an array of obj's public and protected singleton methods"
+2015-04-04 15:26 <jhass> emphasis on singleton here
+2015-04-04 15:26 bim has quit [Remote host closed the connection]
+2015-04-04 15:26 Prysm has quit [Ping timeout: 252 seconds]
+2015-04-04 15:27 Prysmm has joined #ruby
+2015-04-04 15:27 <sevenseacat> FernandoBasso: what's Person?
+2015-04-04 15:28 Takle_ has joined #ruby
+2015-04-04 15:28 <jhass> >> class Person; end; p = Person.new; def p.foo; end; p.methods(false)
+2015-04-04 15:28 <ruboto> jhass # => [:foo] (https://eval.in/308535)
+2015-04-04 15:29 Sawbones has joined #ruby
+2015-04-04 15:30 enebo has quit [Quit: enebo]
+2015-04-04 15:31 zarubin_ has joined #ruby
+2015-04-04 15:31 Takle has quit [Ping timeout: 246 seconds]
+2015-04-04 15:31 CatMartyn has quit [Ping timeout: 265 seconds]
+2015-04-04 15:32 DerisiveLogic has joined #ruby
+2015-04-04 15:34 Violentr has joined #ruby
+2015-04-04 15:34 valkyrka has quit [Ping timeout: 265 seconds]
+2015-04-04 15:35 overcrush has joined #ruby
+2015-04-04 15:35 Jackneill has quit [Read error: Connection reset by peer]
+2015-04-04 15:36 b0t00 has joined #ruby
+2015-04-04 15:36 krisquigley has joined #ruby
+2015-04-04 15:37 Cache_Money has joined #ruby
+2015-04-04 15:39 Violentr has quit [Ping timeout: 244 seconds]
+2015-04-04 15:39 mleung has quit [Quit: mleung]
+2015-04-04 15:40 zarubin_ has quit [Remote host closed the connection]
+2015-04-04 15:40 overcrush has quit [Ping timeout: 272 seconds]
+2015-04-04 15:40 Prysm has joined #ruby
+2015-04-04 15:41 krisquigley has quit [Ping timeout: 245 seconds]
+2015-04-04 15:41 JDiPierro has quit [Remote host closed the connection]
+2015-04-04 15:41 Prysmm has quit [Ping timeout: 255 seconds]
+2015-04-04 15:42 Jackneill has joined #ruby
+2015-04-04 15:42 hanmac has quit [Ping timeout: 265 seconds]
+2015-04-04 15:42 bruno- has quit [Ping timeout: 272 seconds]
+2015-04-04 15:44 mitchellhenke has joined #ruby
+2015-04-04 15:44 piotrj has quit [Remote host closed the connection]
+2015-04-04 15:45 tier has joined #ruby
+2015-04-04 15:46 <FernandoBasso> So, obj.methods(false) only shows methods added later to an already-instantiated object?
+2015-04-04 15:46 AlexRussia has joined #ruby
+2015-04-04 15:46 Sawbones has quit [Remote host closed the connection]
+2015-04-04 15:48 lennae has quit [Ping timeout: 255 seconds]
+2015-04-04 15:48 varunwachaspati has quit [Ping timeout: 256 seconds]
+2015-04-04 15:49 JDiPierro has joined #ruby
+2015-04-04 15:49 <apeiros> FernandoBasso: no
+2015-04-04 15:49 <apeiros> FernandoBasso: it shows all methods which are only defined on the object itself
+2015-04-04 15:49 <apeiros> and not e.g. via its class, or the ancestry of its class
+2015-04-04 15:49 JDiPierro has quit [Remote host closed the connection]
+2015-04-04 15:49 edwinvdgraaf has joined #ruby
+2015-04-04 15:50 <apeiros> the point in time does not matter.
+2015-04-04 15:50 mitchellhenke has quit [Quit: Computer has gone to sleep.]
+2015-04-04 15:50 tier has quit [Remote host closed the connection]
+2015-04-04 15:50 dfinninger has joined #ruby
+2015-04-04 15:51 starless has joined #ruby
+2015-04-04 15:51 tier has joined #ruby
+2015-04-04 15:52 <FernandoBasso> Ah, I see. Thank you folks.
+2015-04-04 15:53 edwinvdgraaf has quit [Remote host closed the connection]
+2015-04-04 15:53 edwinvdgraaf has joined #ruby
+2015-04-04 15:55 dfinninger has quit [Ping timeout: 248 seconds]
+2015-04-04 15:55 Channel6 has joined #ruby
+2015-04-04 15:56 piotrj has joined #ruby
+2015-04-04 15:56 hanmac has joined #ruby
+2015-04-04 15:56 tier has quit [Ping timeout: 265 seconds]
+2015-04-04 15:56 b0t00 has quit [Read error: Connection reset by peer]
+2015-04-04 15:57 basiclaser has joined #ruby
+2015-04-04 15:58 jerematic has quit [Remote host closed the connection]
+2015-04-04 16:00 _1_lol has joined #ruby
+2015-04-04 16:00 <_1_lol> HI
+2015-04-04 16:01 Pupeno has quit [Ping timeout: 256 seconds]
+2015-04-04 16:01 lennae has joined #ruby
+2015-04-04 16:02 senayar has joined #ruby
+2015-04-04 16:02 <_1_lol> lemonade hi
+2015-04-04 16:03 timonv has joined #ruby
+2015-04-04 16:03 mroach has quit [Quit: mroach]
+2015-04-04 16:03 KrzaQ has quit [Ping timeout: 272 seconds]
+2015-04-04 16:03 oo_ has joined #ruby
+2015-04-04 16:04 KrzaQ has joined #ruby
+2015-04-04 16:04 QuintinAdam has joined #ruby
+2015-04-04 16:04 <_1_lol>  hey everyone
+2015-04-04 16:04 _1_lol has quit [Read error: Connection reset by peer]
+2015-04-04 16:04 A205B064 has joined #ruby
+2015-04-04 16:06 lennae has quit [Ping timeout: 244 seconds]
+2015-04-04 16:06 nszceta_ has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 16:06 sevenseacat has quit [Quit: Textual IRC Client: www.textualapp.com]
+2015-04-04 16:08 puppeh_ has joined #ruby
+2015-04-04 16:08 adamjleonard has joined #ruby
+2015-04-04 16:08 zorak8 has joined #ruby
+2015-04-04 16:08 <puppeh_> I wrote a git "style guide": https://github.com/agis-/git-style-guide
+2015-04-04 16:08 <puppeh_> would appreciate any feedback, suggestione etc.!
+2015-04-04 16:09 piotrj has quit [Remote host closed the connection]
+2015-04-04 16:09 piotrj has joined #ruby
+2015-04-04 16:10 einarj has quit [Remote host closed the connection]
+2015-04-04 16:10 puppeh_ has quit [Read error: Connection reset by peer]
+2015-04-04 16:10 hpoydar has quit [Remote host closed the connection]
+2015-04-04 16:11 chinmay_dd has joined #ruby
+2015-04-04 16:11 jamto11 has joined #ruby
+2015-04-04 16:12 doodlehaus has quit [Remote host closed the connection]
+2015-04-04 16:12 doodlehaus has joined #ruby
+2015-04-04 16:12 puppeh_ has joined #ruby
+2015-04-04 16:14 <apeiros> puppeh_: re branch naming: I often see ticket numbers incorporated, also branch type.
+2015-04-04 16:14 <apeiros> puppeh_: additionally the person who's leading the work on that branch.
+2015-04-04 16:15 <apeiros> puppeh_: e.g. f-58192-ME-oauth-migration
+2015-04-04 16:15 doodleha_ has joined #ruby
+2015-04-04 16:15 <apeiros> where f means feature, b means bug, c means chore
+2015-04-04 16:15 ponga has quit [Quit: Connection closed for inactivity]
+2015-04-04 16:15 doodlehaus has quit [Read error: Connection reset by peer]
+2015-04-04 16:15 naftilos76 has joined #ruby
+2015-04-04 16:15 jlast has joined #ruby
+2015-04-04 16:15 QuintinAdam has quit [Ping timeout: 265 seconds]
+2015-04-04 16:16 <puppeh_> apeiros: nice point about the ticket number, also doing this myself, will add it
+2015-04-04 16:16 <puppeh_> thanks :)
+2015-04-04 16:17 <apeiros> yw
+2015-04-04 16:17 senayar has quit [Remote host closed the connection]
+2015-04-04 16:18 <jhass> puppeh_: I like it
+2015-04-04 16:18 chinmay_dd has quit [Quit: Leaving]
+2015-04-04 16:18 <puppeh_> jhass: glad to hear that!
+2015-04-04 16:20 jlast has quit [Ping timeout: 256 seconds]
+2015-04-04 16:21 <apeiros> puppeh_: git-gc happens automatically since a couple of versions afaik
+2015-04-04 16:21 <apeiros> puppeh_: other than that - seems nice. thanks.
+2015-04-04 16:21 RegulationD has joined #ruby
+2015-04-04 16:22 <puppeh_> apeiros: will look that up, thanks!
+2015-04-04 16:23 horsecowdog has joined #ruby
+2015-04-04 16:24 tubuliferous_ has joined #ruby
+2015-04-04 16:26 RegulationD has quit [Ping timeout: 255 seconds]
+2015-04-04 16:26 sevvie has joined #ruby
+2015-04-04 16:26 cyberarm has joined #ruby
+2015-04-04 16:27 DexterLB has quit [Read error: Connection reset by peer]
+2015-04-04 16:28 amclain has joined #ruby
+2015-04-04 16:29 tubuliferous_ has quit [Ping timeout: 244 seconds]
+2015-04-04 16:30 relix has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 16:32 iasoon has joined #ruby
+2015-04-04 16:33 _blizzy_ has quit [Ping timeout: 272 seconds]
+2015-04-04 16:34 willharrison has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 16:34 senayar has joined #ruby
+2015-04-04 16:34 sevvie has quit [Remote host closed the connection]
+2015-04-04 16:35 timonv has quit [Ping timeout: 272 seconds]
+2015-04-04 16:36 overcrush has joined #ruby
+2015-04-04 16:36 brainslug has joined #ruby
+2015-04-04 16:37 otisZart has quit [Ping timeout: 264 seconds]
+2015-04-04 16:38 edwinvdg_ has joined #ruby
+2015-04-04 16:38 benlieb_ has quit [Quit: benlieb_]
+2015-04-04 16:38 senayar has quit [Ping timeout: 250 seconds]
+2015-04-04 16:40 overcrush has quit [Ping timeout: 250 seconds]
+2015-04-04 16:40 josephleon has joined #ruby
+2015-04-04 16:41 edwinvdgraaf has quit [Ping timeout: 250 seconds]
+2015-04-04 16:41 <FernandoBasso> And why did they name the method `instance_methods` if we call it from a class name, not from an object?
+2015-04-04 16:42 <jhass> it returns the instance methods defined in the class object
+2015-04-04 16:42 <jhass> the instance methods of a class object will become the methods of the classes instances
+2015-04-04 16:42 DexterLB has joined #ruby
+2015-04-04 16:43 <centrx> FernandoBasso, a class is an instance of the Class class
+2015-04-04 16:44 amclain has quit [Read error: Connection reset by peer]
+2015-04-04 16:45 JDiPierro has joined #ruby
+2015-04-04 16:45 hpoydar has joined #ruby
+2015-04-04 16:45 <apeiros> centrx: hehe, funny, I'd have written "of the class Class" :D
+2015-04-04 16:46 JDiPierro has quit [Remote host closed the connection]
+2015-04-04 16:46 * jhass not sure how helpful that is at the moment
+2015-04-04 16:46 oo_ has quit [Remote host closed the connection]
+2015-04-04 16:46 <Mon_Ouie> But would you say "the String class" or "the class String"?
+2015-04-04 16:46 oo_ has joined #ruby
+2015-04-04 16:47 <apeiros> Mon_Ouie: good point
+2015-04-04 16:47 oo_ has quit [Remote host closed the connection]
+2015-04-04 16:48 kstuart has quit [Quit: WeeChat 1.1.1]
+2015-04-04 16:48 JDiPierro has joined #ruby
+2015-04-04 16:48 <FernandoBasso> All this talk seems to suggest that there shoudln't be Classes in programming languages. It just makes things complicated and hard on our English skills.
+2015-04-04 16:48 brainslug has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 16:48 hpoydar has quit [Remote host closed the connection]
+2015-04-04 16:49 <apeiros> FernandoBasso: errr, what? no, classes are a nice way to organize code.
+2015-04-04 16:49 elaptics is now known as elaptics_away
+2015-04-04 16:49 elaptics_away is now known as elaptics
+2015-04-04 16:49 elaptics is now known as elaptics_away
+2015-04-04 16:49 <FernandoBasso> apeiros: I know, I was (trying to) joke.
+2015-04-04 16:50 JDiPierro has quit [Remote host closed the connection]
+2015-04-04 16:50 <apeiros> ok :)
+2015-04-04 16:50 <FernandoBasso> I still haven't completely wrapped my mind around JavaScript classless style, for instance.
+2015-04-04 16:50 <jhass> me neither
+2015-04-04 16:51 Joufflu has joined #ruby
+2015-04-04 16:51 <apeiros> FernandoBasso: it works slightly different
+2015-04-04 16:51 <FernandoBasso> Let me also state that I like js nonetheless.
+2015-04-04 16:51 <apeiros> but well, actually, ES5 or ES6 classes?
+2015-04-04 16:51 rdark has joined #ruby
+2015-04-04 16:51 <apeiros> I don't like js. but not because of the prototype OO
+2015-04-04 16:51 Cache_Money has quit [Quit: Cache_Money]
+2015-04-04 16:51 dfinninger has joined #ruby
+2015-04-04 16:52 <apeiros> my dislike of js is rooted in JS having bad tools to deal with integers, date/time and binary data.
+2015-04-04 16:52 <FernandoBasso> True.
+2015-04-04 16:52 <apeiros> also lack of sockets and threads is an issue.
+2015-04-04 16:52 <FernandoBasso> Also true.
+2015-04-04 16:52 <centrx> JS is the ASM of the future
+2015-04-04 16:52 tier has joined #ruby
+2015-04-04 16:52 <apeiros> but I don't share the hate js receives
+2015-04-04 16:52 <centrx> webscale
+2015-04-04 16:53 amclain has joined #ruby
+2015-04-04 16:53 <apeiros> oh, also I'd love a nicer syntax for a couple of things. map(function(…) { }) is a bit annoying :-(
+2015-04-04 16:53 <FernandoBasso> I kind of got used to putting up with langs shortcomings, although I can't say I am a deep connoisseur of any one lang so far.
+2015-04-04 16:54 <apeiros> no language is a silver bullet to all problems - that's why we have so many of them ;-)
+2015-04-04 16:54 tus has quit [Ping timeout: 252 seconds]
+2015-04-04 16:54 <FernandoBasso> yeah, and I think we have too many of them.
+2015-04-04 16:55 <FernandoBasso> Just like to many forks of open source projects. That is just my opinion, though.
+2015-04-04 16:55 <apeiros> I don't think so. or rather, I don't think it matters how many there are.
+2015-04-04 16:55 <FernandoBasso> apeiros: I agree it probably doesn't matter.
+2015-04-04 16:55 <apeiros> mostly because the idea that "if A can make 100x happen, and B can make 100x happen, why don't they work together and make 200x happen?" is simply not true.
+2015-04-04 16:56 <apeiros> but yeah, I understand and actually sometimes share the sentiment :)
+2015-04-04 16:56 willharrison has joined #ruby
+2015-04-04 16:56 dfinninger has quit [Ping timeout: 252 seconds]
+2015-04-04 16:56 <FernandoBasso> :)
+2015-04-04 16:56 <apeiros> "damit! why can't you all agree on one way! stop making me choose!" :D
+2015-04-04 16:56 yxhuvvd has joined #ruby
+2015-04-04 16:56 puppeh_ has quit [Read error: Connection reset by peer]
+2015-04-04 16:56 <FernandoBasso> hehe
+2015-04-04 16:56 yxhuvud has quit [Read error: Connection reset by peer]
+2015-04-04 16:56 kaspergrubbe has quit [Ping timeout: 264 seconds]
+2015-04-04 16:57 piotrj has quit [Remote host closed the connection]
+2015-04-04 16:57 piotrj has joined #ruby
+2015-04-04 16:57 valkyrka has joined #ruby
+2015-04-04 16:58 tier has quit [Ping timeout: 272 seconds]
+2015-04-04 16:58 sevvie has joined #ruby
+2015-04-04 16:59 <FernandoBasso> I have watched "The Paradox of Choice" on Ted Talks. There are some interesting points.
+2015-04-04 16:59 zorak8 has quit [Quit: Leaving]
+2015-04-04 16:59 <FernandoBasso> And by interesting I don't mean that they are necessarily applicable to software and computing.
+2015-04-04 16:59 bigmac has quit [Ping timeout: 265 seconds]
+2015-04-04 17:00 RandyT has quit [Ping timeout: 248 seconds]
+2015-04-04 17:00 <apeiros> and I a talk about "constraints are liberating" :)
+2015-04-04 17:00 centrx has quit [Quit: Shutting down, Please wait...]
+2015-04-04 17:00 RandyT has joined #ruby
+2015-04-04 17:03 Akagi201 has joined #ruby
+2015-04-04 17:04 <FernandoBasso> Why does 1.next yields 2, but 1.1.next is an error?
+2015-04-04 17:05 phutchins has joined #ruby
+2015-04-04 17:05 <FernandoBasso> Okay, what would 1.1.next be? 1.2 or 1.1.0000000009. I understand the problem there, I guess.
+2015-04-04 17:05 <apeiros> FernandoBasso: yupp, that's pretty much the reason
+2015-04-04 17:06 DexterLB has quit [Read error: Connection reset by peer]
+2015-04-04 17:08 Coraline is now known as Coraline_ZzZz
+2015-04-04 17:10 kuroro has joined #ruby
+2015-04-04 17:10 mkode has quit [Quit: A day without sunshine is like .... night]
+2015-04-04 17:11 kuroro has quit [Client Quit]
+2015-04-04 17:12 kaspergrubbe has joined #ruby
+2015-04-04 17:13 bigmac has joined #ruby
+2015-04-04 17:13 DexterLB has joined #ruby
+2015-04-04 17:13 jwinder has quit [Ping timeout: 256 seconds]
+2015-04-04 17:16 jlast has joined #ruby
+2015-04-04 17:16 tvw has joined #ruby
+2015-04-04 17:18 Bavarious has joined #ruby
+2015-04-04 17:18 QuintinAdam has joined #ruby
+2015-04-04 17:18 roolo has joined #ruby
+2015-04-04 17:19 Bavarious has left #ruby ["Textual IRC Client: www.textualapp.com"]
+2015-04-04 17:20 bonhoeffer has joined #ruby
+2015-04-04 17:20 sevvie has quit [Ping timeout: 264 seconds]
+2015-04-04 17:21 jlast has quit [Ping timeout: 256 seconds]
+2015-04-04 17:21 QuintinAdam has quit [Max SendQ exceeded]
+2015-04-04 17:22 QuintinAdam has joined #ruby
+2015-04-04 17:23 bonhoeffer_ has joined #ruby
+2015-04-04 17:23 piotrj has quit [Remote host closed the connection]
+2015-04-04 17:23 iasoon has quit [Ping timeout: 252 seconds]
+2015-04-04 17:23 piotrj has joined #ruby
+2015-04-04 17:24 e_w has joined #ruby
+2015-04-04 17:24 bonhoeffer has quit [Ping timeout: 246 seconds]
+2015-04-04 17:24 bonhoeffer_ is now known as bonhoeffer
+2015-04-04 17:24 Megtastique has quit []
+2015-04-04 17:24 bonhoeffer has quit [Client Quit]
+2015-04-04 17:24 senayar has joined #ruby
+2015-04-04 17:24 senayar has joined #ruby
+2015-04-04 17:25 krisquigley has joined #ruby
+2015-04-04 17:25 sarmiena_ has joined #ruby
+2015-04-04 17:26 bonhoeffer has joined #ruby
+2015-04-04 17:30 sarmiena_ has quit [Client Quit]
+2015-04-04 17:30 krisquigley has quit [Ping timeout: 265 seconds]
+2015-04-04 17:30 overcrush has joined #ruby
+2015-04-04 17:30 darkpassenger has joined #ruby
+2015-04-04 17:30 jamto11 has quit [Remote host closed the connection]
+2015-04-04 17:31 darkpassenger is now known as Guest25805
+2015-04-04 17:31 bonhoeffer has quit [Read error: Connection reset by peer]
+2015-04-04 17:32 bonhoeffer has joined #ruby
+2015-04-04 17:32 jamto11 has joined #ruby
+2015-04-04 17:32 sevvie has joined #ruby
+2015-04-04 17:32 Guest25805 has quit [Client Quit]
+2015-04-04 17:32 nszceta has joined #ruby
+2015-04-04 17:33 piotrj has quit [Remote host closed the connection]
+2015-04-04 17:33 red_horned_rihno has quit [Ping timeout: 272 seconds]
+2015-04-04 17:33 piotrj has joined #ruby
+2015-04-04 17:33 Megtastique has joined #ruby
+2015-04-04 17:34 overcrush has quit [Ping timeout: 245 seconds]
+2015-04-04 17:34 varunwachaspati has joined #ruby
+2015-04-04 17:36 Zai00 has quit [Quit: Zai00]
+2015-04-04 17:36 Megtastique has quit [Client Quit]
+2015-04-04 17:37 RegulationD has joined #ruby
+2015-04-04 17:37 freerobby has quit [Quit: Leaving.]
+2015-04-04 17:37 sdothum has quit [Quit: ZNC - 1.6.0 - http://znc.in]
+2015-04-04 17:37 mwmnj has joined #ruby
+2015-04-04 17:38 sevvie has quit [Ping timeout: 244 seconds]
+2015-04-04 17:39 delianides has joined #ruby
+2015-04-04 17:39 bonhoeffer has quit [Quit: bonhoeffer]
+2015-04-04 17:41 sevvie has joined #ruby
+2015-04-04 17:41 lifenoodles has quit [Ping timeout: 252 seconds]
+2015-04-04 17:41 sdothum has joined #ruby
+2015-04-04 17:41 RegulationD has quit [Ping timeout: 246 seconds]
+2015-04-04 17:42 <apeiros> oooh, wow, TIL ruby 2.2 does this:
+2015-04-04 17:42 <apeiros> >> 2**-52
+2015-04-04 17:42 <ruboto> apeiros # => (1/4503599627370496) (https://eval.in/308571)
+2015-04-04 17:42 <apeiros> rational! nice!
+2015-04-04 17:43 <yxhuvvd> cute
+2015-04-04 17:43 <yxhuvvd> 2.1>> 2**-52
+2015-04-04 17:43 lifenoodles has joined #ruby
+2015-04-04 17:43 <yxhuvvd> :(
+2015-04-04 17:43 delianides has quit [Ping timeout: 246 seconds]
+2015-04-04 17:43 QuintinAdam has quit []
+2015-04-04 17:44 <apeiros> would be 21>> 2**51, but for some reason, version overrides fail atm. got to check the eval code.
+2015-04-04 17:45 <yxhuvvd> oh
+2015-04-04 17:45 red_horned_rihno has joined #ruby
+2015-04-04 17:46 x77686d has joined #ruby
+2015-04-04 17:48 oo_ has joined #ruby
+2015-04-04 17:50 sevvie has quit [Ping timeout: 250 seconds]
+2015-04-04 17:50 dixie__ has joined #ruby
+2015-04-04 17:51 sevvie has joined #ruby
+2015-04-04 17:51 havenwood has joined #ruby
+2015-04-04 17:51 steven43126 has quit [Ping timeout: 252 seconds]
+2015-04-04 17:52 Channel6 has quit [Quit: Leaving]
+2015-04-04 17:52 nszceta has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 17:52 dfinninger has joined #ruby
+2015-04-04 17:53 oo_ has quit [Ping timeout: 245 seconds]
+2015-04-04 17:54 ddarkpassenger has joined #ruby
+2015-04-04 17:55 horsecowdog has quit [Remote host closed the connection]
+2015-04-04 17:55 kreeves has joined #ruby
+2015-04-04 17:55 The_Phoenix has joined #ruby
+2015-04-04 17:55 sevvie has quit [Ping timeout: 244 seconds]
+2015-04-04 17:56 ddarkpassenger has quit [Client Quit]
+2015-04-04 17:57 ddarkpassenger has joined #ruby
+2015-04-04 17:57 dfinninger has quit [Ping timeout: 265 seconds]
+2015-04-04 17:58 steven43126 has joined #ruby
+2015-04-04 17:58 <shevy> these are the days of the botwars
+2015-04-04 17:58 Scriptonaut has joined #ruby
+2015-04-04 17:58 lennae has joined #ruby
+2015-04-04 17:58 <shevy> how can I query ruboto?
+2015-04-04 17:58 shanral has joined #ruby
+2015-04-04 17:58 <Scriptonaut> hey guys, anyone have recommendations for ruby 2.0+ books?
+2015-04-04 17:59 <shevy> ruboto: homepage!
+2015-04-04 17:59 dorei has joined #ruby
+2015-04-04 17:59 <jhass> ?homepage shevy
+2015-04-04 17:59 <ruboto> shevy, I don't know anything about homepage
+2015-04-04 17:59 <shevy> Scriptonaut many years ago I started with the pickaxe, it's fine
+2015-04-04 17:59 <shevy> cool
+2015-04-04 17:59 ddarkpassenger has quit [Client Quit]
+2015-04-04 17:59 deansc has joined #ruby
+2015-04-04 17:59 <Scriptonaut> I've already been writing ruby for years, so I'm looking for something not designed for beginners. I just want to make sure there aren't any holes in my understanding and to become more proficient in general
+2015-04-04 18:00 <Scriptonaut> for example I haven't done a lot of meta programming
+2015-04-04 18:00 <shevy> aha
+2015-04-04 18:00 <shevy> I think there is one meta book
+2015-04-04 18:00 <Scriptonaut> ah, cool
+2015-04-04 18:00 e_w has quit [Ping timeout: 256 seconds]
+2015-04-04 18:01 enebo has joined #ruby
+2015-04-04 18:01 <shevy> I forgot the name :\
+2015-04-04 18:01 jordsmi has joined #ruby
+2015-04-04 18:01 <Scriptonaut> no worries
+2015-04-04 18:01 <shevy> it's not that big though, only like 200 pages or so, give or take +/- 50
+2015-04-04 18:01 willharrison has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 18:01 <jhass> metaprogramming ruby?
+2015-04-04 18:01 <deansc> metaprogramming ruby?
+2015-04-04 18:01 <deansc> lol
+2015-04-04 18:01 sevvie has joined #ruby
+2015-04-04 18:01 CustosLimen has joined #ruby
+2015-04-04 18:01 <Scriptonaut> huehue
+2015-04-04 18:02 <Scriptonaut> nice
+2015-04-04 18:02 <shadeslayer> I don't suppose anyone has a repo that they can point me to which contains the implementation of a graph in ruby?
+2015-04-04 18:02 <deansc> i like the book personally, it's a little funny
+2015-04-04 18:02 adriancb has quit [Remote host closed the connection]
+2015-04-04 18:02 <shadeslayer> a simple implementation to start with would be nice
+2015-04-04 18:02 <shevy> hmm https://pragprog.com/book/ppmetr2/metaprogramming-ruby-2 - but there is also another one
+2015-04-04 18:03 <Nilium> Metaprogramming destroys all Ruby projects
+2015-04-04 18:03 <shevy> so pessimistic!
+2015-04-04 18:03 <Nilium> That way lies pain
+2015-04-04 18:03 <Nilium> It's awesome, but it's a pain to work with
+2015-04-04 18:03 <shevy> you like pain!
+2015-04-04 18:03 <shevy> out with the whips now
+2015-04-04 18:03 <Nilium> Well yeah, I use git and C++ and other tools known for pain.
+2015-04-04 18:03 jenrzzz has joined #ruby
+2015-04-04 18:03 <shevy> hey as long as it is not java
+2015-04-04 18:03 <Nilium> Oh, and makefiles, which I've noticed web developers singing the praises of lately
+2015-04-04 18:04 f3lp has joined #ruby
+2015-04-04 18:04 <Nilium> It's honestly hilarious to me that they've only just discovered that, oh my, you don't have to write everything in Javascript
+2015-04-04 18:04 <deansc> Do you think Ruby will die?
+2015-04-04 18:04 <shevy> makefiles can indeed be painful
+2015-04-04 18:04 <Nilium> Why would Ruby die?
+2015-04-04 18:04 xenokiller has joined #ruby
+2015-04-04 18:04 <yxhuvvd> deansc: one day it will. Probably no time soon.
+2015-04-04 18:05 <Nilium> Well, that's a given, but it'll probably be a while.
+2015-04-04 18:05 <deansc> no i don't know
+2015-04-04 18:05 <shevy> deansc not really, you see that many more people enter programming simply because many more people will have access to a computer, new young ones come up, and many end up using any among the scripting language
+2015-04-04 18:05 <Nilium> It might also just become another language.
+2015-04-04 18:05 <jhass> deansc: what motivates that question?
+2015-04-04 18:05 <shevy> oh noes jhass is asking metaquestions
+2015-04-04 18:05 <jhass> apeiros: I think we have another FAQ entry here :P
+2015-04-04 18:05 <Nilium> Do people ask this a lot?
+2015-04-04 18:05 <shevy> cool, is there a FAQ page already?
+2015-04-04 18:05 <jhass> too often
+2015-04-04 18:05 Megtastique has joined #ruby
+2015-04-04 18:05 <jhass> shevy: yup, see topic
+2015-04-04 18:06 shevy has left #ruby ["I'll be back ... maybe"]
+2015-04-04 18:06 <Nilium> Ruby's been around for a long time, same as Perl, same as Python, none of them are going away any time soon
+2015-04-04 18:06 shevy has joined #ruby
+2015-04-04 18:06 <jhass> lol
+2015-04-04 18:06 <jhass> shevy: just /topic next time :D
+2015-04-04 18:06 <shevy> hey it's easier that way in xchat!
+2015-04-04 18:06 <shevy> cool
+2015-04-04 18:06 Megtastique has quit [Client Quit]
+2015-04-04 18:06 <shevy> apeiros knows his stuff
+2015-04-04 18:06 <deansc> i don't know, people criticizes it sometimes because it is slow.
+2015-04-04 18:07 <apeiros> jhass: PR!
+2015-04-04 18:07 <Nilium> So you mean the criticism everyone throws out about every language?
+2015-04-04 18:07 <jhass> apeiros: I would, but you hid the general section
+2015-04-04 18:07 <Nilium> Slow, hard to understand, too simple, too complex, etc.
+2015-04-04 18:07 <shevy> the http://ruby-community.com/pages/user_rules refers to #ruby right and not #ruby-lang? I guess I could add a FAQ entry... "The enemy people on #ruby-lang" :)
+2015-04-04 18:07 <jordsmi> Just because it's not perfect for some tasks doesn't mean it is overall bad
+2015-04-04 18:07 AlexRussia has quit [Ping timeout: 252 seconds]
+2015-04-04 18:07 <apeiros> jhass: do it anyway. general section will be back soon. or just remove the problematic Q&As from general
+2015-04-04 18:07 <Nilium> They're pretty meaningless criticisms without some context for them.
+2015-04-04 18:08 <deansc> I love this language I think it's fun to program with it.
+2015-04-04 18:08 <yxhuvvd> deansc, people have *always* complained about slowness. The problem is a lot less now than it was, and further improvements are on the way.
+2015-04-04 18:08 <shevy> deansc well, the speed comparisons to php python perl and ruby are really quite comparable; a lot of the slowness part has been said like 10 years ago, ruby got faster since then too
+2015-04-04 18:08 <Nilium> Ruby 2.x is doing pretty well on the performance front.
+2015-04-04 18:08 <jhass> okay, I'll write the "Will Ruby die?" FAQ entry, who's up for "Is Ruby slow?"
+2015-04-04 18:08 <shevy> lol
+2015-04-04 18:08 <shevy> jhass well show how this is done ok? I want to see how or where it appears and how this is done
+2015-04-04 18:09 jamto11 has quit [Remote host closed the connection]
+2015-04-04 18:09 <Nilium> jhass: I'll do it. Entire answer will be "Yes, for certain values of slow."
+2015-04-04 18:09 senayar has quit [Remote host closed the connection]
+2015-04-04 18:09 <shevy> compared to C ruby will be slow!
+2015-04-04 18:09 <jhass> hah, you have to put that into your own PR though :P
+2015-04-04 18:09 <deansc> no no but compared to node for example
+2015-04-04 18:09 <Nilium> I'm lazy. shevy, do the PR for me.
+2015-04-04 18:09 <shevy> we can copy/paste the IRC content right into the faq
+2015-04-04 18:09 <Nilium> Compared to node for what?
+2015-04-04 18:09 <shevy> ok I have to add one entry to the faq
+2015-04-04 18:09 <deansc> nevermind
+2015-04-04 18:09 <shevy> what is PR?
+2015-04-04 18:10 <Nilium> Pull request. On GitHub.
+2015-04-04 18:10 <shevy> aaaah ok
+2015-04-04 18:10 senayar has joined #ruby
+2015-04-04 18:10 <jhass> oh, we already have "Is Ruby slow?"
+2015-04-04 18:10 <shevy> where
+2015-04-04 18:10 <shevy> somehow I ended up here https://github.com/apeiros/ruby-community/issues
+2015-04-04 18:11 <shevy> oh https://github.com/apeiros/ruby-community/pulls
+2015-04-04 18:11 <shevy> 9 closed ones
+2015-04-04 18:11 <Nilium> It's more or less a fancy UI around the same functionality you'd get with git-send-email and git-am
+2015-04-04 18:11 <shevy> now I found the FAQ finally
+2015-04-04 18:11 <shevy> http://ruby-community.com/faq
+2015-04-04 18:12 <shevy> git-send-email
+2015-04-04 18:12 <shevy> who is brave enough to type that
+2015-04-04 18:12 Limix has joined #ruby
+2015-04-04 18:12 <shevy> git-send-mass-email
+2015-04-04 18:13 WilfredTheGreat has joined #ruby
+2015-04-04 18:13 <Nilium> It does nothing without useful input.
+2015-04-04 18:13 tubuliferous_ has joined #ruby
+2015-04-04 18:14 shanral has quit [Quit: Bye]
+2015-04-04 18:14 jamto11 has joined #ruby
+2015-04-04 18:14 sevvie has quit [Ping timeout: 264 seconds]
+2015-04-04 18:16 <jhass> shevy: https://github.com/apeiros/ruby-community/pull/11 like this
+2015-04-04 18:17 jlast has joined #ruby
+2015-04-04 18:17 <shevy> hmm and where will this appear? http://ruby-community.com/faq ?
+2015-04-04 18:17 <jhass> yeah
+2015-04-04 18:17 <jhass> as said the general section is hid atm
+2015-04-04 18:17 sankaber has joined #ruby
+2015-04-04 18:17 <jhass> until you make it more awesome
+2015-04-04 18:18 <shevy> aaah
+2015-04-04 18:18 sankaber has quit [Client Quit]
+2015-04-04 18:18 tubuliferous_ has quit [Ping timeout: 252 seconds]
+2015-04-04 18:18 <shevy> a secret faq!
+2015-04-04 18:19 kreeves has quit [Ping timeout: 264 seconds]
+2015-04-04 18:19 jamto11 has quit [Ping timeout: 256 seconds]
+2015-04-04 18:19 <shevy> lol
+2015-04-04 18:19 <shevy> "Anyone used X?"
+2015-04-04 18:19 <shevy> "No. No one ever. (See "metaquestions")"
+2015-04-04 18:20 Prysm has quit [Ping timeout: 250 seconds]
+2015-04-04 18:20 <shevy> deansc I guess you are now famous, you made it into a FAQ :)
+2015-04-04 18:20 Coraline_ZzZz is now known as Coraline
+2015-04-04 18:20 <yh> anyone used ruby ????
+2015-04-04 18:20 momomomomo has joined #ruby
+2015-04-04 18:20 <yh> :-)
+2015-04-04 18:21 <jhass> yes
+2015-04-04 18:21 <jhass> ?anyone
+2015-04-04 18:21 <ruboto> Just ask your question, if anyone has, they will respond.
+2015-04-04 18:21 <deansc> @shevy? why? i missed something?
+2015-04-04 18:21 <jhass> ah, no, wrong one :P
+2015-04-04 18:21 momomomomo has quit [Client Quit]
+2015-04-04 18:21 <deansc> LOL
+2015-04-04 18:21 <deansc> ok
+2015-04-04 18:22 <shevy> deansc dunno if you missed anything, but the question about speed is now part of the FAQ https://github.com/apeiros/ruby-community/pull/11 http://ruby-community.com/faq though the FAQ is partially secret
+2015-04-04 18:22 momomomomo has joined #ruby
+2015-04-04 18:22 jlast has quit [Ping timeout: 265 seconds]
+2015-04-04 18:22 Rephiax has quit [Ping timeout: 248 seconds]
+2015-04-04 18:22 <shevy> it's a brilliant move - to have a secret FAQ
+2015-04-04 18:22 overcrush has joined #ruby
+2015-04-04 18:23 <shevy> I guess when one adds content to the ruby-community.com site, it should be written from scratch right?
+2015-04-04 18:23 <jhass> depends, where would you copy it from?
+2015-04-04 18:23 Prysm has joined #ruby
+2015-04-04 18:24 relix has joined #ruby
+2015-04-04 18:26 phutchins has quit [Ping timeout: 265 seconds]
+2015-04-04 18:26 momomomomo has quit [Ping timeout: 272 seconds]
+2015-04-04 18:27 <shevy> from everywhere!
+2015-04-04 18:27 <shevy> though I'd guess I would reformulate it anyway
+2015-04-04 18:27 <shevy> I am reading a blog about Ripper currently
+2015-04-04 18:27 <shevy> those nested Arrays confuse me
+2015-04-04 18:28 Juanchito has joined #ruby
+2015-04-04 18:28 <shevy> hmm
+2015-04-04 18:28 <shevy> >> require 'ripper'; p Ripper.sexp("p Array")
+2015-04-04 18:28 <ruboto> shevy # => [:program, [[:command, [:@ident, "p", [1, 0]], [:args_add_block, [[:var_ref, [:@const, "Array", [1,  ...check link for more (https://eval.in/308583)
+2015-04-04 18:29 bonhoeffer has joined #ruby
+2015-04-04 18:29 Dude007 has quit [Remote host closed the connection]
+2015-04-04 18:29 panga has quit [Remote host closed the connection]
+2015-04-04 18:31 browndawg has quit [Quit: Leaving.]
+2015-04-04 18:31 aswen has joined #ruby
+2015-04-04 18:32 nyilmere_ has joined #ruby
+2015-04-04 18:33 meschi has joined #ruby
+2015-04-04 18:33 razieliyo has joined #ruby
+2015-04-04 18:33 razieliyo has quit [Changing host]
+2015-04-04 18:33 razieliyo has joined #ruby
+2015-04-04 18:34 xcombelle has joined #ruby
+2015-04-04 18:34 basiclaser has quit [Quit: Connection closed for inactivity]
+2015-04-04 18:37 steven43126 has quit [Ping timeout: 252 seconds]
+2015-04-04 18:38 vdamewood has joined #ruby
+2015-04-04 18:39 bMalum has joined #ruby
+2015-04-04 18:39 kyle__ has quit [Ping timeout: 252 seconds]
+2015-04-04 18:39 deansc has quit [Ping timeout: 250 seconds]
+2015-04-04 18:40 Pharaoh2 has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 18:40 DEA7TH has quit [Quit: http://quassel-irc.org - Chat comfortably. Anywhere.]
+2015-04-04 18:40 AlexRussia has joined #ruby
+2015-04-04 18:41 Spami has quit [Remote host closed the connection]
+2015-04-04 18:41 Sawbones has joined #ruby
+2015-04-04 18:42 tier has joined #ruby
+2015-04-04 18:42 blackmesa has joined #ruby
+2015-04-04 18:46 kyle__ has joined #ruby
+2015-04-04 18:46 tier has quit [Ping timeout: 256 seconds]
+2015-04-04 18:46 VBlizzard has joined #ruby
+2015-04-04 18:47 agrinb has quit [Read error: Connection reset by peer]
+2015-04-04 18:47 <apeiros> yay, internet again
+2015-04-04 18:47 <havenwood> Interwebs! \o/
+2015-04-04 18:47 * apeiros wishes for 99.9999999% uptime ISP
+2015-04-04 18:48 <havenwood> repeating of course
+2015-04-04 18:48 <apeiros> and that the 0.000001% falls into times when I'm not at home
+2015-04-04 18:48 agrinb has joined #ruby
+2015-04-04 18:48 <apeiros> well, 1min/y is acceptable.
+2015-04-04 18:48 icebourg has joined #ruby
+2015-04-04 18:48 <apeiros> at the moment we're at about 30min/y when I'm around, so extrapolating it's around 2h/y
+2015-04-04 18:49 <apeiros> so we're at around 99.977% uptime
+2015-04-04 18:50 <havenwood> >> a = []; a << a; a.sort; a << a; a.sort; a << a; a.sort
+2015-04-04 18:50 <ruboto> havenwood # => [[[...], [...], [...]], [[...], [...], [...]], [[...], [...], [...]]] (https://eval.in/308585)
+2015-04-04 18:50 <havenwood> ignore the extra sorts >.>
+2015-04-04 18:51 icebourg has quit [Client Quit]
+2015-04-04 18:51 <havenwood> shevy: Arrays of Arrays of Arrays. Sorted for good measure!
+2015-04-04 18:51 riotjones has joined #ruby
+2015-04-04 18:51 VBlizzard is now known as _blizzy_
+2015-04-04 18:51 agrinb has quit [Read error: Connection reset by peer]
+2015-04-04 18:52 agrinb has joined #ruby
+2015-04-04 18:52 <havenwood> shevy: How about an IAQ for infrequently asked questions?
+2015-04-04 18:52 lennae has quit [Ping timeout: 252 seconds]
+2015-04-04 18:53 <havenwood> apeiros: It just depends when that minute is whether I care or not. :P
+2015-04-04 18:53 dfinninger has joined #ruby
+2015-04-04 18:53 <apeiros> havenwood: yeah, same. but it currently happens too often when I care.
+2015-04-04 18:53 <ght> Is there a way to execute two commands with a suffixed if conditional? As in, I'm familar with the following syntax: puts "Hello world" if !testvar.nil?
+2015-04-04 18:53 bonhoeffer has quit [Quit: bonhoeffer]
+2015-04-04 18:53 <apeiros> but well, at least I made progress on my DecomposedFloat class (for funsies)
+2015-04-04 18:54 <ght> but does ruby support two or more statements with a suffixed if?
+2015-04-04 18:54 <apeiros> it has basically what'd be Float#next :D
+2015-04-04 18:54 <djellemah> ght: (yes; it does)
+2015-04-04 18:54 <apeiros> ght: begin a; b; c; end if cond # would probably work, but SERIOUSLY
+2015-04-04 18:54 musashi1 has joined #ruby
+2015-04-04 18:54 <ght> but seriously what?
+2015-04-04 18:54 <apeiros> don't write clever code. write idiomatic, readable, maintainable code.
+2015-04-04 18:54 <ght> haha, of course, will do.
+2015-04-04 18:55 adriancb has joined #ruby
+2015-04-04 18:55 <ght> So the following is valid syntax: puts "Hello world!"; return; if !testvar.nil?
+2015-04-04 18:55 <ght> correct?
+2015-04-04 18:55 <apeiros> no
+2015-04-04 18:55 <ght> oh oh
+2015-04-04 18:55 <ght> I"m sorry
+2015-04-04 18:55 <apeiros> those first 2 statements are not connected to the if
+2015-04-04 18:55 <ght> you're sticking it within a begin / end
+2015-04-04 18:55 <apeiros> (foo; bar) if cond # might work too
+2015-04-04 18:55 <apeiros> >> (a = 1; b = 2) if true; p [a, b]
+2015-04-04 18:55 <ruboto> apeiros # => [1, 2] ...check link for more (https://eval.in/308586)
+2015-04-04 18:56 <ght> so it would be: begin puts "Hello world!"; return; end if !testvar.nil?
+2015-04-04 18:56 <apeiros> >> begin; a = 1; b = 2; end if true; p [a, b]
+2015-04-04 18:56 <ruboto> apeiros # => [1, 2] ...check link for more (https://eval.in/308587)
+2015-04-04 18:56 <jhass> apeiros: doesn't prove much :P
+2015-04-04 18:56 <jhass> if false
+2015-04-04 18:56 pasv_ has quit [Ping timeout: 244 seconds]
+2015-04-04 18:56 <apeiros> >> begin; a = 1; b = 2; end if false; p [a, b]
+2015-04-04 18:56 <ruboto> apeiros # => [nil, nil] ...check link for more (https://eval.in/308588)
+2015-04-04 18:56 <ght> but you're saying you can simply enclose them in parentheses as well?
+2015-04-04 18:56 <apeiros> >> (a = 1; b = 2) if false; p [a, b]
+2015-04-04 18:56 <ruboto> apeiros # => [nil, nil] ...check link for more (https://eval.in/308589)
+2015-04-04 18:56 <apeiros> jhass: proof?
+2015-04-04 18:56 <jhass> yup
+2015-04-04 18:56 riotjones has quit [Ping timeout: 248 seconds]
+2015-04-04 18:56 <apeiros> ght: so begin/end or ()
+2015-04-04 18:57 <ght> Very nice, thank you sir.
+2015-04-04 18:57 gregf1 has quit [Remote host closed the connection]
+2015-04-04 18:57 <jhass> ght: never ever do it, seriously
+2015-04-04 18:57 <apeiros> and as before: DON'T YOU EVER DO THAT!!!!
+2015-04-04 18:57 <apeiros> ;-p
+2015-04-04 18:57 <apeiros> matz will remove a syntax literal from ruby every time you use this.
+2015-04-04 18:57 dfinninger has quit [Ping timeout: 245 seconds]
+2015-04-04 18:57 <ght> lmao
+2015-04-04 18:58 <apeiros> I think that "syntax" in there was redundant.
+2015-04-04 18:58 <ght> So basically, any time you use this syntax, somewhere, a kitten dies.
+2015-04-04 18:58 <ght> correct?
+2015-04-04 18:58 Takle_ has quit [Read error: Connection reset by peer]
+2015-04-04 18:58 Takle has joined #ruby
+2015-04-04 18:58 <apeiros> hell no! why'd a kitten die? why are you so cruel? sheeesh! :-p
+2015-04-04 18:58 jenrzzz has quit [Ping timeout: 272 seconds]
+2015-04-04 18:58 overcrush has quit [Remote host closed the connection]
+2015-04-04 18:59 * apeiros writes a book: "A guide to convoluted ruby code"
+2015-04-04 18:59 <apeiros> I think hanmac should be my co-author
+2015-04-04 18:59 adriancb_ has joined #ruby
+2015-04-04 18:59 <jhass> for the C++ extensions part? :P
+2015-04-04 19:00 <apeiros> no, for the advanced convolution part
+2015-04-04 19:00 mleung has joined #ruby
+2015-04-04 19:01 <ght> That's funny.
+2015-04-04 19:01 bonhoeffer_ has joined #ruby
+2015-04-04 19:02 varunwachaspati_ has joined #ruby
+2015-04-04 19:03 adriancb has quit [Ping timeout: 272 seconds]
+2015-04-04 19:03 jenrzzz has joined #ruby
+2015-04-04 19:03 The_Phoenix has quit [Read error: Connection reset by peer]
+2015-04-04 19:03 bonhoeffer_ has quit [Client Quit]
+2015-04-04 19:03 rocknrollmarc has joined #ruby
+2015-04-04 19:03 JoshGlzBrk has joined #ruby
+2015-04-04 19:04 bruno- has joined #ruby
+2015-04-04 19:04 x77686d has quit [Quit: x77686d]
+2015-04-04 19:04 JoshGlzBrk has quit [Remote host closed the connection]
+2015-04-04 19:05 _ixti_ has joined #ruby
+2015-04-04 19:05 <apeiros> one idea behind the DecomposedFloat class - do a better float comparison than delta comparison
+2015-04-04 19:05 JoshGlzBrk has joined #ruby
+2015-04-04 19:05 mleung has quit [Ping timeout: 256 seconds]
+2015-04-04 19:05 <jhass> that seems out of context :P
+2015-04-04 19:06 <apeiros> compute the difference as a relative difference. i.e., (a-b).abs < (a * 1e-16).abs && (a-b).abs < (b * 1e-16).abs
+2015-04-04 19:06 * apeiros hands jhass some context
+2015-04-04 19:06 DEA7TH has joined #ruby
+2015-04-04 19:06 <apeiros> use with care
+2015-04-04 19:06 ixti has quit [Ping timeout: 252 seconds]
+2015-04-04 19:07 * jhass puts it next to his entropy
+2015-04-04 19:07 <apeiros> oooh, they'll make great playmates
+2015-04-04 19:07 dx7 has joined #ruby
+2015-04-04 19:09 <jhass> DeBot: !hangman ruby
+2015-04-04 19:09 <DeBot> ␣␣␣␣␣␣␣␣␣ [] 0/12
+2015-04-04 19:09 <jhass> DeBot: #
+2015-04-04 19:09 <DeBot> ␣␣␣␣␣␣#␣␣ [] 0/12
+2015-04-04 19:09 Prysmm has joined #ruby
+2015-04-04 19:09 <apeiros> wow, short
+2015-04-04 19:09 <jhass> yeah
+2015-04-04 19:09 pasv_ has joined #ruby
+2015-04-04 19:10 <jhass> DeBot: ea
+2015-04-04 19:10 <DeBot> ␣e␣␣␣␣#␣␣ [a] 1/12
+2015-04-04 19:10 <havenwood> got it
+2015-04-04 19:10 <jhass> wat
+2015-04-04 19:10 <apeiros> havenwood: solve
+2015-04-04 19:10 einarj has joined #ruby
+2015-04-04 19:10 <havenwood> Method#==
+2015-04-04 19:11 <jhass> do it, prefix with DeBot
+2015-04-04 19:11 <apeiros> havenwood: are you cheating? :)
+2015-04-04 19:11 <havenwood> apeiros: yes
+2015-04-04 19:11 <apeiros> heh
+2015-04-04 19:11 <havenwood> apeiros: It could be Regexp or Vector. I guessed amongst my cheat answers.
+2015-04-04 19:12 <havenwood> DeBot: M
+2015-04-04 19:12 <DeBot> ␣e␣␣␣␣#␣␣ [am] 2/12
+2015-04-04 19:12 <havenwood> nooooo
+2015-04-04 19:12 <jhass> fail
+2015-04-04 19:12 <apeiros> DeBot: rv
+2015-04-04 19:12 <DeBot> Ve␣␣␣r#␣␣ [am] 2/12
+2015-04-04 19:12 <apeiros> there, last one of your cheat answers :)
+2015-04-04 19:12 Takle has quit [Read error: Connection reset by peer]
+2015-04-04 19:12 sarmiena_ has joined #ruby
+2015-04-04 19:12 <havenwood> DeBot: @
+2015-04-04 19:12 <DeBot> Ve␣␣␣r#␣@ [am] 2/12
+2015-04-04 19:12 Takle has joined #ruby
+2015-04-04 19:12 Prysm has quit [Ping timeout: 245 seconds]
+2015-04-04 19:12 <apeiros> havenwood: now improve it to the point of making the least possible amount of guesses ;-)
+2015-04-04 19:12 <havenwood> apeiros: Ooh, good idea!
+2015-04-04 19:13 <jhass> DeBot: cto
+2015-04-04 19:13 <DeBot> Vector#␣@ [am] 2/12
+2015-04-04 19:13 sarmiena_ has quit [Client Quit]
+2015-04-04 19:13 brainslug has joined #ruby
+2015-04-04 19:13 <apeiros> I think I'd start with length. get common characters. figure biggest segmenters.
+2015-04-04 19:13 <havenwood> Now the guess... + or -.
+2015-04-04 19:13 <apeiros> DeBot: -
+2015-04-04 19:13 <DeBot> Vector#-@ [am] 2/12 You won!
+2015-04-04 19:13 <jhass> DeBot: !hangman gems
+2015-04-04 19:13 <DeBot> ␣␣␣␣ [] 0/12
+2015-04-04 19:13 <jhass> that'll be harder to cheat
+2015-04-04 19:14 <apeiros> DeBot: eo
+2015-04-04 19:14 <DeBot> ␣␣␣␣ [eo] 2/12
+2015-04-04 19:14 <apeiros> DeBot: ia
+2015-04-04 19:14 <DeBot> ␣␣␣a [eoi] 3/12
+2015-04-04 19:14 <Mon_Ouie> And then make it an IRC bot so it answers automatically
+2015-04-04 19:14 krisquigley has joined #ruby
+2015-04-04 19:14 <Mon_Ouie> (the cheating program, that is)
+2015-04-04 19:14 <jhass> DeBot: sn
+2015-04-04 19:14 <DeBot> ␣␣␣a [eoisn] 5/12
+2015-04-04 19:14 <apeiros> DeBot: ur
+2015-04-04 19:14 <DeBot> ␣ura [eoisn] 5/12
+2015-04-04 19:14 gregf1 has joined #ruby
+2015-04-04 19:14 <apeiros> wow, and I still don't know what it is :D
+2015-04-04 19:14 elaptics_away is now known as elaptics
+2015-04-04 19:15 <havenwood> Narrowed down to 20 before that last. Now just one.
+2015-04-04 19:15 <jhass> could be anything :D
+2015-04-04 19:15 jamto11 has joined #ruby
+2015-04-04 19:15 einarj has quit [Ping timeout: 250 seconds]
+2015-04-04 19:15 overcrush has joined #ruby
+2015-04-04 19:15 <havenwood> DeBot: d
+2015-04-04 19:15 <DeBot> dura [eoisn] 5/12 You won!
+2015-04-04 19:15 Spami has joined #ruby
+2015-04-04 19:15 WilfredTheGreat has quit [Quit: Lost terminal]
+2015-04-04 19:15 <havenwood> Mon_Ouie: Aye, spoilers!
+2015-04-04 19:16 <jhass> "A durable queueing system" at version 0.0.1
+2015-04-04 19:16 <jhass> and a dead github repo
+2015-04-04 19:16 <jhass> we need a way to delete dead gems :/
+2015-04-04 19:16 <apeiros> we need a way to have namespaced gems.
+2015-04-04 19:16 <apeiros> apeiros-rails
+2015-04-04 19:17 <apeiros> me.apeiros-rails.
+2015-04-04 19:17 <apeiros> IMO the basic idea of reverse dns in java's classes isn't all bad.
+2015-04-04 19:17 <apeiros> and for usability, you can do a lot with something akin to search paths.
+2015-04-04 19:18 jlast has joined #ruby
+2015-04-04 19:18 Aswebb_ has quit []
+2015-04-04 19:18 <jhass> well, these days you could make scm platform names
+2015-04-04 19:18 <jhass> jhass/rails
+2015-04-04 19:18 <jhass> bitbucket/jhass/vmm
+2015-04-04 19:18 kenndel has joined #ruby
+2015-04-04 19:18 Channel6 has joined #ruby
+2015-04-04 19:18 kenndel has quit [Client Quit]
+2015-04-04 19:18 <jhass> gitlab.my-company.example/team/foo
+2015-04-04 19:18 <apeiros> I thought more along the lines of: org.rubygems for first-come-first-serve gems. org.rubygems.username for others. and custom-domain for whatever.
+2015-04-04 19:19 <apeiros> and having org.rubygems in the default search path.
+2015-04-04 19:19 Spami_ has joined #ruby
+2015-04-04 19:19 <havenwood> so/huge/so/hopeless/to/conceive/rails
+2015-04-04 19:19 krisquigley has quit [Ping timeout: 264 seconds]
+2015-04-04 19:19 <havenwood> Dickinsonian Rails
+2015-04-04 19:19 Spami has quit [Read error: Connection reset by peer]
+2015-04-04 19:20 jamto11 has quit [Ping timeout: 255 seconds]
+2015-04-04 19:20 eshiffob has joined #ruby
+2015-04-04 19:21 avahey has joined #ruby
+2015-04-04 19:21 centrx has joined #ruby
+2015-04-04 19:21 Spami_ has quit [Read error: Connection reset by peer]
+2015-04-04 19:21 <shevy> lol
+2015-04-04 19:22 Zai00 has joined #ruby
+2015-04-04 19:22 Spami has joined #ruby
+2015-04-04 19:22 <shevy> I'd love namespaced gems, it's annoying that inactive gems can fill up namespaces and nobody uses them
+2015-04-04 19:22 <apeiros> namespace owners could set up rules
+2015-04-04 19:23 jlast has quit [Ping timeout: 265 seconds]
+2015-04-04 19:23 <apeiros> like "no updates for >1y -> removal from the namespace". gem can still exist, but no longer occupies a well known namespace.
+2015-04-04 19:23 <havenwood> we don't seem to really quite follow the limited gem naming conventions we do have
+2015-04-04 19:23 jenrzzz has quit [Ping timeout: 252 seconds]
+2015-04-04 19:24 <apeiros> because they're conventions. nothing enforces it.
+2015-04-04 19:24 cefkamcau has quit [Ping timeout: 264 seconds]
+2015-04-04 19:24 <apeiros> I think namespaces could actually be implemented on top of rubygems, via its source system.
+2015-04-04 19:24 <havenwood> hmm
+2015-04-04 19:25 <apeiros> we could have namespaces by quality. org.rubygems.gold -> follows code style guide, has >1 patch per month, is 100% doc covered, has 100% C0 code/test coverage
+2015-04-04 19:25 Spami has quit [Read error: Connection reset by peer]
+2015-04-04 19:25 agrinb has quit [Read error: Connection reset by peer]
+2015-04-04 19:25 Spami_ has joined #ruby
+2015-04-04 19:26 <apeiros> org.rubygems.stdlib -> is considered a standard library and usually installed along with ruby as a gem
+2015-04-04 19:26 RegulationD has joined #ruby
+2015-04-04 19:26 Takle_ has joined #ruby
+2015-04-04 19:26 agrinb has joined #ruby
+2015-04-04 19:27 Spami_ has quit [Read error: Connection reset by peer]
+2015-04-04 19:28 Spami has joined #ruby
+2015-04-04 19:28 Takle has quit [Ping timeout: 272 seconds]
+2015-04-04 19:28 varunwachaspati has quit [Remote host closed the connection]
+2015-04-04 19:28 varunwachaspati_ has quit [Remote host closed the connection]
+2015-04-04 19:28 <jhass> there's also the idea to decouple stdlib and interpreter
+2015-04-04 19:28 <havenwood> a/tree/that/may/in/summer/wear/a/nest/of/robins/in/her/hair/roda
+2015-04-04 19:29 <shevy> apeiros yeah something like that would be nice; perhaps longer than a year though. like "if no update happened in 3 or 5 years, this gem will no longer have priority"
+2015-04-04 19:29 <jhass> stdlib-2.1 on Ruby 2.2
+2015-04-04 19:29 Scriptonaut has left #ruby [#ruby]
+2015-04-04 19:29 <jhass> stdlib-2.3 on Ruby 2.1
+2015-04-04 19:29 <apeiros> jhass: gemifying the stdlib would probably be a good first step
+2015-04-04 19:29 <jhass> yeah
+2015-04-04 19:29 <shevy> \o/
+2015-04-04 19:29 <apeiros> could use lock-step versioning
+2015-04-04 19:29 <shevy> havenwood your URLs become monster-long
+2015-04-04 19:30 <havenwood> shevy: sacrifices we have to make for poetry-based namespacing
+2015-04-04 19:30 RegulationD has quit [Ping timeout: 256 seconds]
+2015-04-04 19:31 adriancb_ has quit [Remote host closed the connection]
+2015-04-04 19:32 <havenwood> it has been handy to have the already gemified ones as gems
+2015-04-04 19:32 <havenwood> fixing bugs in bigdecimal without a Ruby release, etc
+2015-04-04 19:32 kyrylo has joined #ruby
+2015-04-04 19:33 <havenwood> jhass: that'd be neat
+2015-04-04 19:33 <havenwood> they've deprecated more of the stdlib than what's been converted to gems so far
+2015-04-04 19:33 bim has joined #ruby
+2015-04-04 19:33 Spami has quit [Ping timeout: 250 seconds]
+2015-04-04 19:33 <havenwood> well, gemified and removed from stdlib*
+2015-04-04 19:33 <shevy> lol
+2015-04-04 19:34 <havenwood> i guess Ruby 3 will be the time for the big swap, as far as what's in the stdlib
+2015-04-04 19:35 Spami has joined #ruby
+2015-04-04 19:36 <havenwood> OptionParser out, Slop in?
+2015-04-04 19:36 doodleha_ has quit [Remote host closed the connection]
+2015-04-04 19:36 adriancb has joined #ruby
+2015-04-04 19:36 doodlehaus has joined #ruby
+2015-04-04 19:37 Sawbones has quit [Remote host closed the connection]
+2015-04-04 19:37 <havenwood> Might HTTPClient or Excon vie for the throne?
+2015-04-04 19:38 zcreative has quit [Quit: (null)]
+2015-04-04 19:38 blackmesa has quit [Ping timeout: 255 seconds]
+2015-04-04 19:38 <havenwood> Or WEBrick for Puma?
+2015-04-04 19:39 jamto11 has joined #ruby
+2015-04-04 19:39 <jhass> why should they if everything becomes a gem anyway?
+2015-04-04 19:39 bMalum has quit [Quit: bMalum]
+2015-04-04 19:40 doodlehaus has quit [Read error: Connection reset by peer]
+2015-04-04 19:40 doodleha_ has joined #ruby
+2015-04-04 19:40 <havenwood> That's a good point. Ship lighter. I guess having it be stdlib is one way to show community vote of confidence. Tiers does sound interesting.
+2015-04-04 19:40 anomaly_ has joined #ruby
+2015-04-04 19:40 ponga has joined #ruby
+2015-04-04 19:41 <havenwood> I'll be very curious to see how Ruby 3 shapes up! :O
+2015-04-04 19:41 steven43126 has joined #ruby
+2015-04-04 19:41 dx7 has quit [Remote host closed the connection]
+2015-04-04 19:43 bMalum has joined #ruby
+2015-04-04 19:43 blackmesa has joined #ruby
+2015-04-04 19:43 horsecowdog has joined #ruby
+2015-04-04 19:44 ponga has quit [Ping timeout: 248 seconds]
+2015-04-04 19:45 adamjleonard has quit [Quit: Leaving...]
+2015-04-04 19:45 agrinb has quit [Read error: Connection reset by peer]
+2015-04-04 19:46 agrinb has joined #ruby
+2015-04-04 19:48 horsecowdog has quit [Ping timeout: 256 seconds]
+2015-04-04 19:49 MatthewsFace has joined #ruby
+2015-04-04 19:50 hpoydar has joined #ruby
+2015-04-04 19:50 davispuh has joined #ruby
+2015-04-04 19:51 blackmesa has quit [Ping timeout: 265 seconds]
+2015-04-04 19:51 hpoydar_ has joined #ruby
+2015-04-04 19:51 delianides has joined #ruby
+2015-04-04 19:51 JDiPierro has joined #ruby
+2015-04-04 19:51 milesmatthias has joined #ruby
+2015-04-04 19:53 delianides has quit [Client Quit]
+2015-04-04 19:54 Darryl___ has quit [Quit: Connection closed for inactivity]
+2015-04-04 19:55 hpoydar has quit [Ping timeout: 265 seconds]
+2015-04-04 19:55 Advocation has quit [Quit: Advocation]
+2015-04-04 19:56 hpoydar_ has quit [Ping timeout: 256 seconds]
+2015-04-04 19:56 Azure has quit [Quit: My MBP went to sleep.]
+2015-04-04 19:58 vdamewood has quit [Quit: ["Textual IRC Client: www.textualapp.com"]]
+2015-04-04 20:00 <havenwood> DeBot: !hangman gems
+2015-04-04 20:00 <DeBot> ␣␣␣␣␣ [] 0/12
+2015-04-04 20:00 <havenwood> DeBot: e
+2015-04-04 20:00 <DeBot> e␣␣␣␣ [] 0/12
+2015-04-04 20:00 <jhass> DeBot: n
+2015-04-04 20:00 <DeBot> e␣␣␣␣ [n] 1/12
+2015-04-04 20:00 enebo has quit [Quit: enebo]
+2015-04-04 20:01 <apeiros> DeBot: m
+2015-04-04 20:01 <DeBot> e␣␣␣␣ [nm] 2/12
+2015-04-04 20:01 JDiPierro has quit [Remote host closed the connection]
+2015-04-04 20:02 _whitelogger has joined #ruby
+2015-04-04 20:02 tubuliferous_ has joined #ruby
+2015-04-04 20:02 <jhass> DeBot: t
+2015-04-04 20:02 <DeBot> et␣␣␣ [nm] 2/12
+2015-04-04 20:03 <havenwood> i'd like to buy a vowel
+2015-04-04 20:04 * jhass offers havenwood an ü
+2015-04-04 20:04 <havenwood> DeBot: ü
+2015-04-04 20:04 <havenwood> DeBot: u
+2015-04-04 20:04 <DeBot> et␣␣␣ [nmu] 3/12
+2015-04-04 20:04 * apeiros hands havenwood an ë
+2015-04-04 20:04 <havenwood> DeBot: a
+2015-04-04 20:04 <DeBot> eta␣␣ [nmu] 3/12
+2015-04-04 20:04 * apeiros gives havenwood an î
+2015-04-04 20:05 * apeiros donates an å to havenwood
+2015-04-04 20:05 x77686d has joined #ruby
+2015-04-04 20:05 brainslug has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 20:06 deansc_ has joined #ruby
+2015-04-04 20:06 tubuliferous_ has quit [Ping timeout: 246 seconds]
+2015-04-04 20:06 <havenwood> might be nice to make a RubyGems plugin for the `gem hangman` command
+2015-04-04 20:07 * jhass offers havenwood a 
+2015-04-04 20:07 <havenwood> is that a number?
+2015-04-04 20:08 <jhass> no, a vowel
+2015-04-04 20:08 mostlybadfly has quit [Quit: Connection closed for inactivity]
+2015-04-04 20:08 <havenwood> >> /[[:alpha:]]/ =~ ?
+2015-04-04 20:08 <havenwood> indeed
+2015-04-04 20:09 <jhass> it'S English even
+2015-04-04 20:10 Zen-Zen has quit []
+2015-04-04 20:10 elaptics is now known as elaptics_away
+2015-04-04 20:11 Jackneill has quit [Ping timeout: 255 seconds]
+2015-04-04 20:11 jheg has joined #ruby
+2015-04-04 20:12 <havenwood> ah, not an acrophonic thespian two
+2015-04-04 20:12 <havenwood> 
+2015-04-04 20:12 <havenwood> !=***
+2015-04-04 20:14 iamninja has quit [Read error: Connection reset by peer]
+2015-04-04 20:15 beneggett has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 20:15 <havenwood> shavian letter ah (U+1046D) or greek acrophonic thespian two (U+1015C), you decide!
+2015-04-04 20:15 iamninja has joined #ruby
+2015-04-04 20:15 <jhass> well, I already picked it
+2015-04-04 20:15 <havenwood> >> [?
+2015-04-04 20:15 Guest82577 has quit [Quit: Stary2001 killed me D:]
+2015-04-04 20:16 <jhass> you need to poke charliesome, backend is broken
+2015-04-04 20:16 <jhass> >> 1
+2015-04-04 20:16 <ruboto> jhass # => 1 (https://eval.in/308601)
+2015-04-04 20:16 <jhass> https://eval.in/308600 https://eval.in/308600.json
+2015-04-04 20:16 deansc_ has quit [Remote host closed the connection]
+2015-04-04 20:16 <havenwood> i don't know my shavian letters at all
+2015-04-04 20:16 beneggett has joined #ruby
+2015-04-04 20:16 <jhass> I totally looked it up on Wikiepdia ;)
+2015-04-04 20:17 <jhass> I only know it's a thing
+2015-04-04 20:17 <apeiros> jhass: yeah, charliesome wasn't online yet :-/
+2015-04-04 20:17 tus has joined #ruby
+2015-04-04 20:18 <shevy> shevian letter?
+2015-04-04 20:18 kadoppe has quit [Ping timeout: 256 seconds]
+2015-04-04 20:18 <shevy> we should all standardize on the latin alphabet!
+2015-04-04 20:18 <jhass> let's see whether we can spell your name in it
+2015-04-04 20:19 jlast has joined #ruby
+2015-04-04 20:19 kadoppe has joined #ruby
+2015-04-04 20:19 senayar has quit [Remote host closed the connection]
+2015-04-04 20:20 <havenwood> no shavian transliteration gem!?
+2015-04-04 20:20 rocknrollmarc has quit [Ping timeout: 245 seconds]
+2015-04-04 20:21 <jhass> 
+2015-04-04 20:22 <jhass> havenwood: strict transliteration would go wrong afaik
+2015-04-04 20:22 starless has quit [Quit: Leaving]
+2015-04-04 20:22 senayar has joined #ruby
+2015-04-04 20:22 willharrison has joined #ruby
+2015-04-04 20:23 <havenwood> http://search.cpan.org/~marnanel/Lingua-EN-Alphabet-Shaw-0.64/lib/Lingua/EN/Alphabet/Shaw.pm
+2015-04-04 20:23 senayar_ has joined #ruby
+2015-04-04 20:23 senayar has quit [Remote host closed the connection]
+2015-04-04 20:23 jlast has quit [Ping timeout: 265 seconds]
+2015-04-04 20:24 <shevy> perl got it all
+2015-04-04 20:24 DLSteve has joined #ruby
+2015-04-04 20:24 doodleha_ has quit [Remote host closed the connection]
+2015-04-04 20:26 adamjleonard has joined #ruby
+2015-04-04 20:27 yh has quit [Ping timeout: 248 seconds]
+2015-04-04 20:28 arquebus has joined #ruby
+2015-04-04 20:28 DEA7TH has quit [Quit: http://quassel-irc.org - Chat comfortably. Anywhere.]
+2015-04-04 20:28 kreeves has joined #ruby
+2015-04-04 20:30 doodlehaus has joined #ruby
+2015-04-04 20:32 doodlehaus has quit [Remote host closed the connection]
+2015-04-04 20:32 BradPitt has joined #ruby
+2015-04-04 20:36 <FernandoBasso> What editor/ide do you guys use? (just curious)
+2015-04-04 20:36 yh has joined #ruby
+2015-04-04 20:37 <shevy> bluefish 1.x
+2015-04-04 20:37 <FernandoBasso> Sure!
+2015-04-04 20:38 arquebus has left #ruby ["Konversation terminated!"]
+2015-04-04 20:38 <FernandoBasso> I believe you may use bluefish, but not 1.x.
+2015-04-04 20:38 teddyp1cker has joined #ruby
+2015-04-04 20:38 <apeiros> FernandoBasso: sublime + terminal
+2015-04-04 20:38 duncannz has joined #ruby
+2015-04-04 20:38 <jhass> ^
+2015-04-04 20:39 <FernandoBasso> sublime 1.x ?
+2015-04-04 20:39 <FernandoBasso> :D
+2015-04-04 20:39 <jhass> 3 actually
+2015-04-04 20:39 <FernandoBasso> Good.
+2015-04-04 20:39 sarmiena_ has joined #ruby
+2015-04-04 20:39 bonhoeffer has joined #ruby
+2015-04-04 20:39 kstuart has joined #ruby
+2015-04-04 20:39 overcrush has quit [Remote host closed the connection]
+2015-04-04 20:40 <havenwood> FernandoBasso: What OS?
+2015-04-04 20:40 <FernandoBasso> Linux, arch linux.
+2015-04-04 20:40 <FernandoBasso> I guess I would enjoy OSX, but Macs are very expensive here in brazil.
+2015-04-04 20:41 adriancb has quit [Remote host closed the connection]
+2015-04-04 20:41 <havenwood> Atom is another open source option. It seems to be coming along nicely.
+2015-04-04 20:41 riotjones has joined #ruby
+2015-04-04 20:41 willharrison has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 20:41 <FernandoBasso> I have it installed, but seldom do I open it (same for brackets).
+2015-04-04 20:41 <Nilium> It's also slow as balls and behaves weirdly.
+2015-04-04 20:41 Adrikei has joined #ruby
+2015-04-04 20:41 <havenwood> Nilium: Just don't try to open files!
+2015-04-04 20:42 <FernandoBasso> I like several editors, actually.
+2015-04-04 20:42 <havenwood> Nilium: Especially not large ones.
+2015-04-04 20:42 <Nilium> Just don't try to: search in files, search in a file, or open anything over 2mb
+2015-04-04 20:42 <Nilium> Atom cannot actually open files over 2mb.
+2015-04-04 20:42 <Nilium> At least it tells you this now.
+2015-04-04 20:42 bonhoeffer_ has joined #ruby
+2015-04-04 20:42 <havenwood> Nilium: Work in progress. :P
+2015-04-04 20:43 <Nilium> I've only seen, so far, two text editors that could open large files without croaking
+2015-04-04 20:43 <Nilium> One was ConTEXT on Windows, the other is vim.
+2015-04-04 20:43 <apeiros> bbedit can handle fairly large files too
+2015-04-04 20:43 <Nilium> I'd guess emacs could do it too but I don't open it for fear of not being able to figure out how to close it.
+2015-04-04 20:43 <havenwood> Nilium: TM2 is actually good with large files.
+2015-04-04 20:43 <apeiros> could deal better with it, though
+2015-04-04 20:43 <jhass> well, there's a difference between many lines or one very long line
+2015-04-04 20:44 <Nilium> jhass: True. One very long line in vim is a problem.
+2015-04-04 20:44 <havenwood> Nilium: LightTable, Atom and even Sublime choke.
+2015-04-04 20:44 bonhoeffer has quit [Ping timeout: 265 seconds]
+2015-04-04 20:44 bonhoeffer_ is now known as bonhoeffer
+2015-04-04 20:44 <FernandoBasso> I have had problems with vim when lines are long (>= 150 chars). Although it has been a long time since I opened a file like that.
+2015-04-04 20:44 <Nilium> Lately Sublime's been choking on all sorts of stuff for me.
+2015-04-04 20:44 <jhass> and same with sublime, it takes a while to load but it can handle quite large files, if it contains enough line breaks
+2015-04-04 20:44 <jhass> you tried sublime 3?
+2015-04-04 20:44 <Nilium> Easiest thing to do is just fold something and pipe it
+2015-04-04 20:44 <Nilium> I'm using Sublime 3.
+2015-04-04 20:45 <jhass> has been quite stable for me
+2015-04-04 20:45 <Nilium> It's normally stable but has been garbage lately.
+2015-04-04 20:45 <Nilium> On the upside, the plugin_host crash is gone.
+2015-04-04 20:45 <Nilium> That was the one that made me switch to vim.
+2015-04-04 20:46 Cache_Money has joined #ruby
+2015-04-04 20:46 <havenwood> It looks like Atom support for >2MB is tagged to land soon.
+2015-04-04 20:46 <jhass> didn't experience such stuff
+2015-04-04 20:46 riotjones has quit [Ping timeout: 250 seconds]
+2015-04-04 20:46 <jhass> the indexing was a bit eager until the last build, but that you could turn off
+2015-04-04 20:46 <Nilium> I would hope not.
+2015-04-04 20:46 <Nilium> Having to restart your text editor once every 30-50 minutes is annoying.
+2015-04-04 20:48 sarmiena_ has quit [Quit: sarmiena_]
+2015-04-04 20:49 <FernandoBasso> Do you guys really work with 2MB files regularly?
+2015-04-04 20:49 <FernandoBasso> Log files?
+2015-04-04 20:49 milesmatthias has quit [Remote host closed the connection]
+2015-04-04 20:49 <apeiros> xml
+2015-04-04 20:50 <FernandoBasso> Makes sense.
+2015-04-04 20:50 <jhass> SQL dumps
+2015-04-04 20:50 <Nilium> Log files, SQL, etc.
+2015-04-04 20:50 <Nilium> Also, as a credit to vim, it's the only editor I have right now that opens compressed text files.
+2015-04-04 20:50 <FernandoBasso> My problems were with xml as well (long lines in xml files vs vim)
+2015-04-04 20:51 oo_ has joined #ruby
+2015-04-04 20:52 <FernandoBasso> Emacs can display images :D
+2015-04-04 20:52 <apeiros> I think the hard part about opening large files is syntax highlighting
+2015-04-04 20:52 <apeiros> as that forces you to either accept broken highlight, or read the whole file
+2015-04-04 20:52 codecop has quit [Remote host closed the connection]
+2015-04-04 20:53 milesmatthias has joined #ruby
+2015-04-04 20:53 <Nilium> I always disabled it in Sublime.
+2015-04-04 20:53 mostlybadfly has joined #ruby
+2015-04-04 20:54 bonhoeffer has quit [Quit: bonhoeffer]
+2015-04-04 20:54 yh has quit [Ping timeout: 246 seconds]
+2015-04-04 20:54 <Nilium> Have to do the same in vim often 'cause otherwise one highlight group will just consume everything after it gives up
+2015-04-04 20:54 dfinninger has joined #ruby
+2015-04-04 20:55 <Nilium> Nice, almost got all the blood out from under my fingernails
+2015-04-04 20:55 xcombelle has quit [Quit: Quitte]
+2015-04-04 20:55 oo_ has quit [Ping timeout: 252 seconds]
+2015-04-04 20:56 bruno- has quit [Ping timeout: 252 seconds]
+2015-04-04 20:56 <shevy> you damn ghoul
+2015-04-04 20:56 <Nilium> That's a bit harsh for someone who was dealing with a small cut on his head.
+2015-04-04 20:57 <apeiros> shevy: we don't discriminate against ghouls in this channel.
+2015-04-04 20:57 <Nilium> Head wounds bleed a lot.
+2015-04-04 20:57 <Nilium> Really annoying, actually.
+2015-04-04 20:57 <shevy> zombies are always battered
+2015-04-04 20:57 <shevy> yeah that is true
+2015-04-04 20:58 <shevy> like many cuts you see in competitive martial arts
+2015-04-04 20:58 <Nilium> Also, converting an svn repo with weird directory structure to git is nightmarish
+2015-04-04 20:58 <Nilium> Especially since all of the tags in the one I'm moving point to subdirectories in the trunk.
+2015-04-04 20:58 <Nilium> So git can't match different commits up.
+2015-04-04 20:59 dfinninger has quit [Ping timeout: 264 seconds]
+2015-04-04 21:00 <jhass> apeiros: you just want to find a reason to demonstrate !kick :P
+2015-04-04 21:01 <apeiros> jhass: huh? what? where? how?
+2015-04-04 21:01 <vhlfd> #ruby-pro needs more activity.
+2015-04-04 21:02 <apeiros> vhlfd: yes. but I'm not having time right now to set things for that in motion.
+2015-04-04 21:02 <vhlfd> apeiros, hmm.
+2015-04-04 21:02 <jhass> apeiros: I mean ghouls... there's a limit
+2015-04-04 21:02 <apeiros> but having founder access to #ruby will certainly help once I do have time.
+2015-04-04 21:03 * apeiros is scheming
+2015-04-04 21:03 <jhass> my PR is still rather ignored :(
+2015-04-04 21:03 krisquigley has joined #ruby
+2015-04-04 21:03 <jhass> damn ruby-lang.org people
+2015-04-04 21:03 <apeiros> ah, that one…
+2015-04-04 21:04 <apeiros> I was just checking whether I still had overlooked one on ruby-community or ruby-pro :D
+2015-04-04 21:04 Coraline is now known as Coraline_ZzZz
+2015-04-04 21:04 <vhlfd> ruby-community?
+2015-04-04 21:04 DeathCode has joined #ruby
+2015-04-04 21:04 <DeathCode> hello
+2015-04-04 21:04 <jhass> vhlfd: /topic
+2015-04-04 21:04 <apeiros> vhlfd: topic ;-p
+2015-04-04 21:04 <DeathCode> whats up everybody
+2015-04-04 21:05 <vhlfd> DeathCode, lethargy. You?
+2015-04-04 21:05 <apeiros> hi DeathCode
+2015-04-04 21:05 <DeathCode> hey
+2015-04-04 21:05 yh has joined #ruby
+2015-04-04 21:05 <DeathCode> vhlfd same here. just woke up and dont want to work :(
+2015-04-04 21:06 anomaly_ has quit [Ping timeout: 252 seconds]
+2015-04-04 21:06 <vhlfd> DeathCode, I suppose the most successful people are those who manage to get up and go to work when they feel this way.
+2015-04-04 21:06 JoshGlzBrk has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 21:06 DexterLB has quit [Ping timeout: 248 seconds]
+2015-04-04 21:06 <DeathCode> naw the most successful are those who have great ideas that they implement while they lazy
+2015-04-04 21:07 <shevy> haha
+2015-04-04 21:07 mitsuhiko has joined #ruby
+2015-04-04 21:07 <mitsuhiko> holla
+2015-04-04 21:07 <jhass> hi
+2015-04-04 21:07 sankaber has joined #ruby
+2015-04-04 21:07 <mitsuhiko> is there a way to get a binding for each stacktrace frame somehow?
+2015-04-04 21:07 davispuh has quit [Read error: Connection reset by peer]
+2015-04-04 21:07 <shevy> with lethargy, it sometimes helps when you can reduce a big boring task into smaller boring tasks. like to work just for a little bit, then move on to something more interesting
+2015-04-04 21:08 <mitsuhiko> i'm interested in local variables traces
+2015-04-04 21:08 <apeiros> mitsuhiko: not from vanilla ruby afaik
+2015-04-04 21:08 <apeiros> mitsuhiko: but maybe with binding_of_caller (a gem with native extension)
+2015-04-04 21:08 krisquigley has quit [Ping timeout: 265 seconds]
+2015-04-04 21:08 <apeiros> not sure that's still running with current rubies, though
+2015-04-04 21:08 bluOxigen has quit [Ping timeout: 250 seconds]
+2015-04-04 21:08 <vhlfd> shevy, having your tasks meated out into bite sized chunks are always a good idea.
+2015-04-04 21:08 mcpierce has quit [Ping timeout: 265 seconds]
+2015-04-04 21:09 Cork has quit [Ping timeout: 256 seconds]
+2015-04-04 21:10 relix has quit [Quit: Textual IRC Client: www.textualapp.com]
+2015-04-04 21:10 DexterLB has joined #ruby
+2015-04-04 21:10 <shevy> I am doing so with my old vim-related files right now
+2015-04-04 21:11 <shevy> move 2 to 3 snippets into a ruby class that will generate a new vimrc in how I would want it
+2015-04-04 21:11 davispuh has joined #ruby
+2015-04-04 21:11 bMalum has quit [Quit: bMalum]
+2015-04-04 21:11 adriancb has joined #ruby
+2015-04-04 21:12 JoshGlzBrk has joined #ruby
+2015-04-04 21:13 Sawbones has joined #ruby
+2015-04-04 21:13 mcpierce` has joined #ruby
+2015-04-04 21:13 jack_rabbit has joined #ruby
+2015-04-04 21:14 duncannz has quit [Ping timeout: 272 seconds]
+2015-04-04 21:14 beneggett has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 21:14 JoshGlzBrk has quit [Client Quit]
+2015-04-04 21:14 RegulationD has joined #ruby
+2015-04-04 21:16 steven43126 has quit [Ping timeout: 252 seconds]
+2015-04-04 21:16 simplyaubs has joined #ruby
+2015-04-04 21:17 ki0 has joined #ruby
+2015-04-04 21:18 dx7 has joined #ruby
+2015-04-04 21:19 RegulationD has quit [Ping timeout: 264 seconds]
+2015-04-04 21:19 jlast has joined #ruby
+2015-04-04 21:20 anomaly_ has joined #ruby
+2015-04-04 21:20 Megtastique has joined #ruby
+2015-04-04 21:21 dx7 has quit [Remote host closed the connection]
+2015-04-04 21:24 claptor has joined #ruby
+2015-04-04 21:24 jlast has quit [Ping timeout: 256 seconds]
+2015-04-04 21:26 wicope has quit [Quit: Leaving]
+2015-04-04 21:26 adriancb has quit [Remote host closed the connection]
+2015-04-04 21:27 overcrush has joined #ruby
+2015-04-04 21:30 milesmatthias has quit [Remote host closed the connection]
+2015-04-04 21:30 Coraline_ZzZz is now known as Coraline
+2015-04-04 21:30 teddyp1cker has quit [Remote host closed the connection]
+2015-04-04 21:31 mwmnj has quit [Quit: My MacBook has gone to sleep. ZZZzzz…]
+2015-04-04 21:31 gusto has joined #ruby
+2015-04-04 21:32 rippa has quit [Quit: {#`%${%&`+'${`%&NO CARRIER]
+2015-04-04 21:32 horsecowdog has joined #ruby
+2015-04-04 21:32 starless has joined #ruby
+2015-04-04 21:32 teddyp1cker has joined #ruby
+2015-04-04 21:33 <apeiros> so, time to finish that password strength validator
+2015-04-04 21:35 kirun has quit [Quit: Client exiting]
+2015-04-04 21:36 JoshGlzBrk has joined #ruby
+2015-04-04 21:37 milesmatthias has joined #ruby
+2015-04-04 21:37 horsecowdog has quit [Ping timeout: 264 seconds]
+2015-04-04 21:37 teddyp1cker has quit [Ping timeout: 248 seconds]
+2015-04-04 21:38 piotrj has quit [Remote host closed the connection]
+2015-04-04 21:38 Sawbones has quit [Remote host closed the connection]
+2015-04-04 21:38 piotrj has joined #ruby
+2015-04-04 21:39 jeramy_s has joined #ruby
+2015-04-04 21:39 milesmatthias has quit [Remote host closed the connection]
+2015-04-04 21:40 xenokiller has quit [Ping timeout: 256 seconds]
+2015-04-04 21:40 ramfjord has quit [Ping timeout: 272 seconds]
+2015-04-04 21:41 Azure has joined #ruby
+2015-04-04 21:41 milesmatthias has joined #ruby
+2015-04-04 21:42 JoshGlzBrk has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 21:42 Sawbones has joined #ruby
+2015-04-04 21:44 gkra has quit [Remote host closed the connection]
+2015-04-04 21:46 _ixti_ has quit [Ping timeout: 264 seconds]
+2015-04-04 21:46 DeathCode has left #ruby [#ruby]
+2015-04-04 21:46 milesmatthias has quit [Ping timeout: 264 seconds]
+2015-04-04 21:48 lavros has quit [Quit: пошёл с спокойной душой спать.]
+2015-04-04 21:48 rails038 has joined #ruby
+2015-04-04 21:48 enebo has joined #ruby
+2015-04-04 21:49 <rails038> hi
+2015-04-04 21:49 <rails038> i'm looking for a ror programmer for a project. maybe someone can help me finding one?
+2015-04-04 21:49 Parker0 has quit [Read error: Connection reset by peer]
+2015-04-04 21:50 gkra has joined #ruby
+2015-04-04 21:51 <jhass> rails038: Please do not crosspost without at least telling so. Experience shows that people don't bother to inform the other channels of provided solutions, therefore it is considered rude.
+2015-04-04 21:51 tubuliferous_ has joined #ruby
+2015-04-04 21:51 <Nilium> Probably not. This is #ruby.
+2015-04-04 21:51 rdark has quit [Quit: leaving]
+2015-04-04 21:52 steven43126 has joined #ruby
+2015-04-04 21:52 bruno- has joined #ruby
+2015-04-04 21:53 rails038 has left #ruby [#ruby]
+2015-04-04 21:54 simplyaubs has quit [Quit: simplyaubs]
+2015-04-04 21:55 naftilos76 has quit [Remote host closed the connection]
+2015-04-04 21:55 timonv has joined #ruby
+2015-04-04 21:56 tubuliferous_ has quit [Ping timeout: 256 seconds]
+2015-04-04 21:57 steven43126 has quit [Ping timeout: 256 seconds]
+2015-04-04 21:57 bruno- has quit [Ping timeout: 246 seconds]
+2015-04-04 21:58 _ixti_ has joined #ruby
+2015-04-04 21:59 <apeiros> oh. wow. this is depressing: http://project-rainbowcrack.com/table.htm
+2015-04-04 21:59 Dude007 has joined #ruby
+2015-04-04 21:59 <apeiros> "plaintext length: 1-10, success rate: 96.8%"
+2015-04-04 21:59 <apeiros> that's for loweralpha numeric, sha1 hashed
+2015-04-04 22:00 <jhass> https://shaaaaaaaaaaaaa.com/ :P
+2015-04-04 22:00 <jhass> (I know, rather unrelated)
+2015-04-04 22:00 decoponyo has quit [Read error: Connection reset by peer]
+2015-04-04 22:01 decoponio has joined #ruby
+2015-04-04 22:04 Sawbones has quit [Remote host closed the connection]
+2015-04-04 22:04 hpoydar has joined #ruby
+2015-04-04 22:05 gusto has quit [Quit: Leaving]
+2015-04-04 22:06 bruno- has joined #ruby
+2015-04-04 22:06 dixie__ has quit [Read error: Connection reset by peer]
+2015-04-04 22:08 avahey has quit [Quit: Connection closed for inactivity]
+2015-04-04 22:12 quimrstorres has joined #ruby
+2015-04-04 22:12 relix has joined #ruby
+2015-04-04 22:15 aswen has quit [Ping timeout: 248 seconds]
+2015-04-04 22:15 Dude007 has quit []
+2015-04-04 22:16 willharrison has joined #ruby
+2015-04-04 22:18 bruno- has quit [Ping timeout: 244 seconds]
+2015-04-04 22:18 Stalkr has quit [Changing host]
+2015-04-04 22:18 Stalkr has joined #ruby
+2015-04-04 22:19 jack_rabbit has quit [Ping timeout: 252 seconds]
+2015-04-04 22:20 jlast has joined #ruby
+2015-04-04 22:21 hpoydar has quit [Remote host closed the connection]
+2015-04-04 22:22 senayar_ has quit [Remote host closed the connection]
+2015-04-04 22:23 ki0 has quit [Remote host closed the connection]
+2015-04-04 22:24 timonv has quit [Quit: WeeChat 1.1.1]
+2015-04-04 22:25 jlast has quit [Ping timeout: 265 seconds]
+2015-04-04 22:26 jack_rabbit has joined #ruby
+2015-04-04 22:26 jeramy_s has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 22:27 workmad3 has joined #ruby
+2015-04-04 22:27 timonv has joined #ruby
+2015-04-04 22:28 7JTAAC2CC has quit [Quit: Leaving...]
+2015-04-04 22:28 Azure has quit [Quit: My MBP went to sleep.]
+2015-04-04 22:28 ItSANgo has joined #ruby
+2015-04-04 22:28 Prysmm has quit [Read error: Connection reset by peer]
+2015-04-04 22:30 bruno- has joined #ruby
+2015-04-04 22:30 riotjones has joined #ruby
+2015-04-04 22:32 doodlehaus has joined #ruby
+2015-04-04 22:34 mroach has joined #ruby
+2015-04-04 22:34 avahey has joined #ruby
+2015-04-04 22:34 Pharaoh2 has joined #ruby
+2015-04-04 22:35 nyilmere_ has quit [Quit: Bye]
+2015-04-04 22:35 Pharaoh2 has quit [Max SendQ exceeded]
+2015-04-04 22:35 riotjones has quit [Ping timeout: 248 seconds]
+2015-04-04 22:36 Pharaoh2 has joined #ruby
+2015-04-04 22:37 brainslug has joined #ruby
+2015-04-04 22:37 doodlehaus has quit [Ping timeout: 272 seconds]
+2015-04-04 22:38 dixie__ has joined #ruby
+2015-04-04 22:38 Takle_ has quit [Remote host closed the connection]
+2015-04-04 22:39 Spami has quit [Quit: This computer has gone to sleep]
+2015-04-04 22:39 timonv has quit [Ping timeout: 264 seconds]
+2015-04-04 22:40 bruno- has quit [Ping timeout: 252 seconds]
+2015-04-04 22:40 amdbcg has joined #ruby
+2015-04-04 22:42 cranq has quit [Ping timeout: 248 seconds]
+2015-04-04 22:42 milesmatthias has joined #ruby
+2015-04-04 22:45 Pharaoh2 has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 22:45 adamjleonard has quit [Read error: Connection reset by peer]
+2015-04-04 22:45 ramfjord has joined #ruby
+2015-04-04 22:46 adamjleonard has joined #ruby
+2015-04-04 22:47 milesmatthias has quit [Ping timeout: 256 seconds]
+2015-04-04 22:50 Megtastique has quit []
+2015-04-04 22:50 brainslug has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 22:50 cranq has joined #ruby
+2015-04-04 22:50 Spami has joined #ruby
+2015-04-04 22:51 krisquigley has joined #ruby
+2015-04-04 22:52 Spami has quit [Client Quit]
+2015-04-04 22:52 lkba has joined #ruby
+2015-04-04 22:53 workmad3 has quit [Ping timeout: 265 seconds]
+2015-04-04 22:53 enebo has quit [Quit: enebo]
+2015-04-04 22:53 palms has joined #ruby
+2015-04-04 22:53 Filete has joined #ruby
+2015-04-04 22:53 ghr has joined #ruby
+2015-04-04 22:53 steven43126 has joined #ruby
+2015-04-04 22:53 aaroneveleth has joined #ruby
+2015-04-04 22:53 kreeves has quit [Ping timeout: 250 seconds]
+2015-04-04 22:55 aaroneveleth has quit []
+2015-04-04 22:56 krisquigley has quit [Ping timeout: 244 seconds]
+2015-04-04 22:57 quimrsto_ has joined #ruby
+2015-04-04 22:58 quimrstorres has quit [Ping timeout: 252 seconds]
+2015-04-04 22:58 steven43126 has quit [Ping timeout: 255 seconds]
+2015-04-04 22:59 tesuji has quit [Ping timeout: 250 seconds]
+2015-04-04 23:01 Coraline is now known as Coraline_ZzZz
+2015-04-04 23:01 brainslug has joined #ruby
+2015-04-04 23:02 Limix has quit [Quit: Limix]
+2015-04-04 23:02 havenn has joined #ruby
+2015-04-04 23:03 quimrstorres has joined #ruby
+2015-04-04 23:03 centrx has quit [Quit: Shutting down, Please wait...]
+2015-04-04 23:03 quimrsto_ has quit [Read error: Connection reset by peer]
+2015-04-04 23:03 RegulationD has joined #ruby
+2015-04-04 23:04 ramfjord has quit [Ping timeout: 256 seconds]
+2015-04-04 23:04 jheg has quit [Quit: jheg]
+2015-04-04 23:04 havenwood has quit [Ping timeout: 246 seconds]
+2015-04-04 23:07 jefus_ has joined #ruby
+2015-04-04 23:07 overcrush has quit [Remote host closed the connection]
+2015-04-04 23:08 RegulationD has quit [Ping timeout: 244 seconds]
+2015-04-04 23:09 palms has quit [Ping timeout: 250 seconds]
+2015-04-04 23:10 piotrj has quit [Remote host closed the connection]
+2015-04-04 23:11 kreeves has joined #ruby
+2015-04-04 23:11 relix has quit [Quit: My MacBook Pro has gone to sleep. ZZZzzz…]
+2015-04-04 23:11 jefus has quit [Ping timeout: 265 seconds]
+2015-04-04 23:12 quintinadam has joined #ruby
+2015-04-04 23:12 willharrison has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 23:13 jack_rabbit has quit [Ping timeout: 246 seconds]
+2015-04-04 23:14 blackmesa has joined #ruby
+2015-04-04 23:15 senayar has joined #ruby
+2015-04-04 23:16 jeramy_s has joined #ruby
+2015-04-04 23:20 FernandoBasso has quit [Quit: leaving]
+2015-04-04 23:20 iamninja has quit [Read error: Connection reset by peer]
+2015-04-04 23:20 senayar has quit [Remote host closed the connection]
+2015-04-04 23:20 senayar has joined #ruby
+2015-04-04 23:20 iamninja has joined #ruby
+2015-04-04 23:21 roolo has quit [Remote host closed the connection]
+2015-04-04 23:21 jlast has joined #ruby
+2015-04-04 23:21 horsecowdog has joined #ruby
+2015-04-04 23:21 senayar has quit [Client Quit]
+2015-04-04 23:21 vivekananda has joined #ruby
+2015-04-04 23:22 tesuji has joined #ruby
+2015-04-04 23:24 Contigi has quit [Quit: Leaving]
+2015-04-04 23:24 greenbagels has quit [Read error: Connection reset by peer]
+2015-04-04 23:24 zarubin_ has joined #ruby
+2015-04-04 23:25 duncannz has joined #ruby
+2015-04-04 23:26 jlast has quit [Ping timeout: 265 seconds]
+2015-04-04 23:26 horsecowdog has quit [Ping timeout: 264 seconds]
+2015-04-04 23:27 Sawbones_ has joined #ruby
+2015-04-04 23:27 amdbcg has quit [Read error: Connection reset by peer]
+2015-04-04 23:27 amdbcg1 has joined #ruby
+2015-04-04 23:28 Pharaoh2 has joined #ruby
+2015-04-04 23:29 zarubin_ has quit [Ping timeout: 246 seconds]
+2015-04-04 23:30 Ellis has joined #ruby
+2015-04-04 23:30 markholmes has joined #ruby
+2015-04-04 23:32 ereslibre has quit [Quit: No Ping reply in 180 seconds.]
+2015-04-04 23:32 tesuji has quit [Ping timeout: 252 seconds]
+2015-04-04 23:33 red_horned_rihno has quit [Ping timeout: 256 seconds]
+2015-04-04 23:33 tesuji has joined #ruby
+2015-04-04 23:33 tesuji has quit [Changing host]
+2015-04-04 23:33 tesuji has joined #ruby
+2015-04-04 23:33 teddyp1cker has joined #ruby
+2015-04-04 23:34 <Ellis> im learning about data structures and i’m reading about graphs, what is a practical example of a graph in ruby? is a hash a graph?
+2015-04-04 23:35 <apeiros> this ftw: `class Fixnum; def inspect; to_s.reverse.gsub(/.{3}(?=.)/, '\0_').reverse; end; end`
+2015-04-04 23:36 <apeiros> Ellis: no, a hash is not a graph. but you can use it to implement one.
+2015-04-04 23:37 <Ellis> apeiros: can you help me wrap my head around graphs by giving me an example of one, maybe using ruby on rails
+2015-04-04 23:37 <eam> Ellis: sounds a little like homework
+2015-04-04 23:37 willharrison has joined #ruby
+2015-04-04 23:37 <Ellis> eam: ok. you’re wrong but ok
+2015-04-04 23:37 <eam> oh, I was going to help you but if I'm wrong :^)
+2015-04-04 23:37 tvw has quit []
+2015-04-04 23:38 <Ellis> eam: you accused me of something what do u expect
+2015-04-04 23:38 <apeiros> Ellis: the relation between your tables is a (potentially) cyclic directed graph
+2015-04-04 23:38 <eam> I did not, I said it sounds like homework and it does -- you are wrong :)
+2015-04-04 23:38 teddyp1cker has quit [Ping timeout: 248 seconds]
+2015-04-04 23:38 <eam> you haven't been accused of anything
+2015-04-04 23:39 <Ellis> eam: erasing cultural norms regarding interpretation of communication then you’re right
+2015-04-04 23:39 Limix has joined #ruby
+2015-04-04 23:39 <eam> Ellis: why don't you try describing a graph in plain english, then ask about how to adapt that specific case to ruby?
+2015-04-04 23:39 <Ellis> apeiros: i see. ty
+2015-04-04 23:39 ghr has quit [Ping timeout: 250 seconds]
+2015-04-04 23:39 <eam> also try being less ... like that
+2015-04-04 23:39 <Ellis> eam: let’s just not talk
+2015-04-04 23:39 Zai00 has quit [Quit: Zai00]
+2015-04-04 23:40 <eam> Ellis: you can start by not addressing me, anytime
+2015-04-04 23:40 tubuliferous_ has joined #ruby
+2015-04-04 23:40 <Ellis> eam: you addressed me
+2015-04-04 23:40 * apeiros sobs silently
+2015-04-04 23:40 <eam> Ellis: I did, but I'm not asking you for anything :P
+2015-04-04 23:40 Rollabunna has quit [Remote host closed the connection]
+2015-04-04 23:40 <Ellis> lol, anyways thanks for the clarification
+2015-04-04 23:41 Rollabunna has joined #ruby
+2015-04-04 23:41 <apeiros> you two tell me if you need op intervention… for now I'll hope you're both adult enough to resolve it yourselves :-p
+2015-04-04 23:41 <eam> no complaints on my end, only suggestions ;-)
+2015-04-04 23:42 tesuji has quit [Ping timeout: 265 seconds]
+2015-04-04 23:42 tesuji has joined #ruby
+2015-04-04 23:43 Sawbones_ has quit [Remote host closed the connection]
+2015-04-04 23:43 Cadillactica has joined #ruby
+2015-04-04 23:44 tubuliferous_ has quit [Ping timeout: 252 seconds]
+2015-04-04 23:45 red_horned_rihno has joined #ruby
+2015-04-04 23:45 Contigi has joined #ruby
+2015-04-04 23:46 CorySimmons has joined #ruby
+2015-04-04 23:47 Ellis has quit [Quit: Ellis]
+2015-04-04 23:48 Megtastique has joined #ruby
+2015-04-04 23:50 valkyrka has quit [Ping timeout: 256 seconds]
+2015-04-04 23:52 blackmesa has quit [Ping timeout: 250 seconds]
+2015-04-04 23:52 tesuji has quit [Ping timeout: 248 seconds]
+2015-04-04 23:52 tesuji has joined #ruby
+2015-04-04 23:52 steven43126 has joined #ruby
+2015-04-04 23:53 CorySimmons has left #ruby ["Bye!"]
+2015-04-04 23:53 Caius has quit [Ping timeout: 276 seconds]
+2015-04-04 23:53 CustosLimen has quit [Ping timeout: 248 seconds]
+2015-04-04 23:54 Cust0sL1men has quit [Ping timeout: 244 seconds]
+2015-04-04 23:55 brainslug has quit [Quit: My Mac has gone to sleep. ZZZzzz…]
+2015-04-04 23:55 doodlehaus has joined #ruby
+2015-04-04 23:56 Sawbones_ has joined #ruby
+2015-04-04 23:56 CustosLimen has joined #ruby
+2015-04-04 23:57 keen____ has joined #ruby
+2015-04-04 23:58 steven43126 has quit [Ping timeout: 252 seconds]
+2015-04-04 23:58 Caius has joined #ruby
+2015-04-04 23:59 dseitz has joined #ruby
+2015-04-04 23:59 keen___ has quit [Ping timeout: 264 seconds]
+2015-04-04 23:59 claptor has quit [Remote host closed the connection]
+2015-04-04 23:59 _ixti_ has quit [Ping timeout: 248 seconds]
+2015-04-04 23:59 Ellis has joined #ruby
