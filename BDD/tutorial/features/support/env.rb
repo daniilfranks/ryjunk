@@ -13,8 +13,6 @@ Before do
    puts 'Before!!!'
    @kalle = 0
    @nisse = Nisse.new
-
-   
 end
 
 World(HelpMe)

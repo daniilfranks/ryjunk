@@ -11,6 +11,18 @@ puts 'select'
 my_array = [1,2,3,4,5,6,7,8,100]
 my_select =  my_array.select do | item | item%2 == 0 end
 
+aa  = {a: 1, b:2, c:3 };ab = {a: 1, b:4, c:8 }; ac = {a: 2, b:4, c:24 }
+
+ll = [aa, ab, ac ]
+
+fem = {b:4}
+
+spec = ll.select do | item | item[:b] == fem[:b] end
+
+puts spec
+
+
+
 puts my_select
 
 
