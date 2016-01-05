@@ -1,3 +1,6 @@
+
+# http://www.skorks.com/2009/09/ruby-equality-and-object-comparison/
+
 class Sock
   include Comparable
   attr_reader :size
