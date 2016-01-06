@@ -1,5 +1,24 @@
 require 'csv'
 
+class Grader
+
+  def initialize(file_path)
+    @file_path = file_path
+  end
+
+  def parse!
+  	CSV.foreach(@file_path, headers:true) do | row |
+      exam = Exam.new(row)
+
+      if exam.failed?
+      	ExamMailer.failed!(exam)
+      else
+        ExamMailer.passed!(exam)
+      end
+    end
+  end
+end
+
 class ExamMailer 
 
   def self.failed!(exam)
@@ -54,9 +73,9 @@ class Exam
   attr_reader :student_name, :student_email, :scored_points
 
   def initialize(entry)
-    @student_name = entry[:first_name] 
-    @student_email = entry[:email]
-    @scored_points = entry[:points].to_i
+    @student_name = entry['first_name'] 
+    @student_email = entry['email']
+    @scored_points = entry['points'].to_i
   end
 
   def failed?
@@ -85,24 +104,24 @@ require 'mail'
 class ExamTest < MiniTest::Test
 
   def test_it_can_be_failed
-    exam = Exam.new({:points => '20'})
+    exam = Exam.new({'points' => '20'})
     assert exam.failed?
   end
 
   def test_it_can_be_passed
-    exam = Exam.new({:points => '51'})
+    exam = Exam.new({'points' => '51'})
     assert exam.passed?
   end
 
   def test_student_name
     student_name = 'Ilija'
-    exam = Exam.new({:first_name => student_name})
+    exam = Exam.new({'first_name' => student_name})
     assert_equal student_name, exam.student_name 
   end
 
   def test_student_email
   	student_email = 'illija@gov.net'
-    exam = Exam.new({:email => student_email})
+    exam = Exam.new({'email' => student_email})
     assert_equal student_email, exam.student_email
   end
 
@@ -128,11 +147,11 @@ class MailerTest < MiniTest::Test
    @student_email = 'john@doe.com'
    @student_name = 'John'
  
-   @payload = {:points => nil, :email => @student_email, :first_name => @student_name}
+   @payload = {'points' => nil, 'email' => @student_email, 'first_name' => @student_name}
  end
 
  def test_failed_exam_mail
-   @payload[:points] = '49'
+   @payload['points'] = '49'
    exam = Exam.new(@payload)
    ExamMailer.failed!(exam)
 
@@ -140,12 +159,12 @@ class MailerTest < MiniTest::Test
 
    assert_equal @student_email, mail.to.first
    assert_equal "Post exam meeting invitation", mail.subject
-   assert_match /you got #{@payload[:points]} points/i, mail.body.raw_source
+   assert_match /you got #{@payload['points']} points/i, mail.body.raw_source
    #assert_point @payload[:points], mail.body.raw_source
  end
 
  def test_passed_exam_mail
-   @payload[:points] = '50'
+   @payload['points'] = '50'
    exam = Exam.new(@payload)
    ExamMailer.passed!(exam)
 
@@ -153,10 +172,12 @@ class MailerTest < MiniTest::Test
 
    assert_equal @student_email, mail.to.first
    assert_equal "Exam results", mail.subject
-   assert_match /you got #{@payload[:points]} points/i, mail.body.raw_source
+   assert_match /you got #{@payload['points']} points/i, mail.body.raw_source
  end    
     
 end
+
+Grader.new('grades.csv').parse!
 
 
 end
