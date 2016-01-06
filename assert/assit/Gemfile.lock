@@ -1,0 +1,10 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    assit (0.1.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  assit
