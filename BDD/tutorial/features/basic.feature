@@ -18,6 +18,7 @@
       When we implement a test
       Then behave will test it for us!
 
+    @pause
     Scenario Outline: eating
     Given there are <start> cucumbers
     When I eat <eat> cucumbers
