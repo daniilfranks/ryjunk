@@ -37,7 +37,6 @@ nisse.delete_if do | key, val | val.strip.empty? end
 puts nisse
 
 testar = Hash.new
-
 testar[:mijje]  = {:olle=> "2", :fille => ''}
 testar[:kalle]  = {:olle=> '  ', :fille => 'josse'}
 
@@ -56,3 +55,51 @@ result = Hash.new
 first.each do |k, v | result[k] = second[k] if second[k] != v end
 
 puts result
+
+#olles = testar.select do | key, val |  key == :olle end 
+
+testar = Hash.new
+testar[:mijje]  = {:olle=> "2", :fille => ''}
+testar[:kalle]  = {:olle=> '  ', :fille => 'josse'}
+
+#olles = testar.reject {|k,v| ![:olle].include?(k)}
+
+#puts olle
+
+hash = {:a => 1, :b => 2, :c => 3}
+
+more = hash.reject {|k,v| ![:a,:b].include?(k)}
+
+puts more
+
+hash1 = {:a => 1, :b => 2, :c => 3}
+hash2 = {:a => 1, :b => 2, :c => 3}
+
+ll = [hash1, hash2]
+
+puts 'hopp hopp'
+more = ll.select do | item | item.select {|k,v| ![:a].include?(k)} end
+puts more
+
+h = {:a => 1, :b => 2}
+h1 = {:a => 1, :b => 2}
+h2 = {:a => 'janne', :b => 2}
+
+kk = [h1, h2]
+
+nisse = []
+kk.each do | x | nisse << x.select{ |k, _ | k == :a } end
+
+puts 'buuh'
+hella = []
+all = nisse.each do | k |  hella << k.collect{ |_ , v | v } end
+puts hella.uniq
+
+aa = {a: 1, b: 2}
+
+aa[:c] = 3
+
+puts aa
+
+
+

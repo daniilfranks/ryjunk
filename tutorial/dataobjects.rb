@@ -64,3 +64,22 @@ puts
 
 #my[1].tut
 
+array = [ 1, 2 ,3]
+
+nisse = {:apikeys => array}
+
+json = nisse.to_json
+#object = JSON.parse(json, object_class: OpenStruct)
+object = JSON.parse(json)
+
+#object.apikeys << 13
+object["apikeys"] << 13
+
+puts object
+
+fh = File.open('my.json', 'w+')
+
+fh.write(JSON.dump(object))
+
+fh.close()
+

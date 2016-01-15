@@ -19,6 +19,8 @@ fem = {b:4}
 
 spec = ll.select do | item | item[:b] == fem[:b] end
 
+left = ll.each do | x | x.delete_if | p | p.key?(:c) end end 
+
 puts spec
 
 
