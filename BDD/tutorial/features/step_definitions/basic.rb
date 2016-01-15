@@ -18,6 +18,10 @@ After('@test') do
   puts 'AFTER'
 end
 
+AfterStep('@pause') do
+  puts "Press Return to continue"
+  STDIN.getc
+end
 
 #  ____ _
 # / ___(_)_   _____ _ __

@@ -25,7 +25,7 @@ def get_trigrams_for_date(date)
 
   tmp = irc.get_messages.split("\n")
 
-  assert tmp.length == 0 , "tmp is empty"
+  #assert tmp.length == 0 , "tmp is empty"
   puts "number of lines: #{tmp.length}"
   msg = tmp.select { |m| m.match(CHAT_MESSAGE) }.join
 
@@ -47,7 +47,7 @@ if __FILE__ == $PROGRAM_NAME
   total = {}
 
   # Get the logs for the first 15 days of the month and return the bigams
-  (15..15).each do  | n |
+  (1..15).each do  | n |
     day = '%02d' % [n]
 
     total.merge!(get_trigrams_for_date "2015-04-#{day}") { | k, old, new | old + new }
