@@ -12,7 +12,8 @@
       Given My that I have a table2
       | test3 |  test4 |
       | data3 |  data4 |
- 
+
+    @fast 
     Scenario: Run a simple test
       Given we have behave installed
       When we implement a test
