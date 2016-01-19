@@ -6,6 +6,11 @@ class Repos < Weary::Client
 
   domain "http://jsonplaceholder.typicode.com"
   
+
+  get :get_post, "/posts/{id}" do | x |
+    x.optional :test 
+  end
+  
   get :posts, "/posts/1" 
 
   get :posts_1, "/posts" 
@@ -19,7 +24,9 @@ class Repos < Weary::Client
   end 
 
 
-  post :posts, "/posts"
+  post :posts, "/posts" do | x |
+    x.require :
+  end
 
   put  :put,  "/posts{id}"
 
@@ -44,6 +51,18 @@ if __FILE__ == $PROGRAM_NAME
     def setup
       @client = Repos.new
     end
+
+    # https://github.com/typicode/jsonplaceholder#how-to
+    def test_zero_post
+      response = @client.posts
+      assert response.success?
+    end
+
+    def test_zero
+      response = @client.get_post(:id => 1).perform
+      assert response.success?
+
+    end
  
 %Q(#<Weary::Response:0x007f3194424ad8 @response=#<Rack::Response:0x007f3194424ab0 @status=200, @header={"server"=>"Cowboy", "connection"=>"close", "x-powered-by"=>"Express", "vary"=>"Origin", "access-control-allow-credentials"=>"true", "cache-control"=>"no-cache", "pragma"=>"no-cache", "expires"=>"-1", "x-content-type-options"=>"nosniff", "content-type"=>"application/json; charset=utf-8", "etag"=>"W/\"124-yv65LoT2uMHrpn06wNpAcQ\"", "date"=>"Tue, 19 Jan 2016 17:09:11 GMT", "via"=>"1.1 vegur", "Content-Length"=>"292"}, @chunked=false, @writer=#<Proc:0x007f3194424128@/home/fredrik/.rvm/gems/ruby-2.2.1/gems/rack-1.6.4/lib/rack/response.rb:30 (lambda)>, @block=nil, @length=292, @body=["{\n  \"userId\": 1,\n  \"id\": 1,\n  \"title\": \"sunt aut facere repellat provident occaecati excepturi optio reprehenderit\",\n  \"body\": \"quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto\"\n}"]>, @status=200>
 )
@@ -57,7 +76,7 @@ if __FILE__ == $PROGRAM_NAME
       #assert_kind_of Weary::Response, response.class
 
       assert_equal 201, response.status
-      assert_include response.body, 'expedita'
+      #assert_include response.body, 'expedita'
 
       the_hash = JSON.parse(response.body)
 
@@ -85,11 +104,12 @@ if __FILE__ == $PROGRAM_NAME
     def test_head
       response = @client.head.perform
       assert_not_nil response
-      puts response.inspect       
+      #puts response.inspect       
       assert response.length == 0
       assert_not_nil response.body 
-
     end
+
+
   end  
 
 end
