@@ -10,10 +10,8 @@ class Repos < Weary::Client
   get :get_post, "/posts/{id}" do | x |
     x.optional :test 
   end
-  
-  get :posts, "/posts/1" 
 
-  get :posts_1, "/posts" 
+  get :get_all_posts, "/posts" 
 
   get :posts_comments, "/posts/comments" 
 
@@ -23,10 +21,7 @@ class Repos < Weary::Client
     r.optional :anon1
   end 
 
-
-  post :posts, "/posts" do | x |
-    x.require :
-  end
+  post :post_posts, "/posts"
 
   put  :put,  "/posts{id}"
 
@@ -46,36 +41,44 @@ if __FILE__ == $PROGRAM_NAME
   require 'test/unit'
   require 'json' 
 
-  class TC_jsonplaceHolder < Test::Unit::TestCase
+  class TC_jsonplaceHolderPOSTs < Test::Unit::TestCase
 
     def setup
       @client = Repos.new
     end
 
     # https://github.com/typicode/jsonplaceholder#how-to
-    def test_zero_post
-      response = @client.posts
-      assert response.success?
+    def test_post_with_payload
+
+      req = @client.post_posts
+      str_io = StringIO.new("{'userId' : 1 ,'title' : 'foo', 'body' : 'bar'}")
+      req.body(str_io)
+      response = req.perform {}
+      puts "HEJ HEJ"
+      puts response.inspect
+      #puts response.status
+      #assert_include [200, 201], response.body.status
+      #assert response.success?
     end
 
-    def test_zero
+  end
+
+  class TC_jsonplaceHolder < Test::Unit::TestCase
+
+    def setup
+      @client = Repos.new
+    end
+
+    def test_get
       response = @client.get_post(:id => 1).perform
+      assert_not_nil response
+      #puts response.inspect
       assert response.success?
 
-    end
- 
-%Q(#<Weary::Response:0x007f3194424ad8 @response=#<Rack::Response:0x007f3194424ab0 @status=200, @header={"server"=>"Cowboy", "connection"=>"close", "x-powered-by"=>"Express", "vary"=>"Origin", "access-control-allow-credentials"=>"true", "cache-control"=>"no-cache", "pragma"=>"no-cache", "expires"=>"-1", "x-content-type-options"=>"nosniff", "content-type"=>"application/json; charset=utf-8", "etag"=>"W/\"124-yv65LoT2uMHrpn06wNpAcQ\"", "date"=>"Tue, 19 Jan 2016 17:09:11 GMT", "via"=>"1.1 vegur", "Content-Length"=>"292"}, @chunked=false, @writer=#<Proc:0x007f3194424128@/home/fredrik/.rvm/gems/ruby-2.2.1/gems/rack-1.6.4/lib/rack/response.rb:30 (lambda)>, @block=nil, @length=292, @body=["{\n  \"userId\": 1,\n  \"id\": 1,\n  \"title\": \"sunt aut facere repellat provident occaecati excepturi optio reprehenderit\",\n  \"body\": \"quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto\"\n}"]>, @status=200>
-)
-    def test_first_test
-      response = @client.posts.perform
-      #puts response.inspect  
-      #puts response.body
-      assert_not_nil response
-      
       # Why??  
       #assert_kind_of Weary::Response, response.class
 
-      assert_equal 201, response.status
+      assert_include [200, 201], response.status
       #assert_include response.body, 'expedita'
 
       the_hash = JSON.parse(response.body)
@@ -87,6 +90,16 @@ if __FILE__ == $PROGRAM_NAME
       assert nisse
 
       # Check values?
+      # 
+    end
+ 
+    def test_get_all_posts
+      response = @client.get_all_posts.perform
+      #puts response.inspect  
+      #puts response.body
+      assert_not_nil response
+      
+     
     end
 
     def test_options
@@ -99,8 +112,6 @@ if __FILE__ == $PROGRAM_NAME
       #puts response.header["access-control-allow-methods"].split(',')
     end
 
-%Q(#<Weary::Response:0x00000001728430 @response=#<Rack::Response:0x00000001728408 @status=200, @header={"server"=>"Cowboy", "connection"=>"close", "x-powered-by"=>"Express", "vary"=>"Origin", "access-control-allow-credentials"=>"true", "accept-ranges"=>"bytes", "cache-control"=>"public, max-age=0", "last-modified"=>"Mon, 21 Dec 2015 18:53:20 GMT", "etag"=>"W/\"207f-151c5e38100\"", "content-type"=>"text/html; charset=UTF-8", "date"=>"Tue, 19 Jan 2016 19:25:32 GMT", "via"=>"1.1 vegur", "Content-Length"=>"0"}, @chunked=false, @writer=#<Proc:0x0000000171ec78@/home/fredrik/.rvm/gems/ruby-2.2.1/gems/rack-1.6.4/lib/rack/response.rb:30 (lambda)>, @block=nil, @length=0, @body=[""]>, @status=200>
-)
     def test_head
       response = @client.head.perform
       assert_not_nil response
