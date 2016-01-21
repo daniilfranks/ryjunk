@@ -54,8 +54,8 @@ if __FILE__ == $PROGRAM_NAME
       str_io = StringIO.new("{'userId' : 1 ,'title' : 'foo', 'body' : 'bar'}")
       req.body(str_io)
       response = req.perform {}
-      puts "HEJ HEJ"
-      puts response.inspect
+      #puts "HEJ HEJ"
+      #puts response.inspect
       #puts response.status
       #assert_include [200, 201], response.body.status
       #assert response.success?
@@ -69,8 +69,19 @@ if __FILE__ == $PROGRAM_NAME
       @client = Repos.new
     end
 
+    def assert_le_1sec now, old
+      assert_block do
+        puts (now-old)
+        (now - old) < 1
+        
+      end
+    end
+
     def test_get
+      old = Time.now
       response = @client.get_post(:id => 1).perform
+      assert_le_1sec Time.now, old
+
       assert_not_nil response
       #puts response.inspect
       assert response.success?
