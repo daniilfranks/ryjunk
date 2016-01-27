@@ -1,3 +1,26 @@
+160122
+------
+
+- n-gram? debugga förstå!
+
+- filewatch?
+
+- gör klar weary-json-placerholder, mera asserts...
+
+-threading -MVC - daemon restAPI thing? playbook?
+
+- threadlocking?
+
+- profiling?
+
+- nya modeller för apikeys?
+
+- jenkins skapa grapher
+
+- jenkins fileparameter för playbook?...
+
+
+
 151215
 ------
 

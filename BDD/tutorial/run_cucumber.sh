@@ -1,2 +1,2 @@
 
-cucumber -p ollepelle
+cucumber -p ollepelle --order random
