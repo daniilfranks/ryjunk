@@ -10,7 +10,8 @@ include Test::Unit::Assertions
 class Nisse
   include Observable
 
-  def initialize
+  def initialize object
+    @obj = object
   end
 
   def run
@@ -18,7 +19,7 @@ class Nisse
   	#puts 'trying to notify'
   	sleep 6
   	changed
-  	notify_observers('hej hopp')
+  	notify_observers(@obj)
   end
 end
 
@@ -55,13 +56,18 @@ class Object
  end
 end  
 
-
 Given(/^we can setup an arbitrary user$/) do
   # Shams
   # We use forgery to make up some test data
   
-  
-  @nisse = Nisse.new
+  @my_array = {}
+  @my_array[:pilluta] = false
+
+  class Orvar ;attr_accessor:pilutta ;def initialize ; @pilutta = false ;end end
+
+  @object = Orvar.new
+
+  @nisse = Nisse.new @object
   init_observer(@nisse)
  
  
@@ -114,7 +120,7 @@ Then(/^I should see the difference$/) do
   assert_not_equal @old_email, @obj.first.email 
 
   Timeout::timeout (10) {
-    until @pilutta do
+    until @object.pilutta do
       sleep 0.05
     end
   }

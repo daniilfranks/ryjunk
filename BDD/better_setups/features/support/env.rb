@@ -1,10 +1,10 @@
 
 module Observer
 
-  def update(msg)
+  def update(obj)
     puts "update called!!!"
-    puts msg
-      @pilutta = true
+    puts obj.inspect
+    obj.pilutta  = true
   end
   
   def init_observer(notifier)
