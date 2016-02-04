@@ -1,3 +1,16 @@
+
+160204
+------
+
+ - cucumber och async, mer prototyping
+ - machinist och apikeys
+ - MVC och trådar
+ - CI-lampa
+ - Comparable, sort and more ...
+ - Mocking (mocking.rb) both classes and methods
+ - exams.rb och n-gram.rb
+ - enums
+
 160122
 ------
 
