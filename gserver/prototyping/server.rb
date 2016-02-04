@@ -14,7 +14,7 @@ class TimeServer < GServer
   def serve(io)
     # Read a Struct or something similar?
 
-#    io.puts(Time.now.to_i)
+    io.puts(Time.now.to_i)
   end
 end
 

@@ -22,6 +22,10 @@ Before('@test') do
   puts 'BEFORE'
 end
 
+#BeforeStep('@test') do
+#  puts 'BEFOREstep'
+#end
+
 #    / \   / _| |_ ___ _ __
 #   / _ \ | |_| __/ _ \ '__|
 #  / ___ \|  _| ||  __/ |
@@ -35,6 +39,10 @@ AfterStep('@pause') do
   puts "Press Return to continue"
   STDIN.getc
 end
+
+#AfterConfiguration ('@test') do | config |
+#  puts "AfterConfiguration! #{config.feature.dirs}"
+#end
 
 #  ____ _
 # / ___(_)_   _____ _ __

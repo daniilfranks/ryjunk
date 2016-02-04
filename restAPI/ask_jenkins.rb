@@ -1,9 +1,9 @@
 require 'jenkins_api_client'
 
 
-@client = JenkinsApi::Client.new(:server_url =>"http://jenkins.svenskaspel.se/", :username => '', :password => '')
+@client = JenkinsApi::Client.new(:server_url =>"http://jenkins.svenskaspel.se/", :username => 'fabv', :password => 'basTrombone16')
 # The following call will return all jobs matching 'Testjob'
-puts @client.exec_cli("version")
+#puts @client.exec_cli("version")
 puts @client.job.list("cucumber.API.tests.playbook")  # cucumber.API.tests.playbook
 
 
@@ -11,7 +11,11 @@ puts @client.job.list("cucumber.API.tests.playbook")  # cucumber.API.tests.playb
 #puts @client.job.get_builds("cucumber.API.tests.playbook")
 
 # could be success, unstable or failure
+print "playbook:"
 puts @client.job.get_current_build_status("cucumber.API.tests.playbook")
+
+print "playbook versatile:"
+puts @client.job.get_current_build_status("cucumber.API.tests.playbook-versatile")
 
 
 
