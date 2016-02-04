@@ -1,6 +1,9 @@
 require 'json'
 require 'fileutils'
 
+# https://blog.engineyard.com/2015/seven-unusual-ruby-datastores
+
+
 
 class Mementote
 
@@ -98,7 +101,7 @@ if __FILE__ == $PROGRAM_NAME
     def test_c
 
       @memetone.read.each do | item |
-        
+
         assert_kind_of(Fixnum, item)
       end
     end
