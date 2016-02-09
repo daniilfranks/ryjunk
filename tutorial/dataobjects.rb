@@ -36,6 +36,10 @@ object = JSON.parse(json, object_class: OpenStruct)
 
 #puts object.a
 
+puts "Hej hopp i galopp!"
+puts [object.a, object.x].all?
+
+
 #puts object.b[0].d[1].f
 
 
