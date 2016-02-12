@@ -18,18 +18,8 @@ end
 # | |_) |  __/  _| (_) | | |  __/
 # |____/ \___|_|  \___/|_|  \___|
 
-#BeforeTestCase('@test')  do
-#  puts 'before test_case'
-#end
-
-#before_test_step('@test') do
-#  puts 'before test_step'
-#end
-
-
 Before('@test') do
   puts 'BEFORE'
-  #puts self.methods
 end
 
 #BeforeStep('@test') do
