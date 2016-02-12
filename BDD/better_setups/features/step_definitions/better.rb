@@ -52,7 +52,7 @@ Before do
     svscontact   {Faker::Name.name}
     enabled      {true}
     apikey       {SecureRandom.uuid}
-    apikeyid     {} 
+    apikeyid     {"8:2:" + Faker::Number.number(20)} 
   end  
 
   MyObject.blueprint do
@@ -71,9 +71,9 @@ Given(/^we can setup an arbitrary user$/) do
   #@test.should be_a(MyObject)
   #test = MyObject.make_unsaved(:date => Time.now)
 
-  user = ExternalUser.make
-
-  user.enabled = false
+  @user = ExternalUser.make
+  puts @user.inspect
+  @user.enabled = false
 
   #puts user.to_hash
 end
@@ -90,6 +90,8 @@ Then(/^I should see the difference$/) do
 
   puts "-----The end!-----------"	
   puts @obj
+
+  puts @user
 end
 
 
