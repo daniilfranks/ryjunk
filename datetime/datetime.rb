@@ -22,3 +22,7 @@ puts DateTime.parse("2015-03-06T19:11:45.3132274+01:00")
 #if tid2 < Time.now
 #   puts "Correct"
 #end
+
+puts "with microsecs"
+
+puts DateTime.now.strftime('%FT%T.%6N')
