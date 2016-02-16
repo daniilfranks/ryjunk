@@ -11,6 +11,7 @@ include Test::Unit::Assertions
 require 'securerandom'
 
 class ExternalUser
+  extend Comparable
 	extend Machinist::Machinable
 	attr_accessor :organisation, :description, :contact, :email, :phone, :website,
 	              :svscontact, :enabled, :apikey, :apikeyid
@@ -21,6 +22,12 @@ class ExternalUser
       instance_variables.each {|var| hash[var.to_s.delete("@")] = instance_variable_get(var) }
       hash
     end	
+
+    def <=>(another_user)
+    print 'We are in here ....'  
+    (self.apikey < another_user.apikey)? -1: (self.apikey > another_user.apikey)? 1: 0
+  end
+
 end
 
 class MyObject
@@ -52,7 +59,7 @@ Before do
     svscontact   {Faker::Name.name}
     enabled      {true}
     apikey       {SecureRandom.uuid}
-    apikeyid     {} 
+    apikeyid     {"8:2:" + Faker::Number.number(20)} 
   end  
 
   MyObject.blueprint do
@@ -71,9 +78,19 @@ Given(/^we can setup an arbitrary user$/) do
   #@test.should be_a(MyObject)
   #test = MyObject.make_unsaved(:date => Time.now)
 
-  user = ExternalUser.make
+  @user = ExternalUser.make
+  #puts @user.inspect
+  @user.enabled = false
 
-  user.enabled = false
+  @another_user = @user.dup
+
+  #@another_user.apikey = 42
+
+  assert_operator @user, :==, @another_user, "Help me!"
+
+  assert_equal @user, @another_user, "Differenc btw these two..."
+
+
 
   #puts user.to_hash
 end
@@ -90,6 +107,8 @@ Then(/^I should see the difference$/) do
 
   puts "-----The end!-----------"	
   puts @obj
+
+  puts @user
 end
 
 
