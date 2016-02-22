@@ -55,6 +55,14 @@ the_max = test.max_by do | item |  item.number end
 
 puts the_max.number
 
+nn = [{:a => 1, :b => 2, :c => 3}, {:a => 4, :b => 5, :c => 6}].flat_map do | n | 
+       [n[:a],n[:b]]
+     end
+
+puts 'nn!!!!'
+puts nn
+
+
 #zip !!!
 
 
