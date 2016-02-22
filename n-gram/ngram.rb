@@ -1,10 +1,9 @@
-require 'solid_assert'
 require_relative './logparser'
 require_relative './my_ngram'
 
 # http://www.blackbytes.info/2015/09/ngram-analysis-ruby/
 
-SolidAssert.enable_assertions 
+#SolidAssert.enable_assertions 
 
 
 def filter_non_words(ngrams)
@@ -29,7 +28,7 @@ def get_trigrams_for_date(date)
   puts "number of lines: #{tmp.length}"
   msg = tmp.select { |m| m.match(CHAT_MESSAGE) }.join
 
-  assert msg.class != NilClass , "NilClass"
+  #assert msg.class != NilClass , "NilClass"
 
   ngrams  = Ngram.new(msg).ngrams(3)
   ngrams  = filter_non_words(ngrams)

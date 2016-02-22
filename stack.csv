@@ -1,7 +1,0 @@
-Start State, action, End State
-EMPTY, push, LOADED
-EMPTY, pop, EMPTY
-LOADED,pop,LOADED
-LOADED,push,LOADED
-FULL,pop, LOADED
-FULL,push, FULL
