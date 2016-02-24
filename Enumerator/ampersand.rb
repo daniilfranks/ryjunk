@@ -10,3 +10,7 @@ end
 [Foo.new, Foo.new].map do |element| 
   element.method_name
 end
+
+
+
+[Foo.new, Foo.new].map(&:method_name)
