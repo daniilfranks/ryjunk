@@ -1,4 +1,15 @@
 
+1602028
+-------
+
+- Hur jämföra exvis en User med ett response från applikationen?
+  Bäst med en konvertering från Objektet till responsens format (hash)
+  istället för tvärtom?
+
+  .to_hash är användbar men då blir det en flat struktur. Är det alltid det i response?
+
+  
+
 160204
 ------
 
