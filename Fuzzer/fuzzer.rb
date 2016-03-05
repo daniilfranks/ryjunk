@@ -1,3 +1,4 @@
+require 'fileutils'
 
 class Runner
 
@@ -35,82 +36,103 @@ end
 
 class Reader
   
-  def initialize(indir=".", outdir=".", freq_file_fuzz=2, freq_fuzz_within_file=1)
+  def initialize(indir=".", outdir, freq_file_fuzz, freq_fuzz_within_file)
      
-     @outdir = outdir
-     @freq_file_fuzz=freq_file_fuzz
-     @freq_fuzz_within_file = freq_fuzz_within_file
+    @outdir = outdir
+    @freq_file_fuzz=freq_file_fuzz
+    @freq_fuzz_within_file = freq_fuzz_within_file
+
+    @directory = Dir.glob(  "#{indir}/*.xml")
+
+    # create outdir if it do not exist
+    @outdir =  indir + '/' + @outdir 
+    FileUtils.mkdir @outdir  unless File.exist?(@outdir)
+
+
+    freq_file_fuzz = (freq_file_fuzz > @directory.length)? @directory.length : freq_file_fuzz
+    indices = (0.. freq_file_fuzz).collect do | _ |  rand(0..@directory.length-1) end
+    indices.sort!.uniq!
+
+    puts "some file indices #{indices}"
      
-     @directory = Dir.glob(  "#{indir}/*.xml")
+=begin
+ @directory.each_with_index  do | file, idx |
 
-     puts @directory
+    	puts "-->now #{idx} : #{indices[idx]}"
+    	if idx == indices.first
+    	  fuzz_file(file)
+    	  indices = indices.drop(1) 
+    	end  
+    end
+=end
 
-     indices = (0.. @directory.length-1).collect do | _ | 
-     	rand(0..@directory.length-1) 
-     end
 
-     puts indices.sort!.uniq!
-
-     puts "some file indices #{indices}"
-     
-
-     @directory.each_with_index  do | file, idx |
-       fuzz_file(file) if idx == indices[idx]       
-     end
+    indices.each do | x |
+    	fuzz_file(@directory[x])
+    end
   
   end
 
   def fuzz_file(file)
-
-  	# create some random string to put in string
-
-  	# write back to file in output directory
+    
+    puts "fuzzing #{file}"
    
-    data = File.readlines(file)
+    no_of_lines = File.open(file).readlines.count
+    data = File.open(file).read
 
-    # get  row number  from file
-    sample = rand(0..data.length)
-     
-    puts "row number #{sample}"
+    freq_within = (@freq_fuzz_within_file > no_of_lines)? dno_of_lines : @freq_fuzz_within_file
 
-    return
+    indices = (0.. freq_within).collect do | _ | 	rand(0..no_of_lines) end
 
+    indices.sort!.uniq! 
+    puts "row number #{indices}"
 
-    cntr =0 
-    File.open(file, 'w+') do | x |
-           
-      if cntr == sample
-         x.write('random stuff') 
+    fh = File.open(@outdir + '/' + file, 'w') 
+    
+    cntr=0
+    data.each_line do | row |          
+
+      #puts "#{cntr}: #{indices.first}"
+
+      if cntr == indices.first
+      	puts "fuzzing row #{cntr}"
+        row = row.split('')
+        f = rand(0..row.length)
+        s = rand(0..row.length)
+        row[s], row[f] = row[f], row[s]
+        fh.write(row.join)
+        indices = indices.drop(1)
+      else
+      	#print '.'
+        fh.write(row)  
       end
 
-      cntr+=1
-    
+       cntr+=1 
+
     end
 
+    fh.close()
 
   end 
 
   def files
-  
     return @directory
-
-    return ['nisse.xml', 'pelle.xml']
-
   end
 end
 
 
-
 if __FILE__ == $PROGRAM_NAME
 
-  # Find files in one indirectory and do some fuzzing and put them in an outdir
-  reader = Reader.new(indir='.', outdir = '.', freq_file_fuzz=3, freq_fuzz_within_file=3)
+  # TODO: logger and exception handling? argument handling?
+
+  # Find files in one indir and do some fuzzing on some files and put them in an outdir
+  reader = Reader.new(indir ='.', outdir='out', freq_file_fuzz=3, freq_fuzz_within_file=3)
   
   # Create a transmitter, decide if it should be ftp or PUSH or whatever
   transmitter = Transmitter.new
   
   # Read files, fuzzed and non-fuzzed and decide if they should be transfered regulary or randomly...
-  runner = Runner.new(reader, transmitter, false, 3)
+  runner = Runner.new(reader, transmitter, random=false, freq_file=0)
   
   # Start the show
   runner.run()
