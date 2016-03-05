@@ -1,8 +1,8 @@
-require 'rest-client'
+#require 'rest-client'
 require 'stringio'
-require 'solid_assert'
+#require 'solid_assert'
 
-SolidAssert.enable_assertions 
+#SolidAssert.enable_assertions 
 
 class LogFile
 
