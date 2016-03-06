@@ -1,3 +1,5 @@
+require 'net/ftp'
+require 'logger'
 require 'fileutils'
 
 # TODO
@@ -106,7 +108,7 @@ class Reader
     f = rand(0..row.length)
     s = rand(0..row.length)
     row[s], row[f] = row[f], row[s]
-    return row
+    return row.join
    
   end
 
