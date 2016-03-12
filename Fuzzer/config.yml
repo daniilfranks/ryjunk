@@ -1,0 +1,20 @@
+---
+
+# Logger
+loglevel: debug
+
+# Reader
+dummyr: false
+indir: .
+outdir: out
+freq_file_fuzz: 3
+freq_fuzz_within_file: 1 
+
+# Transmitter
+dummyt: false
+site: privat.bahnhof.se
+user: yyy
+passwd: xxx
+
+# Runner
+random: false
