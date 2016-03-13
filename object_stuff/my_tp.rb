@@ -1,8 +1,10 @@
-require 'pp'
-
+require "test/unit/assertions"
+include Test::Unit::Assertions
 
 invariants = TracePoint.new(:call,:return) do |tp|
 
+  # Be sure that checkRep included as method
+  assert tp.self.respond_to?(:checkRep)
 
   if tp.method_id != :checkRep and not 
     (tp.method_id == :initialize and tp.event == :call)  
@@ -16,6 +18,7 @@ class MyClass
   def initialize
     puts 'initialize'
     puts self.class.name
+    @name='Olle'
   end
 
   def my_method
@@ -23,10 +26,12 @@ class MyClass
     42
   end
 
-  private
+  #private
   def checkRep
     puts 'checkRep'
-    51
+    assert_not_nil @name, "Help"
+
+    assert_equal 2+2, 4.1
   end
 end
 
