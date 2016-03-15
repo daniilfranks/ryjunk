@@ -1,6 +1,10 @@
 require 'pp'
 
 class C
+
+  def initialize
+    @olle = 43
+  end
   def self.slow n
     return C.fast if n == 0
     sleep 1
@@ -14,6 +18,9 @@ end
 @times = {}
 
 traceCall = TracePoint.new(:call, :return) do |tp|
+
+  puts tp.self.instance_variable_defined?(:olle)
+  #puts tp.self.instance_variable_get("olle")
   key = "#{tp.defined_class}_#{tp.method_id}_#{caller(0).size}"
   if tp.event == :call
     @times[key] = Time.now
