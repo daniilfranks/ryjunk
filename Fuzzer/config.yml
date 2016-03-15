@@ -11,7 +11,7 @@ freq_file_fuzz: 3
 freq_fuzz_within_file: 1 
 
 # Transmitter
-dummyt: false
+dummyt: true
 site: privat.bahnhof.se
 user: yyy
 passwd: xxx

@@ -3,7 +3,8 @@ require 'net/ftp'
 require 'logger'
 require 'fileutils'
 
-require_relative 'config'
+require_relative 'tp.rb'
+require_relative 'my_config'
 require_relative 'reader'
 require_relative 'transmitter'
 
@@ -25,8 +26,12 @@ class Runner
   	  sleep (@random)? rand(1..10) :  @freq_file
   	  @transmitter.transmit(file)
   	end
+  end 
 
-  end 	
+  def checkRep
+    assert_not_nil @reader
+  end
+
 end
 
 # TODO: Use different fuzzers, readers[tokenswapper](arguments) ...
@@ -42,7 +47,8 @@ if __FILE__ == $PROGRAM_NAME
 
   begin
 
-    c           =  Config.new
+
+    c           =  MyConfig.new
     reader      = (c.dummyr)? DummyReader.new : 
                          Reader.new(indir =c.indir, outdir=c.outdir, 
   	                     freq_file_fuzz=3, freq_fuzz_within_file=3)
@@ -53,11 +59,13 @@ if __FILE__ == $PROGRAM_NAME
   
     #transmitter = transmitters[c.dummyt]
 
-    runner      = Runner.new(reader, transmitter, random=false, freq_file=0)
+    $invariants.enable do
+
+      runner      = Runner.new(reader, transmitter, random=false, freq_file=0)
   
-    # Start the show
-    runner.run()
-  
+      # Start the show
+      runner.run()
+    end
   rescue => msg
     puts msg
     puts msg.backtrace
