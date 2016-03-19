@@ -8,6 +8,10 @@ class MultiArray
   def each
     @arrays.each { |a| a.each { |x| yield x } }
   end
+
+  def <=>(array)
+    (self.size < another_sock.size)? -1: (self.size > another_sock.size)? 1: 0
+  end
 end
 
 ma = MultiArray.new([1, 2], [3], [4])

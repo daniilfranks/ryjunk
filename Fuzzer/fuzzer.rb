@@ -3,6 +3,19 @@ require 'net/ftp'
 require 'logger'
 require 'fileutils'
 
+invariants = TracePoint.new(:call,:return) do |tp|
+
+  # Be sure that checkRep included as method
+  assert tp.self.respond_to?(:checkRep)
+
+  if tp.method_id != :checkRep and not 
+    (tp.method_id == :initialize and tp.event == :call)  
+   
+      tp.self.send(:checkRep)
+  end  
+end
+
+
 require_relative 'config'
 require_relative 'reader'
 require_relative 'transmitter'
@@ -26,6 +39,10 @@ class Runner
   	  @transmitter.transmit(file)
   	end
 
+  end
+
+  def checkRep
+    assert true
   end 	
 end
 
