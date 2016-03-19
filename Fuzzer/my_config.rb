@@ -1,5 +1,5 @@
 # http://strugglingwithruby.blogspot.se/2008/10/yaml.html
-class Config
+class MyConfig
   attr_reader :dummyr, :indir, :outdir, :freq_file_fuzz, 
               :freq_fuzz_within_file,
               

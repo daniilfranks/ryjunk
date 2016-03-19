@@ -16,6 +16,9 @@ class DummyReader
   def fuzz_file(file)
     puts "fuzzing file #{file}"
   end  
+
+  def checkRep
+  end
 end   
 
 class Reader

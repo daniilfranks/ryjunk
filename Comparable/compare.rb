@@ -54,6 +54,19 @@ if __FILE__ == $PROGRAM_NAME
     end 
 
   end
+
+  puts 'Hi again!'
+
+  my_array = [Sock.new(45), Sock.new(3)]
+
+
+  #np =my_array.sort do | a, b | b <=> a end
+  #p np
+
+
+  my_array.sort!
+  my_array.each do | z | puts z.size  end
+  
   
 
 end

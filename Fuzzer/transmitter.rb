@@ -11,6 +11,10 @@ class DummyTransmitter
   	puts "transmitting #{file}"
   end
 
+  def checkRep
+    assert true
+  end
+
 end
 
 
