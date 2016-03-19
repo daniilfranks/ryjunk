@@ -10,8 +10,11 @@ require_relative 'transmitter'
 
 class Runner
 
-  def initialize(reader, transmitter, random=nil, freq_file=nil)
-  	
+  #def initialize(reader, transmitter, random=nil, freq_file=nil)
+  def initialize(reader: DummyReader.new , 
+  	             transmitter: DummyTransmitter.new, 
+  	             random: nil, freq_file: nil)
+  	  	
   	@reader = reader
   	@transmitter = transmitter
   	@random ||= false
@@ -61,7 +64,7 @@ if __FILE__ == $PROGRAM_NAME
 
     $invariants.enable do
 
-      runner      = Runner.new(reader, transmitter, random=false, freq_file=0)
+      runner      = Runner.new(reader: DummyReader.new, random: false, freq_file: 0)
   
       # Start the show
       runner.run()
