@@ -1,6 +1,18 @@
 
+160319
+-------
+
+NullObject pattern, använd alltid om istf nil!!
+
+Skriv om python randomexemplet till ruby !
+
+profiling : http://crypt.codemancers.com/tags/ruby.html
+
+Invariant: Använd för checkRep och mäta anrop!
+
 1602028
 -------
+
 
 - Hur jämföra exvis en User med ett response från applikationen?
   Bäst med en konvertering från Objektet till responsens format (hash)
@@ -14,7 +26,6 @@
 ------
 
  - cucumber och async, mer prototyping
- - machinist och apikeys
  - MVC och trådar
  - CI-lampa
  - Comparable, sort and more ...
@@ -50,18 +61,12 @@
 
 profiling?
 
-gems/factory?
 
 gherkin ta med allt
 
 expect ta med allt
 
 ruby-lint, rubocop (finns på jenkins?)
-
-
-
-
-
 
 
 ## cgi på raspberry for att kunna använda google calender?
@@ -79,7 +84,7 @@ Möjligt för playbook?
 =======
 # Software testing and machine Learning ...
 
-## ftp example and file watcher ...
+file watcher ...
 
 ## Class builder
 
@@ -107,9 +112,6 @@ weak/medium and strong oracles ...
 
 ## Arbitrary pattern in notification?
 
-##Invariants?
-
-## Datetime
 
 ## args, with hashes
 
@@ -127,7 +129,9 @@ weak/medium and strong oracles ...
 
 ## timeout
 
-## tmpfile and tmpdir and YAMl for remmbering
+## tmpfile and tmpdir
+
+#  and YAMl for remmbering
 
 ## cron for ruby?
 
