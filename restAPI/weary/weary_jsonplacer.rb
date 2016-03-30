@@ -8,7 +8,10 @@ class Repos < Weary::Client
   
 
   get :get_post, "/posts/{id}" do | x |
-    x.optional :test 
+#    x.required :test
+    x.headers :nisse
+#    x.optional :test
+#    puts x.optional 
   end
 
   get :get_all_posts, "/posts" 
@@ -77,9 +80,18 @@ if __FILE__ == $PROGRAM_NAME
       end
     end
 
+    def test_nya_test
+
+      req = @client.get_post(:id => 1, :test => '1', :nisse => 'hej')
+
+      response = req.perform
+      assert_not_nil response
+
+    end
+
     def test_get
       old = Time.now
-      response = @client.get_post(:id => 1).perform
+      response = @client.get_post(:id => 1, :test => '2').perform
       assert_le_1sec Time.now, old
 
       assert_not_nil response
