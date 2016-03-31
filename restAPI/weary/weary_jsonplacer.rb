@@ -9,9 +9,11 @@ class Repos < Weary::Client
 
   get :get_post, "/posts/{id}" do | x |
 #    x.required :test
-    x.headers :nisse
-#    x.optional :test
+#    x.headers :nisse
+    x.optional :filename
 #    puts x.optional 
+     puts "nnn:#{x.inspect}"
+     self.headers['nagot'] = 'raka' #x.optional[:filename]
   end
 
   get :get_all_posts, "/posts" 
@@ -36,6 +38,9 @@ class Repos < Weary::Client
 
   options :options, "/posts"
 
+  def my_headers 
+    self.headers['nagot'] = 'dasa'
+  end
 end
 
 
@@ -82,8 +87,8 @@ if __FILE__ == $PROGRAM_NAME
 
     def test_nya_test
 
-      req = @client.get_post(:id => 1, :test => '1', :nisse => 'hej')
-
+      req = @client.get_post(:id => 1, :test => '1', :filename => 'hej')
+      #req.headers['hejhopp'] = 'he stammer'
       response = req.perform
       assert_not_nil response
 
