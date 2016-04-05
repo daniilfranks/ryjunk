@@ -38,3 +38,29 @@
     end
 
   end
+
+
+  class TC_TestAll < Test::Unit::TestCase
+
+    def assert_equal_all_except(except, expected, actual)
+
+      assert_not_equal expected[except], actual[except]
+
+      expected.delete_if do | key, _ | key == except end 
+      actual.delete_if do | key, _ | key == except end 
+ 
+      assert_equal expected, actual
+
+    end
+
+    def setup
+      @nisse = {:nim => 1, :nam => 2, :num=> 3}
+      @pelle = {:nim => 2, :nam => 2, :num=> 3}
+    end
+
+    def test_object
+      assert_equal_all_except :nim, @nisse, @pelle
+    end 
+
+
+  end
