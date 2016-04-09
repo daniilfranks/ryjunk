@@ -3,12 +3,27 @@ require 'weary'
 
 
 class Repos < Weary::Client
+ 
+  #attr_accessor :haha
+
+  def initialize
+#  def allocate
+    @haha = "femfem"
+#    self.resource('nisse',:headers, path='hopp')
+  end
 
   domain "http://jsonplaceholder.typicode.com"
-  
+#  headers "Accept" => "text/#{@haha}"
+#  headers "Accept" => "text/:haha"
 
   get :get_post, "/posts/{id}" do | x |
-    x.optional :test 
+    x.required :test
+    x.headers "Accept" => "text/:test"
+    x.optional :filename
+
+#    puts x.optional 
+#     puts "nnn:#{x.inspect}"
+#     self.headers['nagot'] = 'raka' #x.optional[:filename]
   end
 
   get :get_all_posts, "/posts" 
@@ -33,6 +48,9 @@ class Repos < Weary::Client
 
   options :options, "/posts"
 
+  def my_headers 
+    self.headers['nagot'] = 'dasa'
+  end
 end
 
 
@@ -77,9 +95,19 @@ if __FILE__ == $PROGRAM_NAME
       end
     end
 
+    def test_nya_test
+
+      req = @client.get_post(:id => 1, :test => '1', :filename => 'hej')
+      #req.headers['hejhopp'] = 'he stammer'
+      puts "nnn:#{req.inspect}"
+      response = req.perform { 12 }
+      assert_not_nil response
+
+    end
+
     def test_get
       old = Time.now
-      response = @client.get_post(:id => 1).perform
+      response = @client.get_post(:id => 1, :test => '2').perform
       assert_le_1sec Time.now, old
 
       assert_not_nil response
