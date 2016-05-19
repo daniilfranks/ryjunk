@@ -1,4 +1,15 @@
 
+module DEBUG
+   ON = false
+
+def debug(str)
+  puts str if ON 
+end
+
+end
+
+include DEBUG
+
 class NyClass
 
   @@debug = false
@@ -15,9 +26,6 @@ class MyClass < FalseClass
   end
 end
 
-module DEBUG
-   ON = false
-end
 
 
 class LittleClass
@@ -25,6 +33,7 @@ class LittleClass
   def this_is_it
    
     puts 'Little we got a debug on ....' if DEBUG::ON
+    debug('more and more')
   end
 end
 
