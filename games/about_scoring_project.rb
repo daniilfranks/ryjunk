@@ -35,7 +35,7 @@ def three_ones(a)
   return three_or_more(a,1)
 end
 
-def check_ones ones
+def o_check_ones ones
 
   sum = 0
   if ones >= 3
@@ -49,7 +49,18 @@ def check_ones ones
   return sum
 end
 
-def check_others key, val
+def check_ones ones
+
+  rest = ones - 3
+  sum  = rest >= 0 ? 1000: 0
+  sum +=  rest * 100 if rest > 0
+
+  return sum
+end
+
+
+
+def o_check_others key, val
   sum = 0
   if val >= 3
     sum = 100 * key
@@ -59,6 +70,15 @@ def check_others key, val
   sum+= val * 10 * key  if key == 5 and val > 0
 
   #puts "returns #{sum}"
+  return sum
+
+end
+
+def check_others key, val
+  rest = val - 3
+  sum  = rest >= 0 ? 100 * key : 0
+  sum +=  rest * 10 * key  if rest > 0 and key == 5
+
   return sum
 
 end
