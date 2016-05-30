@@ -37,42 +37,43 @@ end
 
 def check_ones ones
 
-    sum = 0
-    if ones >= 3
-      sum = 1000
-      ones-= 3
-    end
-      
-    sum+= ones * 100
-    
-    #puts "returns #{sum}"
-    return sum  
+  sum = 0
+  if ones >= 3
+    sum = 1000
+    ones-= 3
+  end
+
+  sum+= ones * 100
+
+  #puts "returns #{sum}"
+  return sum
 end
 
 def check_others key, val
-    sum = 0
-    if val >= 3
-      sum = 100 * key 
-      val-= 3
-    end
-      
-    sum+= val * 10 * key  if key == 5 and val > 0
-    
-    #puts "returns #{sum}"
-    return sum    
+  sum = 0
+  if val >= 3
+    sum = 100 * key
+    val-= 3
+  end
+
+  sum+= val * 10 * key  if key == 5 and val > 0
+
+  #puts "returns #{sum}"
+  return sum
 
 end
 
 def get_quantas dice
 
-    quanta = Hash.new(0)
+  quanta = Hash.new(0)
 
-    dice.each do | d | quanta[d]+=1 end
+  dice.each do | d | quanta[d]+=1 end
 
-    sum =  check_ones quanta[1]
-    
-    sum = 100 
+  sum =  check_ones quanta[1]
+
+  sum = 100
 end
+
 
 def score2(dice)
 
@@ -80,25 +81,18 @@ def score2(dice)
 
   sum+= check_ones dice.count(1)
 
-  sum+= check_others  2, dice.count(2)
+  (2..6).each do | n |  sum += check_others(n, dice.count(n)) end
 
-  sum+= check_others  3, dice.count(3)
-  
-  sum+= check_others  4, dice.count(4)
-
-  sum+= check_others  5, dice.count(5)
-
-  sum+= check_others  6, dice.count(6)
-  
   return sum
 
 end
+
 
 def score(dice)
 
   sum = 0
   dice.sort!
-  
+
   return 0 if dice.empty?
 
   quanta = Hash.new(0)
@@ -112,13 +106,13 @@ def score(dice)
   sum+= check_others  2, quanta[2]
 
   sum+= check_others  3, quanta[3]
-  
+
   sum+= check_others  4, quanta[4]
 
   sum+= check_others  5, quanta[5]
 
   sum+= check_others  6, quanta[6]
-  
+
   return sum
 
   #sum+= 1000 if three_ones(dice)
@@ -131,4 +125,3 @@ def score(dice)
   #return 100 if dice.first == 1
 
 end
-
