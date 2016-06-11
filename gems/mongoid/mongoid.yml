@@ -4,3 +4,10 @@ development:
       database: mongoid
       hosts:
         - 192.168.1.2:27017
+
+production:
+  clients:
+    default:
+      database: mongoid
+      hosts:
+        - 192.168.1.2:27017

@@ -1,6 +1,6 @@
 require 'mongoid'
 
-Mongoid.load!("mongoid.yml", :development)
+#Mongoid.load!("mongoid.yml", :development)
 
 class Match
   include Mongoid::Document
@@ -17,6 +17,10 @@ end
 
 if __FILE__ == $PROGRAM_NAME
 
+ ENV["MONGOID_ENV"]="mongoid.yml"
+ puts "env: #{ENV["USER"]}"
+
+  puts "env: #{ENV["MONGOID_ENV"]}"
 
   p Match.count
 
