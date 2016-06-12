@@ -1,7 +1,7 @@
-require 'mongoid'
-
+#require 'mongoid'
+require_relative 'resulter'
 #Mongoid.load!("mongoid.yml", :development)
-
+=begin
 class Match
   include Mongoid::Document
   include Mongoid::Timestamps::Short
@@ -11,27 +11,33 @@ class Match
   field :env
 end
 
+=end
+
 
 
 
 
 if __FILE__ == $PROGRAM_NAME
 
- ENV["MONGOID_ENV"]="mongoid.yml"
- puts "env: #{ENV["USER"]}"
+ #ENV["MONGOID_ENV"]="mongoid.yml"
+ #puts "env: #{ENV["USER"]}"
 
-  puts "env: #{ENV["MONGOID_ENV"]}"
+#  puts "env: #{ENV["MONGOID_ENV"]}"
 
-  p Match.count
+#  p Match.count
 
 
-  d = Match.where(matchid: "123") #, result: "success", env: "test33")
+#  d = Match.where(matchid: "123") #, result: "success", env: "test33")
 
 
   Match.where(matchid: "23").each do | match |
-    p match.result, match.env
+    puts "#{match.result}, #{match.env}, #{match.created_at} "
   end
    
+  # TODO: list a specific match and include date and how it was ended
+
+
+
 
   #p d.result
 
