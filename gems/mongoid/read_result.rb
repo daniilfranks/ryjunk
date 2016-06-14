@@ -36,7 +36,10 @@ if __FILE__ == $PROGRAM_NAME
    
   # TODO: list a specific match and include date and how it was ended
 
-
+  Match.between(created_at: (3.days.ago..Time.now)).each do | match |
+    puts 'tut'
+    puts "#{match.result}"
+  end
 
 
   #p d.result
