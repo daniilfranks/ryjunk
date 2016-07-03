@@ -1,0 +1,4 @@
+source 'https://rubygems.org'
+
+gem "rubydoctest"
+gem "rest-client"
