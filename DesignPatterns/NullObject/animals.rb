@@ -5,9 +5,14 @@ class Animal
   	@name = name
   end	
   def self.find(id)
-    animals = {:pig => true, :sheep => true}
+   
   	return Animal.new(id) if id != ''
   	return nil
+  end
+
+  def self.ginf(id)
+  	animals = {:pig => true, :sheep => true}
+  	return animals.fetch(id, nil)Animal.new(id)
   end
 
 end
