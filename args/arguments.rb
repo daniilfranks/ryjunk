@@ -21,6 +21,20 @@ class ArgTest
 
 end
 
+class Another
+  def initialize(args)
+
+   args = defaults.merge(args)
+   @nisse = args[:test]
+
+   puts "#@nisse"  * 10
+  end
+
+  def defaults
+    {test: 'mamma'}
+  end
+end
+
 
 
 if __FILE__ == $PROGRAM_NAME
@@ -34,4 +48,5 @@ if __FILE__ == $PROGRAM_NAME
  
  argTest = ArgTest.new(:olle=>"hej", :prefix => true)
 
+   another = Another.new(test1: 123)
 end

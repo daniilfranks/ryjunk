@@ -13,7 +13,7 @@ Before do
    puts 'Before!!!'
    @kalle = 0
    @nisse = Nisse.new
-   puts self.public_methods
+   #puts self.public_methods
 end
 
 World(HelpMe)

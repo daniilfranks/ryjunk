@@ -27,7 +27,7 @@ end
 #end
 
 
-Before('@test') do
+Before('@test111') do
   puts 'BEFORE'
   #puts self.methods
 end
@@ -72,23 +72,23 @@ end
 
 Given(/^we have behave installed$/) do
   #pending # Write code here that turns the phrase above into concrete actions
-  puts 'We have cucumber installed!'
+  #puts 'We have cucumber installed!'
   #expect (@kalle).to  eq(0)
   #puts @HelpMe::NUDA
   #puts "name of :   #{self.class.name}  #{self.methods} "
 
-  puts"variables #{self.instance_variables}"
+  #puts"variables #{self.instance_variables}"
 #  puts"methods #{self.instance_methods}"
-  puts "type #{self.class}"
+  #puts "type #{self.class}"
 
   if not ENV.nil?
     for i in ENV
-      puts i
+      #puts i
     end
 
   end 
 
-  puts "HEJ: #{ENV['FOO']}"
+  #puts "HEJ: #{ENV['FOO']}"
 
   #if not FOO.nil?
 
@@ -117,12 +117,17 @@ Then(/^behave will test it for us!$/) do
   @nisse.shot
 end
 
+Given(/^testing$/) do | table|
+
+  puts "Got1: #{table.hashes}"
+end
+
 Given(/^there are (\d+) cucumbers$/) do |arg1|
   puts "Got1: #{arg1}"
 end
 
 When(/^I eat (\d+) cucumbers$/) do |arg1|
-  puts "Got2: #{arg1}"
+  #puts "Got2: #{arg1}"
 end
 
 
@@ -134,5 +139,5 @@ end
 
 
 Then(/^I should have (\d+) cucumbers$/) do |arg1|
-  puts "Got3: #{arg1}"
+  #puts "Got3: #{arg1}"
 end
