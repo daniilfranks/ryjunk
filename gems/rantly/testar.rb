@@ -15,6 +15,12 @@ class ListTest < Minitest::Test
 
   end
 
+  def testa_emra
+  # checks that integer only generates fixnum.
+    property_of { integer}.check { |i|
+    assert_kind_of Integer, i, "integer property did not return Integer type" }
+  end
+#=begin
   def test_reversing_by_property
 
   	property_of {
@@ -24,4 +30,6 @@ class ListTest < Minitest::Test
       assert_equal list.to_s, List.reverse(List.reverse(list).to_s)  
   	}
   end
+#=end
+
 end  

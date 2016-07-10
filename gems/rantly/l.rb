@@ -45,6 +45,7 @@ module List
 		if list.empty?
 			acc
 		else 
+			puts list.tail
 			reverse(list.tail, Cons.new(list.head, acc))
 		end
 	end
