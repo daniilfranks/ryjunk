@@ -22,6 +22,19 @@ class Testar
   end
 end
 
+class MeraTest
+
+  def initialize
+
+   @l = -> {puts @nisse } 
+  end
+
+  def mera_av
+   @nisse = 'hej hopp'
+   @l.call 
+  end
+
+end
 
 
 if __FILE__ == $PROGRAM_NAME
@@ -29,5 +42,10 @@ if __FILE__ == $PROGRAM_NAME
   test = Testar.new
 
   test.convert
+
+
+  mera_test = MeraTest.new
+
+  mera_test.mera_av
 
 end
