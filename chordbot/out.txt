@@ -1,0 +1,511 @@
+OpenStruct {
+    :fileType => "chordbot-song-library",
+       :songs => [
+        [0] OpenStruct {
+            :fileType => "chordbot-song",
+               :tempo => 90,
+            :editMode => 0,
+            :sections => [
+                [0] OpenStruct {
+                    :chords => [
+                        [ 0] OpenStruct {
+                                :type => "Maj7",
+                            :duration => 2,
+                                :root => "Eb"
+                        },
+                        [ 1] OpenStruct {
+                                :type => "11",
+                            :duration => 2,
+                                :root => "Bb"
+                        },
+                        [ 2] OpenStruct {
+                                :type => "Maj7",
+                            :duration => 2,
+                                :root => "Eb"
+                        },
+                        [ 3] OpenStruct {
+                                :type => "11",
+                            :duration => 2,
+                                :root => "Bb"
+                        },
+                        [ 4] OpenStruct {
+                                :type => "Maj7",
+                            :duration => 2,
+                                :root => "Eb"
+                        },
+                        [ 5] OpenStruct {
+                                :type => "9",
+                            :duration => 2,
+                                :root => "Db"
+                        },
+                        [ 6] OpenStruct {
+                                :type => "7",
+                            :duration => 2,
+                                :root => "C"
+                        },
+                        [ 7] OpenStruct {
+                                :type => "Min7",
+                            :duration => 2,
+                                :root => "F"
+                        },
+                        [ 8] OpenStruct {
+                                :type => "Min7",
+                            :duration => 2,
+                                :root => "F"
+                        },
+                        [ 9] OpenStruct {
+                                :type => "7",
+                            :duration => 2,
+                                :root => "C"
+                        },
+                        [10] OpenStruct {
+                                :type => "Min7",
+                            :duration => 4,
+                                :root => "F"
+                        },
+                        [11] OpenStruct {
+                                :type => "Min7",
+                            :duration => 1,
+                                :root => "F"
+                        },
+                        [12] OpenStruct {
+                                :type => "Maj7",
+                            :duration => 1,
+                                :root => "Eb"
+                        },
+                        [13] OpenStruct {
+                                :type => "6",
+                            :duration => 1,
+                                :root => "Ab"
+                        },
+                        [14] OpenStruct {
+                                :type => "7",
+                            :duration => 1,
+                                :root => "Bb"
+                        },
+                        [15] OpenStruct {
+                                :type => "6",
+                            :duration => 2,
+                                :root => "Eb"
+                        },
+                        [16] OpenStruct {
+                                :type => "7",
+                            :duration => 2,
+                                :root => "D"
+                        }
+                    ],
+                      :name => "Section 1",
+                     :style => OpenStruct {
+                        :chorus => 3,
+                        :tracks => [
+                            [0] OpenStruct {
+                                :volume => 7,
+                                    :id => 130
+                            },
+                            [1] OpenStruct {
+                                :volume => 7,
+                                    :id => 91
+                            },
+                            [2] OpenStruct {
+                                :volume => 7,
+                                    :id => 364
+                            }
+                        ],
+                        :reverb => 6
+                    }
+                }
+            ],
+            :songName => "saktaviga"
+        },
+        [1] OpenStruct {
+            :editMode => 0,
+            :fileType => "chordbot-song",
+               :tempo => 90,
+            :sections => [
+                [0] OpenStruct {
+                      :name => "Section 1",
+                     :style => OpenStruct {
+                        :reverb => 6,
+                        :preset => -1,
+                        :chorus => 3,
+                        :tracks => [
+                            [0] OpenStruct {
+                                    :id => 130,
+                                :volume => 7
+                            },
+                            [1] OpenStruct {
+                                    :id => 91,
+                                :volume => 7
+                            },
+                            [2] OpenStruct {
+                                    :id => 364,
+                                :volume => 7
+                            }
+                        ]
+                    },
+                    :chords => [
+                        [ 0] OpenStruct {
+                            :duration => 2,
+                                :type => "Maj",
+                                :root => "Eb"
+                        },
+                        [ 1] OpenStruct {
+                            :duration => 2,
+                                :type => "Dim",
+                                :root => "Eb"
+                        },
+                        [ 2] OpenStruct {
+                            :duration => 4,
+                                :type => "7",
+                                :root => "Bb"
+                        },
+                        [ 3] OpenStruct {
+                            :duration => 2,
+                                :type => "Maj",
+                                :root => "Eb"
+                        },
+                        [ 4] OpenStruct {
+                            :duration => 2,
+                                :type => "Dim",
+                                :root => "Eb"
+                        },
+                        [ 5] OpenStruct {
+                            :duration => 4,
+                                :type => "7",
+                                :root => "Bb"
+                        },
+                        [ 6] OpenStruct {
+                            :duration => 2,
+                                :type => "Maj",
+                                :root => "Cb"
+                        },
+                        [ 7] OpenStruct {
+                            :duration => 2,
+                                :type => "7",
+                                :root => "Bb"
+                        },
+                        [ 8] OpenStruct {
+                            :duration => 2,
+                                :type => "Maj",
+                                :root => "Cb"
+                        },
+                        [ 9] OpenStruct {
+                            :duration => 2,
+                                :type => "7",
+                                :root => "Bb"
+                        },
+                        [10] OpenStruct {
+                            :duration => 4,
+                                :type => "Min",
+                                :root => "Eb"
+                        },
+                        [11] OpenStruct {
+                            :duration => 4,
+                                :type => "Min",
+                                :root => "Eb"
+                        },
+                        [12] OpenStruct {
+                            :duration => 4,
+                                :type => "Dim",
+                                :root => "Eb"
+                        },
+                        [13] OpenStruct {
+                            :duration => 4,
+                                :type => "Maj",
+                                :root => "Eb"
+                        },
+                        [14] OpenStruct {
+                            :duration => 2,
+                                :type => "Maj",
+                                :root => "Cb"
+                        },
+                        [15] OpenStruct {
+                            :duration => 2,
+                                :type => "Maj",
+                                :root => "Eb"
+                        },
+                        [16] OpenStruct {
+                            :duration => 2,
+                                :type => "Maj",
+                                :root => "Eb"
+                        },
+                        [17] OpenStruct {
+                            :duration => 4,
+                                :type => "Dim",
+                                :root => "Eb"
+                        },
+                        [18] OpenStruct {
+                            :duration => 4,
+                                :type => "Maj",
+                                :root => "Eb"
+                        },
+                        [19] OpenStruct {
+                            :duration => 2,
+                                :type => "Maj",
+                                :root => "Cb"
+                        },
+                        [20] OpenStruct {
+                            :duration => 2,
+                                :type => "Maj",
+                                :root => "Eb"
+                        }
+                    ]
+                }
+            ],
+            :songName => "maple_leaf"
+        },
+        [2] OpenStruct {
+            :editMode => 0,
+            :fileType => "chordbot-song",
+               :tempo => 160,
+            :sections => [
+                [0] OpenStruct {
+                      :name => "Section 1",
+                     :style => OpenStruct {
+                        :reverb => 4,
+                        :preset => 76,
+                        :chorus => 4,
+                        :tracks => [
+                            [0] OpenStruct {
+                                    :id => 421,
+                                :volume => 7
+                            },
+                            [1] OpenStruct {
+                                    :id => 422,
+                                :volume => 7
+                            },
+                            [2] OpenStruct {
+                                    :id => 423,
+                                :volume => 8
+                            }
+                        ]
+                    },
+                    :chords => [
+                        [ 0] OpenStruct {
+                            :duration => 2,
+                                :type => "Maj",
+                                :root => "Eb"
+                        },
+                        [ 1] OpenStruct {
+                            :duration => 2,
+                                :type => "Dim",
+                                :root => "Eb"
+                        },
+                        [ 2] OpenStruct {
+                            :duration => 4,
+                                :type => "7",
+                                :root => "Bb"
+                        },
+                        [ 3] OpenStruct {
+                            :duration => 2,
+                                :type => "Maj",
+                                :root => "Eb"
+                        },
+                        [ 4] OpenStruct {
+                            :duration => 2,
+                                :type => "Dim",
+                                :root => "Eb"
+                        },
+                        [ 5] OpenStruct {
+                            :duration => 4,
+                                :type => "7",
+                                :root => "Bb"
+                        },
+                        [ 6] OpenStruct {
+                            :duration => 2,
+                                :type => "Maj",
+                                :root => "Cb"
+                        },
+                        [ 7] OpenStruct {
+                            :duration => 2,
+                                :type => "7",
+                                :root => "Bb"
+                        },
+                        [ 8] OpenStruct {
+                            :duration => 2,
+                                :type => "Maj",
+                                :root => "Cb"
+                        },
+                        [ 9] OpenStruct {
+                            :duration => 2,
+                                :type => "7",
+                                :root => "Bb"
+                        },
+                        [10] OpenStruct {
+                            :duration => 4,
+                                :type => "Min",
+                                :root => "Eb"
+                        },
+                        [11] OpenStruct {
+                            :duration => 4,
+                                :type => "Min",
+                                :root => "Eb"
+                        },
+                        [12] OpenStruct {
+                            :duration => 4,
+                                :type => "Dim",
+                                :root => "Eb"
+                        },
+                        [13] OpenStruct {
+                            :duration => 4,
+                                :type => "Maj",
+                                :root => "Eb"
+                        },
+                        [14] OpenStruct {
+                            :duration => 2,
+                                :type => "Maj",
+                                :root => "Cb"
+                        },
+                        [15] OpenStruct {
+                            :duration => 3,
+                                :type => "Maj",
+                                :root => "Eb"
+                        },
+                        [16] OpenStruct {
+                            :duration => 1,
+                                :type => "7",
+                                :root => "Bb"
+                        },
+                        [17] OpenStruct {
+                            :duration => 2,
+                                :type => "Maj",
+                                :root => "Eb"
+                        },
+                        [18] OpenStruct {
+                            :duration => 4,
+                                :type => "Dim",
+                                :root => "Eb"
+                        },
+                        [19] OpenStruct {
+                            :duration => 4,
+                                :type => "Maj",
+                                :root => "Eb"
+                        },
+                        [20] OpenStruct {
+                            :duration => 2,
+                                :type => "Maj",
+                                :root => "Cb"
+                        },
+                        [21] OpenStruct {
+                            :duration => 3,
+                                :type => "Maj",
+                                :root => "Eb"
+                        },
+                        [22] OpenStruct {
+                            :duration => 1,
+                                :type => "7",
+                                :root => "Bb"
+                        },
+                        [23] OpenStruct {
+                            :duration => 2,
+                                :type => "Maj",
+                                :root => "Eb"
+                        },
+                        [24] OpenStruct {
+                            :duration => 4,
+                                :type => "Maj",
+                                :root => "Bb"
+                        },
+                        [25] OpenStruct {
+                            :duration => 4,
+                                :type => "7",
+                                :root => "Bb"
+                        },
+                        [26] OpenStruct {
+                            :duration => 6,
+                                :type => "Maj",
+                                :root => "Eb"
+                        },
+                        [27] OpenStruct {
+                            :duration => 2,
+                                :type => "Dim",
+                                :root => "Eb"
+                        },
+                        [28] OpenStruct {
+                            :duration => 8,
+                                :type => "Maj",
+                                :root => "Bb"
+                        },
+                        [29] OpenStruct {
+                            :duration => 8,
+                                :type => "Maj",
+                                :root => "Eb"
+                        },
+                        [30] OpenStruct {
+                            :duration => 4,
+                                :type => "Maj",
+                                :root => "Bb"
+                        },
+                        [31] OpenStruct {
+                            :duration => 4,
+                                :type => "7",
+                                :root => "Bb"
+                        },
+                        [32] OpenStruct {
+                            :duration => 5,
+                                :type => "Maj",
+                                :root => "Eb"
+                        },
+                        [33] OpenStruct {
+                            :duration => 1,
+                                :type => "7",
+                                :root => "Eb"
+                        },
+                        [34] OpenStruct {
+                            :duration => 1,
+                                :type => "7",
+                                :root => "D"
+                        },
+                        [35] OpenStruct {
+                            :duration => 1,
+                                :type => "7",
+                                :root => "Db"
+                        },
+                        [36] OpenStruct {
+                            :duration => 4,
+                                :type => "7",
+                                :root => "C"
+                        },
+                        [37] OpenStruct {
+                            :duration => 1,
+                                :type => "Min",
+                                :root => "F"
+                        },
+                        [38] OpenStruct {
+                            :duration => 1,
+                                :type => "7",
+                                :root => "C"
+                        },
+                        [39] OpenStruct {
+                            :duration => 2,
+                                :type => "Min",
+                                :root => "F"
+                        },
+                        [40] OpenStruct {
+                            :duration => 2,
+                                :type => "7",
+                                :root => "F"
+                        },
+                        [41] OpenStruct {
+                            :duration => 2,
+                                :type => "7",
+                                :root => "Bb"
+                        },
+                        [42] OpenStruct {
+                            :duration => 3,
+                                :type => "7",
+                                :root => "Eb"
+                        },
+                        [43] OpenStruct {
+                            :duration => 1,
+                                :type => "Dim",
+                                :root => "E"
+                        }
+                    ]
+                }
+            ],
+            :songName => "maple_leaf "
+        }
+    ]
+}
+"saktaviga"
