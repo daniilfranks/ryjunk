@@ -42,6 +42,11 @@ class Document
     @words.each_cons(2) { |array| yield array[0], array[1] }
   end
 
+  def each_char
+    @words.each { |word| word.split('').each { |char| yield "#{char}...." } }
+  end
+
+
   def on_save( &block)
     @save_listener = block
   end
@@ -95,6 +100,9 @@ if __FILE__ == $PROGRAM_NAME
 
   testing_cliche.each_word_pair { | w  | puts w }
 
+  puts '*' *40
+  testing_cliche.each_char { | e | puts e }
+  puts '*' *40
 
   new_doc = Document.new('Favorite' , 'Russ', '') do | d |
     d.content << 'We the people'
