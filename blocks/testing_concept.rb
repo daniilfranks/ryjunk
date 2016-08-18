@@ -23,7 +23,7 @@ class NissePelle
 
 
   def to_str
-    "#{@time.strftime('%T.%6N')}"
+    "time:#{@time.strftime('%T.%6N')}, value #{@nisse}"
   end
 
   def to_s
