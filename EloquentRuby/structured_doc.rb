@@ -67,7 +67,7 @@ if __FILE__ == $PROGRAM_NAME
 
 fabv = Resume.new("fredde", "resume") do | cv |
 	  cv.name("Fredrik Svärd")
-	  cv.address("Örsvängen 3 Sundbyberg")
+	  cv.address("Baloba 1345 Minderby")
 	  cv.email("nfredrik@hotmail.com")
 
 end
