@@ -1,4 +1,4 @@
-require 'FileUtils'
+require 'fileutils'
 
 class BostonNarwin
 	attr_reader :action
