@@ -30,3 +30,6 @@ puts DateTime.now.strftime('%FT%T.%6N')
 collection = [ tid , tid2 ]
 
 collection.min
+
+
+7.times { puts DateTime.now.strftime('%A') }
