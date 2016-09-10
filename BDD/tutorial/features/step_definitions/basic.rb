@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 #    _                              _ 
 #   / \   _ __ ___  _   _ _ __   __| |
@@ -117,9 +118,9 @@ Then(/^behave will test it for us!$/) do
   @nisse.shot
 end
 
-Given(/^testing$/) do | table|
+Given(/^testing$/) do # | table|
 
-  puts "Got1: #{table.hashes}"
+#  puts "Got1: #{table.hashes}"
 end
 
 Given(/^there are (\d+) cucumbers$/) do |arg1|
@@ -127,7 +128,7 @@ Given(/^there are (\d+) cucumbers$/) do |arg1|
 end
 
 When(/^I eat (\d+) cucumbers$/) do |arg1|
-  #puts "Got2: #{arg1}"
+  puts "Got2: #{arg1}"
 end
 
 
@@ -140,4 +141,25 @@ end
 
 Then(/^I should have (\d+) cucumbers$/) do |arg1|
   #puts "Got3: #{arg1}"
+end
+
+
+
+Given(/^more than one argument (.*) (.*) (.*)$/) do |*args|
+#Given(/^more than one argument [(.*)]+ $/) do |*args|
+  puts 'Test several args'
+  puts "::#{args}::"
+  args.each do | x | puts x end
+#  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Given(/^kallar omgång[ar]*$/) do
+  puts 'Noj'
+end
+
+
+
+Given(/^My that I have a table(\d+)$/) do |arg1, table|
+  # table is a Cucumber::Core::Ast::DataTable
+#  pending # Write code here that turns the phrase above into concrete actions
 end
