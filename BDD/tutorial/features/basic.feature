@@ -39,3 +39,4 @@
     | start | eat | left |
     | start | eat | left |
     |  12   |  5  |  7   |
+    |  120  |  50 |  70  |
