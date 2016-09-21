@@ -19,6 +19,7 @@ Restsiffran (4) blir kontrollsiffra vilket gör att personnumret i exemplet blir
 
 =end
 
+
 class GeneratePersonNumber
 
   attr_reader :person_number, :female
@@ -37,20 +38,20 @@ class GeneratePersonNumber
      raise "invalid tokens" unless @date =~ /\d{9}/
   end
 
+  def get_singular(tmp)
+     tmp < 10 ? tmp : (tmp%10 + tmp/10)
+  end
+
   def calc_control_number
-    pattern = [2,1,2,1,2,1,2,1,2]
     c = 0
-    @almost.zip(pattern) { |x, y|
-       tmp = x.to_i * y.to_i 
-       c += tmp < 10 ? tmp : (tmp%10 + tmp/10)
-     }
+    @almost.zip([2,1,2] * 3) { |x, y| c += get_singular(x.to_i * y.to_i) }
 
      @control = 10 - c%10
      @person_number = "#@date#@control" 
   end
  
   def check_gender
-     @female = @person_number[8].to_i.odd?
+     @female = @person_number[6].to_i.odd?
   end
 
 end
