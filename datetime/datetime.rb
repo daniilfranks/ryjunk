@@ -26,3 +26,10 @@ puts DateTime.parse("2015-03-06T19:11:45.3132274+01:00")
 puts "with microsecs"
 
 puts DateTime.now.strftime('%FT%T.%6N')
+
+collection = [ tid , tid2 ]
+
+collection.min
+
+
+7.times { puts DateTime.now.strftime('%A') }

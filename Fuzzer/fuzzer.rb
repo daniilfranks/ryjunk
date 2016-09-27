@@ -62,8 +62,10 @@ if __FILE__ == $PROGRAM_NAME
                               Transmitter.new(c.site, c.user, c.passwd)
   
     #transmitter = transmitters[c.dummyt]
+    include Invariants
 
-    $invariants.enable do
+    #invar = Invariants.get_invariants
+    Invariants.get_invariants.enable do
 
       runner      = Runner.new(reader: DummyReader.new, random: false, freq_file: 0)
   

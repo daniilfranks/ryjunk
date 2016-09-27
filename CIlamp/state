@@ -1,0 +1,317 @@
+---
+:servers:
+  blinky build:
+    ArgonFrameworkCommon:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1462970293
+      :url: http://jenkins.svenskaspel.se/job/ArgonFrameworkCommon/
+      :last_label: '27'
+    Bazooka-selenium-tests:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1468416866
+      :url: http://jenkins.svenskaspel.se/job/Bazooka-selenium-tests/
+      :last_label: '556'
+    bstool3:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1464086349
+      :url: http://jenkins.svenskaspel.se/job/bstool3/
+      :last_label: '91'
+    build_cassandra_driver:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1461157821
+      :url: http://jenkins.svenskaspel.se/job/build_cassandra_driver/
+      :last_label: '19'
+    build_console-helper:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1467707092
+      :url: http://jenkins.svenskaspel.se/job/build_console-helper/
+      :last_label: '36'
+    build_jna_rpm:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1460029129
+      :url: http://jenkins.svenskaspel.se/job/build_jna_rpm/
+      :last_label: '7'
+    build_mongo-cxx-driver:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1461162100
+      :url: http://jenkins.svenskaspel.se/job/build_mongo-cxx-driver/
+      :last_label: '11'
+    build_nodejs12:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1460536406
+      :url: http://jenkins.svenskaspel.se/job/build_nodejs12/
+      :last_label: '4'
+    build_patched_flume:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1463491433
+      :url: http://jenkins.svenskaspel.se/job/build_patched_flume/
+      :last_label: '1'
+    build_swagger_codegen:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1456768180
+      :url: http://jenkins.svenskaspel.se/job/build_swagger_codegen/
+      :last_label: '36'
+    capture-cd-bus:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1468567152
+      :url: http://jenkins.svenskaspel.se/job/capture-cd-bus/
+      :last_label: '2345'
+    cmtool:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1467869796
+      :url: http://jenkins.svenskaspel.se/job/cmtool/
+      :last_label: '204'
+    cucumber.API.tests.playbook-upload-file:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1467900400
+      :url: http://jenkins.svenskaspel.se/job/cucumber.API.tests.playbook-upload-file/
+      :last_label: '98'
+    Cucumber.Gui.Regtests:
+      :activity: :sleeping
+      :last_build_status: :failure
+      :last_build_time: 1468575596
+      :url: http://jenkins.svenskaspel.se/job/Cucumber.Gui.Regtests/
+      :last_label: '2911'
+    Cucumber.Gui.Test.Trigger:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1468558141
+      :url: http://jenkins.svenskaspel.se/job/Cucumber.Gui.Test.Trigger/
+      :last_label: '533'
+    depscan:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1468439161
+      :url: http://jenkins.svenskaspel.se/job/depscan/
+      :last_label: '58'
+    dummy:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1468579706
+      :url: http://jenkins.svenskaspel.se/job/dummy/
+      :last_label: '4894'
+    DynamicInterpreterAvroClasses:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1458292916
+      :url: http://jenkins.svenskaspel.se/job/DynamicInterpreterAvroClasses/
+      :last_label: '5'
+    FabricClientJava:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1455712196
+      :url: http://jenkins.svenskaspel.se/job/FabricClientJava/
+      :last_label: '60'
+    feature_branch_status_report_boi:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1468213261
+      :url: http://jenkins.svenskaspel.se/job/feature_branch_status_report_boi/
+      :last_label: '43'
+    Grid:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1466074632
+      :url: http://jenkins.svenskaspel.se/job/Grid/
+      :last_label: '124'
+    hadoop-cascading-common:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1453280193
+      :url: http://jenkins.svenskaspel.se/job/hadoop-cascading-common/
+      :last_label: '53'
+    hadoop-common:
+      :activity: :sleeping
+      :last_build_status: :failure
+      :last_build_time: 1463639935
+      :url: http://jenkins.svenskaspel.se/job/hadoop-common/
+      :last_label: '273'
+    hadoop-svs-hive-plugin:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1458641467
+      :url: http://jenkins.svenskaspel.se/job/hadoop-svs-hive-plugin/
+      :last_label: '53'
+    HadoopPackage:
+      :activity: :sleeping
+      :last_build_status: :failure
+      :last_build_time: 1442825814
+      :url: http://jenkins.svenskaspel.se/job/HadoopPackage/
+      :last_label: '793'
+    ItsProxyCommon:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1447947878
+      :url: http://jenkins.svenskaspel.se/job/ItsProxyCommon/
+      :last_label: '14'
+    Juno.GameInfoWriter:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1458718622
+      :url: http://jenkins.svenskaspel.se/job/Juno.GameInfoWriter/
+      :last_label: '113'
+    jupiter-api-trigger:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1468520101
+      :url: http://jenkins.svenskaspel.se/job/jupiter-api-trigger/
+      :last_label: '344'
+    JupiterFacade-Java:
+      :activity: :sleeping
+      :last_build_status: :unknown
+      :last_build_time: 1445366544
+      :url: http://jenkins.svenskaspel.se/job/JupiterFacade-Java/
+      :last_label: '39'
+    Keep_build:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1468572234
+      :url: http://jenkins.svenskaspel.se/job/Keep_build/
+      :last_label: '4174'
+    mavendeploylab:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1418721503
+      :url: http://jenkins.svenskaspel.se/job/mavendeploylab/
+      :last_label: '78'
+    MR3.Trinidad.Pagespeed:
+      :activity: :sleeping
+      :last_build_status: :failure
+      :last_build_time: 1450354333
+      :url: http://jenkins.svenskaspel.se/job/MR3.Trinidad.Pagespeed/
+      :last_label: '57'
+    MR4.Trinidad.Image-testing:
+      :activity: :sleeping
+      :last_build_status: :failure
+      :last_build_time: 1468567817
+      :url: http://jenkins.svenskaspel.se/job/MR4.Trinidad.Image-testing/
+      :last_label: '678'
+    nbackend_all:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1421239120
+      :url: http://jenkins.svenskaspel.se/job/nbackend_all/
+      :last_label: '4'
+    PDBClient:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1442296747
+      :url: http://jenkins.svenskaspel.se/job/PDBClient/
+      :last_label: '11'
+    PlayBook:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1465806869
+      :url: http://jenkins.svenskaspel.se/job/PlayBook/
+      :last_label: '151'
+    pyatcheck:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1468494001
+      :url: http://jenkins.svenskaspel.se/job/pyatcheck/
+      :last_label: '63'
+    python_patternmatcher:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1459925369
+      :url: http://jenkins.svenskaspel.se/job/python_patternmatcher/
+      :last_label: '33'
+    python_svs-conductor:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1457446806
+      :url: http://jenkins.svenskaspel.se/job/python_svs-conductor/
+      :last_label: '398'
+    python_webhook2mq:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1463139804
+      :url: http://jenkins.svenskaspel.se/job/python_webhook2mq/
+      :last_label: '50'
+    svs-products:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1453282527
+      :url: http://jenkins.svenskaspel.se/job/svs-products/
+      :last_label: '23'
+    terminal-jupiter-client-api:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1468523161
+      :url: http://jenkins.svenskaspel.se/job/terminal-jupiter-client-api/
+      :last_label: '233'
+    terminal-maven:
+      :activity: :building
+      :last_build_status: :success
+      :last_build_time: 1468497210
+      :url: http://jenkins.svenskaspel.se/job/terminal-maven/
+      :last_label: '2484'
+    terminal_integration_test:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1468497475
+      :url: http://jenkins.svenskaspel.se/job/terminal_integration_test/
+      :last_label: '1612'
+    TPSysCom_Windows:
+      :activity: :sleeping
+      :last_build_status: :failure
+      :last_build_time: 1460029334
+      :url: http://jenkins.svenskaspel.se/job/TPSysCom_Windows/
+      :last_label: '5'
+    Trinidad.Docker-env:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1460678958
+      :url: http://jenkins.svenskaspel.se/job/Trinidad.Docker-env/
+      :last_label: '64'
+    update_rally:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1468577616
+      :url: http://jenkins.svenskaspel.se/job/update_rally/
+      :last_label: '5137'
+    welder-build:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1468572044
+      :url: http://jenkins.svenskaspel.se/job/welder-build/
+      :last_label: '9625'
+    welder-mr:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1468567142
+      :url: http://jenkins.svenskaspel.se/job/welder-mr/
+      :last_label: '2628'
+    xmluatest1:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1464255282
+      :url: http://jenkins.svenskaspel.se/job/xmluatest1/
+      :last_label: '65'
+    zkdata:
+      :activity: :sleeping
+      :last_build_status: :success
+      :last_build_time: 1453282868
+      :url: http://jenkins.svenskaspel.se/job/zkdata/
+      :last_label: '43'
+    zksync_lab:
+      :activity: :sleeping
+      :last_build_status: :unknown
+      :last_build_time: 1440670353
+      :url: http://jenkins.svenskaspel.se/job/zksync_lab/
+      :last_label: '2'
+:repos: {}
+:sites: {}

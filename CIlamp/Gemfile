@@ -1,0 +1,4 @@
+source 'http://rubygems.org'
+gem 'blinky'
+gem 'jenkins_api_client'
+gem 'daemons'

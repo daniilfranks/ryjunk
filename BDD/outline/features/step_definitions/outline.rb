@@ -5,7 +5,14 @@ Given(/^that$/) do
 end
 
 When(/^this happen (.*) (.*)$/) do | *args |
-  puts args	
+  #puts args
+
+  @nisse = args.collect do | x | x end   if args.first =~ /[[:alpha:]]/  # /(\w)+/
+
+  @nisse.each_with_index do | x, idx | @nisse[x] = args[idx] end if args.first =~ /(\d)+/
+
+
+  puts "::#{@nisse}::"	
   #pending # Write code here that turns the phrase above into concrete actions
 end
 

@@ -1,0 +1,42 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    blinky (0.0.12)
+      chicanery (~> 0.1.0)
+      libusb (~> 0.2.2)
+    chicanery (0.1.8)
+      colorize (~> 0)
+      nokogiri (~> 1)
+    colorize (0.8.1)
+    daemons (1.2.3)
+    ffi (1.9.14)
+    jenkins_api_client (1.4.3)
+      json
+      mixlib-shellout (>= 1.1.0)
+      nokogiri (~> 1.6.0)
+      socksify (>= 1.7.0)
+      terminal-table (>= 1.4.0)
+      thor (>= 0.16.0)
+    json (2.0.1)
+    libusb (0.2.2)
+      ffi (>= 1.0)
+    mini_portile2 (2.1.0)
+    mixlib-shellout (2.2.6)
+    nokogiri (1.6.8)
+      mini_portile2 (~> 2.1.0)
+      pkg-config (~> 1.1.7)
+    pkg-config (1.1.7)
+    socksify (1.7.0)
+    terminal-table (1.6.0)
+    thor (0.19.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  blinky
+  daemons
+  jenkins_api_client
+
+BUNDLED WITH
+   1.12.5
