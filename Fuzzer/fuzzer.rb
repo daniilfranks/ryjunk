@@ -33,6 +33,7 @@ class Runner
 
   def checkRep
     assert_not_nil @reader
+    puts 'checkRep'
   end
 
 end
