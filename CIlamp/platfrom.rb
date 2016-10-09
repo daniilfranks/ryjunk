@@ -2,6 +2,9 @@ require 'fileutils'
 
 
 module OS
+
+  module_function
+
   def OS.windows?
     (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
   end

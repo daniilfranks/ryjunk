@@ -7,6 +7,7 @@
 #
 #       Error cases, no contact with url(simulate) etc, ingen konfigurerad resulter osv.
 
+require 'awesome_print'
 require_relative './reader'
 require_relative './resulter'
 require_relative './presenter'
@@ -19,7 +20,11 @@ if __FILE__ == $PROGRAM_NAME
 
     resulter = ResultBuilder.get(config)
 
-    config.presenter.each { | p |  Thread.new { PresenterBuilder.get(p, resulter) } }
+    config.presenter.each { | p |  
+      ap p
+#      Thread.new { PresenterBuilder.get(p, resulter) } 
+       PresenterBuilder.get(p, resulter) 
+    }
 
     puts config
 

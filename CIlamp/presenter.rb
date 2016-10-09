@@ -54,24 +54,23 @@ module Blinky
 end
 
 module Sound
-  require_relative './platfrom'
-
+  #require_relative './platfrom'
+   require_relative './ng_platform'
   class Presenter < UberPresenter
 
     def initialize resulter
-      puts "operative system: #{OS.get_platform}:"
-      @the_api = TheAPI.pick(OS.get_platform)
-
+      #puts "operative system: #{OS.get_platform}:"
+      
       super(resulter)
 
     end
 
     def show result
-      #puts "hi from Sound guy...#{result}"
+      puts "hi from Sound guy...#{result}"
 
       # TODO: Hold if already playing, otherwise go on
-      @the_api.play_mp3(mode = result)
-
+      #@the_api.play_mp3(mode = result)
+      PlateForm.play_sound(result)
     end
 
   end
