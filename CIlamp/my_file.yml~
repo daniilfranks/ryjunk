@@ -3,7 +3,7 @@
 server: http://jenkins.svenskaspel.se/
 #project: cucumber.API.tests.Poker.itp2
 project: MBT.generate_graph
-resulter: Fake # Fake #Real
+resulter: Real # Fake #real
 presenter:
      - StdOut
      - Sound

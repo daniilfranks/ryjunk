@@ -54,7 +54,7 @@ module Blinky
 end
 
 module Sound
-  require_relative './platfrom'
+  require_relative '../blinky/platfrom'
 
   class Presenter < UberPresenter
 
