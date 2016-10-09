@@ -21,10 +21,9 @@ class EnFil
   end
 
   def <=>(moved_file)
-#    (self.size < moved_file.size)? -1: (self.size > moved_file.size)? 1: 0
-     puts File.size(@filepath)
-     puts File.size(moved_file.filepath)
-    (File.size(@filepath) < File.size(moved_file.filepath))? -1: (File.size(@filepath) > File.size(moved_file.filepath))? 1: 0
+    this = File.size(@filepath)
+    other =  File.size(moved_file.filepath)
+    (this  < other )? -1: (this  > other )? 1: 0
   end
 
 
@@ -36,13 +35,8 @@ DESTDIR = './outdir/'
 
 if __FILE__ == $PROGRAM_NAME
 
-
-  file_objects = []
-
-  out_dir_array = []
-
   # Populate the file_object list ...
-  Dir.glob(INDIR).each { | x | file_objects << EnFil.new(x) }
+  file_objects = Dir.glob(INDIR).collect { | x |  EnFil.new(x) }
 
   # Print md5 chksum for all files ...
   file_objects.each { | x |  x.md5sum }
@@ -50,17 +44,15 @@ if __FILE__ == $PROGRAM_NAME
   # Move all files to a new directory
   # How to move a file object? Should the operation
   # be part on the object ...
-
-  file_objects.each { | x | 
-    out_dir_array << EnFil.new(DESTDIR + x.filename) }
+  out_dir_array = file_objects.collect { | x |  EnFil.new(DESTDIR + x.filename) }
 
   # Verify that there's no file left srcdir
   #file_objects.each { | x |  x.check(SRCDIR) }
 
   # Verify that there's a file in destdir, md5sum
   file_objects.each_with_index do | x, idx |
+     
      # Compare the srcfiles with destfiles 
      raise "Not equal #{x.filename} :: #{out_dir_array[idx].filename}" unless x == out_dir_array[idx]
   end
-
 end
