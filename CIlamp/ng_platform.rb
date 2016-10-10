@@ -53,6 +53,20 @@ class Linux < PlateForm
         end
 end
 
+class Mac < PlateForm
+	def self.current_os?
+          OS::get_platform == "Mac"
+	end
+
+	def list_files(path)
+		puts system("ls #{path}")
+	end
+  
+        def play_sound(path )
+   	  puts system("afplay #{path}")
+        end
+end
+
 
 if __FILE__ == $PROGRAM_NAME
 

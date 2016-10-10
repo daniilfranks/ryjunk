@@ -59,18 +59,16 @@ module Sound
   class Presenter < UberPresenter
 
     def initialize resulter
-      #puts "operative system: #{OS.get_platform}:"
-      
       super(resulter)
 
     end
 
     def show result
       puts "hi from Sound guy...#{result}"
-
+  
+       # TODO: temporary!!!
       # TODO: Hold if already playing, otherwise go on
-      #@the_api.play_mp3(mode = result)
-      PlateForm.play_sound(result)
+      PlateForm.play_sound("./#{result}.mp3")
     end
 
   end
