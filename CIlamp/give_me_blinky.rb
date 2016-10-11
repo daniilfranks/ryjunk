@@ -11,22 +11,28 @@ require_relative './presenter'
 if __FILE__ == $PROGRAM_NAME
 
   begin
+    
+    puts "--read configuration"
     config = KonfigReader.new
 
+    puts "--get relevant result provider ..."
     resulter = ResultBuilder.get(config)
 
+    
+    puts "--start presenter(s)"
     config.presenter.each { | p |  
-      ap p
 #      Thread.new { PresenterBuilder.get(p, resulter) } 
        PresenterBuilder.get(p, resulter) 
     }
 
-    puts config
+    #ap config
 
     resulter.run
 
-  #rescue Exception => e
-  #  puts "You hit Ctrl+C"
+  rescue => e
+
+    puts "Caught a exception  ... ::#{e}::"
+  
   end
 
   # TODO: catch Keyboardinterrupts?

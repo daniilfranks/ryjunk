@@ -73,3 +73,16 @@ module Fake
 
 end
 
+module Raiser
+
+  class Resulter < MyResulter
+    def initialize config
+    
+    end
+
+    def read
+        raise "Check the stuff!"
+    end
+
+  end
+end 
