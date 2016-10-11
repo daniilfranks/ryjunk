@@ -1,0 +1,9 @@
+{
+    "server": "http://jenkins.se",
+    "project": "mbt",
+    "resulter": "Fake",
+    "presenter": ["StdOut", "Sound"],
+    "sounds": [{
+	"success": "success.mp3"
+	}]
+}

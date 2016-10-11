@@ -66,5 +66,15 @@ if __FILE__ == $PROGRAM_NAME
 
   ap n.project
   ap n.presenter
-  
+
+  require 'json-schema'
+
+  begin
+    puts "Begin parsing ..."
+    schema = File.open('./json_schema.json').read
+    data = File.open('./the_configuration.json').read 
+    JSON::Validator.validate!(schema, data)
+  rescue JSON::Schema::ValidationError
+    puts $!.message
+  end
 end
