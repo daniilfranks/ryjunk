@@ -16,10 +16,6 @@ class UberPresenter
     resulter.add_observer(self)
   end
 
-  def update(time, result) # callback for observer
-    show result
-  end
-
 end
 
 module Blinky
@@ -61,15 +57,15 @@ module Sound
 
     end
 
-    def show result
+    def update time, result
       puts "hi from Sound guy...#{result}"
   
        # TODO: temporary!!!
       # TODO: Hold if already playing, otherwise go on
       Commands.play_sound("./#{result}.mp3")
     end
-
   end
+
 end
 
 module StdOut
@@ -79,14 +75,8 @@ module StdOut
       super(resulter)
     end
 
-    def show result
+    def update time,  result
       puts result
     end
-
-    def ooupdate(time, result) # callback for observer
-      print "#{self.class}:"
-      show result
-    end
-
   end
 end
