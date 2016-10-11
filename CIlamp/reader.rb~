@@ -18,7 +18,8 @@ class YAMLReader
   attr_reader :project, :server, :resulter, :presenter, :sounds
 
   # TODO: if daemons, relpath will not do, how to solve?
-  def initialize (file = "/Users/fabv/ehea-fabv-project/usbLamp/blinky/my_file.yml")
+#  def initialize (file = "/Users/fabv/ehea-fabv-project/usbLamp/blinky/my_file.yml")
+  def initialize (file = "./my_file.yml")
 
     config = YAML.load_file(file)
     @project = config['project']

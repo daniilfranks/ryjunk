@@ -1,7 +1,5 @@
 require_relative 'platfrom'
 
-
-
 class PlateForm
   include OS
   class << self
@@ -41,29 +39,29 @@ end
 
 class Linux < PlateForm
 	def self.current_os?
-          OS::get_platform == "Linux"
+          OS::get_platform == :Linux
 	end
 
 	def list_files(path)
-		puts system("ls #{path}")
+		system("ls #{path}")
 	end
   
         def play_sound(path )
-   	  puts system("mpg123 #{path}")
+   	   system("mpg123 #{path}")
         end
 end
 
 class Mac < PlateForm
 	def self.current_os?
-          OS::get_platform == "Mac"
+          OS::get_platform == :Mac
 	end
 
 	def list_files(path)
-		puts system("ls #{path}")
+		 system("ls #{path}")
 	end
   
         def play_sound(path )
-   	  puts system("afplay #{path}")
+   	  system("afplay #{path}")
         end
 end
 
@@ -71,10 +69,8 @@ end
 if __FILE__ == $PROGRAM_NAME
 
   include OS
-  #plateform = PlateForm.new
 
-  #puts OS::get_platform
-#  PlateForm.list_files('.')
+  #PlateForm.list_files('.')
   PlateForm.play_sound('./success.mp3')
 
 end

@@ -1,6 +1,5 @@
 require 'blinky'
 
-#TODO make each a presenter a thread so they can work in parallel!
 # TODO add chirp?
 
 class PresenterBuilder
@@ -54,7 +53,6 @@ module Blinky
 end
 
 module Sound
-  #require_relative './platfrom'
    require_relative './ng_platform'
   class Presenter < UberPresenter
 
