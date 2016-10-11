@@ -53,7 +53,7 @@ module Blinky
 end
 
 module Sound
-   require_relative './ng_platform'
+   require_relative './commands'
   class Presenter < UberPresenter
 
     def initialize resulter
@@ -66,7 +66,7 @@ module Sound
   
        # TODO: temporary!!!
       # TODO: Hold if already playing, otherwise go on
-      PlateForm.play_sound("./#{result}.mp3")
+      Commands.play_sound("./#{result}.mp3")
     end
 
   end

@@ -1,6 +1,6 @@
-require_relative 'platfrom'
+require_relative 'platform'
 
-class PlateForm
+class Commands
   include OS
   class << self
   	attr_reader :os_classes
@@ -24,7 +24,7 @@ class PlateForm
 
 
   def self.os_for(path)
-  	os_class = PlateForm.os_classes.find do | klass |
+  	os_class = Commands.os_classes.find do | klass |
   		klass.current_os?
   	end
 
@@ -33,11 +33,11 @@ class PlateForm
   end
   
   def self.inherited(subclass)
-  	PlateForm.os_classes << subclass
+  	Commands.os_classes << subclass
   end
 end
 
-class Linux < PlateForm
+class Linux < Commands
 	def self.current_os?
           OS::get_platform == :Linux
 	end
@@ -47,11 +47,11 @@ class Linux < PlateForm
 	end
   
         def play_sound(path )
-   	   system("mpg123 #{path}")
+   	   system("mpg123 #{path} > /dev/null 2>&1")
         end
 end
 
-class Mac < PlateForm
+class Mac < Commands
 	def self.current_os?
           OS::get_platform == :Mac
 	end
@@ -70,7 +70,7 @@ if __FILE__ == $PROGRAM_NAME
 
   include OS
 
-  #PlateForm.list_files('.')
-  PlateForm.play_sound('./success.mp3')
+  #Commands.list_files('.')
+  Commands.play_sound('./success.mp3')
 
 end
