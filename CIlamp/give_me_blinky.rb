@@ -1,11 +1,6 @@
-
-# TODO: add ruby path
-#       separate? store result in file,
-#       read from other script? daemons?!
-#       daemonize? start/stop/status?
-#       save previous build!
+#!/usr/bin/env ruby
 #
-#       Error cases, no contact with url(simulate) etc, ingen konfigurerad resulter osv.
+#  TODO: Error cases, no contact with url(simulate) etc, ingen konfigurerad resulter osv.
 
 require 'awesome_print'
 require_relative './reader'

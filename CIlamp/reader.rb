@@ -29,12 +29,16 @@ class YAMLReader
   end
 end
 
+class JSONReader
+  def initialize (file = "./the_configuration.json")
+  end
+end
 
 class KonfigReader
 
   attr_reader :project, :server, :resulter, :presenter
 
-  def initialize( reader = YAMLReader.new)
+  def initialize( reader = YAMLReader.new )
     @project = reader.project
     @server = reader.server
     @resulter = reader.resulter
@@ -43,7 +47,7 @@ class KonfigReader
   end
 
   def to_str
-    "ConfigReader, server:#@server, project: #@project, resulter: #@resulter, presenter: #@presenter "
+    "KonfigReader, server:#@server, project: #@project, resulter: #@resulter, presenter: #@presenter "
   end
 
   def to_s
