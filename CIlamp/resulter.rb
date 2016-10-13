@@ -1,7 +1,7 @@
 require "observer"
 require "jenkins_api_client"
 
-POLL_TIME = 7
+POLL_TIME = 5
 
 class ResultBuilder
 
@@ -73,20 +73,16 @@ module Fake
 
 end
 
-module Filen
-class Resulter < MyResulter
-  def initialize(file = 'result.yml')
-    @result = YAML.load_file(file)
-  end
+module Raiser
 
-  # TODO: read and write from yml file, current and previous status
-  def read
+  class Resulter < MyResulter
+    def initialize config
+    
+    end
 
-  end
-
-  def write
+    def read
+        raise "Check the stuff!"
+    end
 
   end
-
-end
-  end
+end 

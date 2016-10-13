@@ -1,6 +1,7 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
+    awesome_print (1.7.0)
     blinky (0.0.12)
       chicanery (~> 0.1.0)
       libusb (~> 0.2.2)
@@ -34,9 +35,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   blinky
   daemons
   jenkins_api_client
-
-BUNDLED WITH
-   1.12.5

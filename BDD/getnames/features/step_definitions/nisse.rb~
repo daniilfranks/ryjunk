@@ -1,0 +1,3 @@
+Given(/^scenario details$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end

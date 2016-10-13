@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "server": {
+      "type": "string"
+    },
+    "project": {
+      "type": "string"
+    },
+    "resulter": {
+      "type": "string"
+    },
+    "presenter": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sounds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      }
+    }
+  },
+  "required": [
+    "server",
+    "project",
+    "resulter",
+    "presenter",
+    "sounds"
+  ]
+}

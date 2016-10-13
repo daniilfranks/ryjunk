@@ -1,6 +1,5 @@
 require 'blinky'
 
-#TODO make each a presenter a thread so they can work in parallel!
 # TODO add chirp?
 
 class PresenterBuilder
@@ -15,10 +14,6 @@ class UberPresenter
 
   def initialize resulter
     resulter.add_observer(self)
-  end
-
-  def update(time, result) # callback for observer
-    show result
   end
 
 end
@@ -54,27 +49,23 @@ module Blinky
 end
 
 module Sound
-  require_relative '../blinky/platfrom'
-
+   require_relative './commands'
   class Presenter < UberPresenter
 
     def initialize resulter
-      puts "operative system: #{OS.get_platform}:"
-      @the_api = TheAPI.pick(OS.get_platform)
-
       super(resulter)
 
     end
 
-    def show result
-      #puts "hi from Sound guy...#{result}"
-
+    def update time, result
+      puts "hi from Sound guy...#{result}"
+  
+       # TODO: temporary!!!
       # TODO: Hold if already playing, otherwise go on
-      @the_api.play_mp3(mode = result)
-
+      Commands.play_sound("./#{result}.mp3")
     end
-
   end
+
 end
 
 module StdOut
@@ -84,14 +75,8 @@ module StdOut
       super(resulter)
     end
 
-    def show result
+    def update time,  result
       puts result
     end
-
-    def ooupdate(time, result) # callback for observer
-      print "#{self.class}:"
-      show result
-    end
-
   end
 end
