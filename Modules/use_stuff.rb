@@ -7,3 +7,5 @@ x = Stuff::T.new
 # puts C  
 
 puts Stuff.pelle
+
+puts Stuff.const_get("C".to_sym)
