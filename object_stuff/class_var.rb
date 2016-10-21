@@ -37,6 +37,20 @@ if __FILE__ == $PROGRAM_NAME
  
    puts sen-nu
    puts (sen-nu).class
+
+   require 'minitest/autorun'
+
+   class TestTimeStuff <  Minitest::Test
+
+     def test_assert_time
+       nu = Time.now
+       sleep 2
+       sen = Time.now
+
+       assert_in_epsilon sen-nu, 2.0 , 0.5
+     end
+
+   end
   
 
 end
