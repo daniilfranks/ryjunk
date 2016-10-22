@@ -68,6 +68,11 @@ end
 Given(/^that I have a table$/) do |table|
   # table is a Cucumber::Core::Ast::DataTable
   table.hashes.each do | data | data end
+
+  olle = Olle.new
+  puts "::#{olle.omar}::"
+
+  puts "HEJ: #{ENV['FOO']}"
 end
 
 
@@ -89,7 +94,7 @@ Given(/^we have behave installed$/) do
 
   end 
 
-  #puts "HEJ: #{ENV['FOO']}"
+  
 
   #if not FOO.nil?
 
