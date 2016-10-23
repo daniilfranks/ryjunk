@@ -68,6 +68,11 @@ end
 Given(/^that I have a table$/) do |table|
   # table is a Cucumber::Core::Ast::DataTable
   table.hashes.each do | data | data end
+
+  olle = Olle.new
+  puts "::#{olle.omar}::"
+
+  puts "HEJ: #{ENV['FOO']}"
 end
 
 
@@ -89,7 +94,7 @@ Given(/^we have behave installed$/) do
 
   end 
 
-  #puts "HEJ: #{ENV['FOO']}"
+  
 
   #if not FOO.nil?
 
@@ -158,8 +163,13 @@ Given(/^kallar omgång[ar]*$/) do
 end
 
 
+def ready_4_stagetest lklmodule
+  pending "#{lklmodule} not active, stagetest not possible!" unless lklmodule.nil?
+end
+
 
 Given(/^My that I have a table(\d+)$/) do |arg1, table|
   # table is a Cucumber::Core::Ast::DataTable
-#  pending # Write code here that turns the phrase above into concrete actions
+  #pending "Help this is pending!" # Write code here that turns the phrase above into concrete actions
+  ready_4_stagetest "gurkan" 
 end
