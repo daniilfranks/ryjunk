@@ -10,6 +10,9 @@ Dir.glob('./**/*').each do | file |
 
   puts file if File.extname(file) == ""
 
+  # List unwanted files author !!
+  #system('git log --pretty=format:"%an"')
+
 end
 
 
