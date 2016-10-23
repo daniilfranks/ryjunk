@@ -1,11 +1,6 @@
 #!/usr/bin/env ruby
 #
-#  TODO: - Error cases, 
-#        - no contact with url(simulate) etc
-#        - ingen konfigurerad resulter osv.
-#        - optionParser, swith btw yml and json!
-#        - loggerhantering, använd logger!
-#        - 
+#  TODO: Error cases, no contact with url(simulate) etc, ingen konfigurerad resulter osv.
 
 require 'awesome_print'
 require_relative './reader'
@@ -18,7 +13,7 @@ if __FILE__ == $PROGRAM_NAME
   begin
     
     puts "--read configuration"
-    config = KonfigReader.new(reader = JSONReader.new)
+    config = KonfigReader.new
 
     puts "--get relevant result provider ..."
     resulter = ResultBuilder.get(config)

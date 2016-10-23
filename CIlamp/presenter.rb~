@@ -1,4 +1,4 @@
-
+require 'blinky'
 
 # TODO add chirp?
 
@@ -19,8 +19,6 @@ class UberPresenter
 end
 
 module Blinky
-
-#require 'blinky'   # Better way to avoid loading if Blinky not available!
   class Presenter < UberPresenter
 
     def initialize resulter
