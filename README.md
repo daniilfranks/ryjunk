@@ -1,3 +1,13 @@
+161023
+------
+
+- Läsa Design Patterns i Ruby + alla Cucumberböckerna!
+
+- Går det att använda MBT för RödeOrm?
+
+- Hur med felfall för Rödeorm. Fel Meddelanden? Korrupta?
+
+- 
 
 160319
 -------
