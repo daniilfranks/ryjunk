@@ -47,7 +47,10 @@ class TestSpider < Test::Unit::TestCase
     spider = Spider.new
     spider.address = 'example.com'
     spider.path = '.'
+    #assert_equal "400", spider.get_code
+
     assert_equal "400", spider.get_code
+
   end
  
 end
@@ -68,13 +71,13 @@ class TestSpiderMock < Test::Unit::TestCase
   def spider.get_response
     response = FakeResponse.new
     response.body = 'Moved'
-    response.code = "401"
+
+    response.code = 401
     response
   end
     assert_includes spider.get_body,'Moved', "#{spider.get_body}"
-    #puts spider.get_code
-    assert_equal  "401", spider.get_code, msg=spider.get_code
-
+    puts spider.get_code
+    assert_equal  401, spider.get_code, msg=spider.get_code
   end
  
 end
