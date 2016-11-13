@@ -38,7 +38,7 @@ place_holder = PlaceHolder.new
 
 nisse =place_holder.now_post()
 
-#ap nisse.response
+ap nisse.response
 ap nisse.code
 # pp twitter.timeline(:friends, query: {since_id: 868482746})
 # pp twitter.timeline(:friends, query: 'since_id=868482746')
