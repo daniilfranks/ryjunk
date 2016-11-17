@@ -52,8 +52,9 @@ puts nn
 
 #puts p
 #puts pp
-
-
+puts "--"*40
+puts ActiveSupport::Inflector.transliterate('Ærøskøbing')
+puts ActiveSupport::Inflector.transliterate('öåä')
 #7.times { puts DateTime.now.strftime('%A') }
 
 
@@ -88,3 +89,15 @@ bn = (0..7).each_with_index.collect { |i| now.advance(days:i) }.find { |x| x.str
 puts "NUDA"
 #puts bn.find { |x| x.strftime('%A')  == 'Saturday' }
 puts bn
+
+
+puts "*"*40
+puts DateTime.current
+
+puts DateTime.now
+
+
+puts "-"*40
+puts DateTime.now.change({ hour: 7 })    
+
+puts DateTime.now.days_ago(4)
