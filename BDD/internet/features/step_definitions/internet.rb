@@ -116,7 +116,7 @@ end
 When(/^trying to get:  example\.com$/) do
 
   require 'rest-client'
-  @res = RestClient.get("example.com")
+  @res = RestClient.get("netnod.se")
   refute @res.nil?
 end
 
@@ -161,7 +161,7 @@ Given(/^we have a interface$/) do
 end
 
 When(/^asking for a vendorId for this computer$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+   @lle = system "ifconfig | grep en1"
 end
 
 Then(/^we get a valid reply on this$/) do
