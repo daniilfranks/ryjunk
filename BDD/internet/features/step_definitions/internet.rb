@@ -1,4 +1,3 @@
-
 require 'open3'
 
 def pingable?(host, timeout=5)
@@ -13,6 +12,7 @@ end
 
 Given(/^We have a computer$/) do
   puts "Check what OS we are running!"  
+  # TODO use platform library
 end
 
 When(/^we ask for a active network interface$/) do
@@ -32,10 +32,7 @@ Given(/^we have a network interface$/) do
 end
 
 When(/^pinging our local adress$/) do
-  # uses ICMP 
-  #@reply =  system("ping -c 1 127.0.0.1 > /dev/null")
-
-  reply1 = pingable?('localhost')  
+  @reply1 = pingable?('localhost')  
 end
 
 When(/^pinging our adress:(.*)$/) do | host |
@@ -44,8 +41,7 @@ end
 
 Then(/^we get a valid reply$/) do
   assert @reply
- 
-end
+ end
 
 #---------------------------------------------------------------
 
@@ -71,15 +67,6 @@ Given(/^that we have a assigned address$/) do
 end
 
 When(/^we check if we have a first router$/) do
-
-=begin  
-  # TODO :/etc/resolv.conf instead?
-  out, err, status = command('netstat -r')
-
-  @lll = out.match(/default([\s]+)(?<test>[\d\.]+)/)
-  refute @lll.nil?
-=end
-
   data = File.open('/etc/resolv.conf', 'r').read
   @lll = data.match(/nameserver([\s]+)(?<test>[\d\.]+)/)
   refute @lll.nil?
@@ -114,7 +101,6 @@ Given(/^internet connection$/) do
 end
 
 When(/^trying to get:  example\.com$/) do
-
   require 'rest-client'
   @res = RestClient.get("netnod.se")
   refute @res.nil?
@@ -122,7 +108,6 @@ end
 
 Then(/^we get a okay reply$/) do
   assert @res.code == 200
-
 end
 
 #---------------------------------------------------------------
@@ -130,6 +115,7 @@ end
 Given(/^we have a mail client$/) do
   # Use Net::SMTP or mail gem?
   pending "Hi there!"
+  # TODO: Use Net::SMTP and Observer when returning mail arrives
 end
 
 When(/^sending a echo mail to: echo@tu\-berlin\.de$/) do
@@ -157,11 +143,23 @@ end
 #---------------------------------------------------------------
 
 Given(/^we have a interface$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  #pending # Write code here that turns the phrase above into concrete actions
 end
 
 When(/^asking for a vendorId for this computer$/) do
-   @lle = system "ifconfig | grep en1"
+   @out, err , status = command "ifconfig | grep -A 1 en1 "
+   #puts @out
+   #puts '.'*80
+   #puts err
+   #puts '.'*80
+   slut = @out.match(/ether([\s]+)(?<mac>[\w\:]+)/)[:mac]
+   #puts '.'*80
+   resource = @out.gsub(':', '-')
+   puts resource
+   # TODO: Use Ostruct and subclass!
+   # http://www.macvendorlookup.com/api/v2/a8-86-dd-ab-14-c1
+
+   # TODO: ping 255.255.255.255 to get info about neighbours
 end
 
 Then(/^we get a valid reply on this$/) do
