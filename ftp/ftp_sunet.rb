@@ -33,7 +33,7 @@ class FetchTask
 
   def self.defaults
     {
-      server: 'ftp.sunet.se', user: 'anonymous', pwd: nil,
+      server: 'ftp.sunet.se', user: 'anonymous', pwd: '',
 #      rpath: 'mirror/archive/ftp.sunet.se/pub/Linux/distributions/bifrost/download/logo/',
       rpath: '/mirror/archive/ftp.sunet.se/pub/Linux/distributions/bifrost/doc/',
 #      suffix: ['*.png', '*.xml', '*.zip'],
