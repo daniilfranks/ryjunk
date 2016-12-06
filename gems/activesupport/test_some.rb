@@ -101,3 +101,6 @@ puts "-"*40
 puts DateTime.now.change({ hour: 7 })    
 
 puts DateTime.now.days_ago(4)
+
+
+puts DateTime.current.years_ago(5).beginning_of_year
