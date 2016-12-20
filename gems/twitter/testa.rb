@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*
 require_relative './config'
 require 'twitter'
 require 'yaml'
@@ -16,12 +17,15 @@ tweets = client.user_timeline('Muralgranskaren', count: 20)
 
 #tweets.each { |tweet| puts tweet.full_text }
 
+#puts tweets
+
 all_text = tweets.collect { |tweet| tweet.full_text }
 
+puts all_text.first.encoding
 
 # ... rest of the code here ...
  
-#File.write('tweets.yml', YAML.dump(tweets))
+File.write('tweets.yml', YAML.dump(tweets))
 #twts = JSON.pretty_generate(tweets)
 File.write('tweets.json', JSON.dump(all_text))
 #File.write('tweets.json', JSON.pretty_generate(tweets))
