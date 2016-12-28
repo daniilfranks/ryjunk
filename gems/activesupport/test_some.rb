@@ -104,3 +104,5 @@ puts DateTime.now.days_ago(4)
 
 
 puts DateTime.current.years_ago(5).beginning_of_year
+
+puts (DateTime.parse('1900-01-01')..DateTime.parse('1900-03-01')).to_a
